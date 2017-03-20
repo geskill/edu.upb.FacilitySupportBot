@@ -4,7 +4,7 @@ require('dotenv').config();
 var Botkit = require('botkit');
 
 var controller = Botkit.botframeworkbot({
-    debug: true,
+    debug: process.env.DEBUG || true,
     hostname: process.env.HOSTNAME || '127.0.0.1'
 });
 
