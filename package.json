@@ -1,0 +1,12 @@
+{
+  "name": "FacilitySupportBot",
+  "version": "0.0.1",
+  "description": "A support bot for incidents in facilities.",
+  "license": "MIT",
+  "author": "Sebastian Klatte <sebastian.klatte@posteo.de>",
+  "dependencies": {
+    "botkit": "^0.5.2",
+    "botkit-middleware-luis": "^1.0.0",
+    "dotenv": "^4.0.0"
+  }
+}
