@@ -21,22 +21,40 @@ var listReply = function (message, title, elements) {
     bot.reply(message, { 'text': '', 'attachments': [{ 'contentType': 'application/vnd.microsoft.card.hero', 'content': { 'text': title, 'buttons': elements } }] });
 };
 
-var defaultReply = function (message) {
-    // TODO: build default reply based upon already answered questions // todo questions
-    var identity = message.address.user;
-    bot.reply(message, 'Hello ' + identity.name + ', what is the address of your current location?');
+var getUserId = function (message) {
+    return message.address.user.name;
+}
+
+var defaultReply = function (message, id) {
+    controller.storage.users.get(id, function (err, user) {
+        if (!user || !user.city || !user.street) {
+            bot.reply(message, 'What is the address of your current location?');
+        } else {
+            // TODO add more 'states'
+            bot.reply(message, 'What happened in ' + user.city + ' and where exactly?');
+        }
+    });
+};
+
+var saveConversationStart = function (message, id) {
+    controller.storage.users.save({ id: id, conversationStartDate: Date.now() }, function (err) {
+        bot.reply(message, 'Hello ' + id + ', what is the address of your current location?');
+    });
 };
 
 var saveAddress = function (message, id, city, street) {
-    controller.storage.users.save({ id: id, city: city, street: street }, function (err) {
-        if (!city) {
-            bot.reply(message, 'What is the name of the city you are located at?');
-        } else if (!street) {
-            bot.reply(message, 'What is the name and number of the street you are located at?');
-        } else {
-            // TODO: check, whether What and where is already checked
-            bot.reply(message, 'What happened in ' + city + ' and where exactly?');
-        }
+    controller.storage.users.get(id, function (err, user) {
+        user.city = city;
+        user.street = street;
+        controller.storage.users.save(user, function (err) {
+            if (!city) {
+                bot.reply(message, 'What is the name of the city you are located at?');
+            } else if (!street) {
+                bot.reply(message, 'What is the name and number of the street you are located at?');
+            } else {
+                defaultReply(message, id);
+            }
+        });
     });
 };
 
@@ -55,12 +73,16 @@ var saveAndStandardizeAddress = function (message, id, city, street) {
                             var streetnumber;
                             for (let address_component of response.json.results[0].address_components) {
                                 for (let type of address_component.types) {
-                                    if (type == 'street_number') {
-                                        streetnumber = address_component.long_name;
-                                    } else if (type == 'route') {
-                                        street = address_component.long_name;
-                                    } else if (type == 'locality') {
-                                        city = address_component.long_name;
+                                    switch (type) {
+                                        case 'street_number':
+                                            streetnumber = address_component.long_name;
+                                            break;
+                                        case 'route':
+                                            street = address_component.long_name;
+                                            break;
+                                        case 'locality':
+                                            city = address_component.long_name;
+                                            break;
                                     }
                                 }
                             }
@@ -75,7 +97,7 @@ var saveAndStandardizeAddress = function (message, id, city, street) {
                                 choices.push({
                                     'type': 'imBack',
                                     'title': result.formatted_address,
-                                    'value': "I am in " + result.formatted_address
+                                    'value': 'I am in ' + result.formatted_address
                                 });
                             }
 
@@ -83,6 +105,7 @@ var saveAndStandardizeAddress = function (message, id, city, street) {
                         }
                 }
             } else {
+                // Google service error
                 askAddressError(message);
             }
         });
@@ -120,7 +143,7 @@ controller.on('conversationUpdate', function (bot, message) {
                 //   user we can tweek the address object to reference the joining user.
                 // - If we wanted to send a private message to teh joining user we could
                 //   delete the address.conversation field from the cloned address.
-                defaultReply(message);
+                saveConversationStart(message, getUserId(message));
             }
         });
     }
@@ -135,36 +158,37 @@ controller.middleware.receive.use(luis.middleware.receive(luisOptions));
 
 controller.hears(['LUIS'], ['direct_message', 'direct_mention', 'mention', 'message_received'], luis.middleware.hereIntent, function (bot, message) {
 
-    var id = message.address.user.name;
+    var id = getUserId(message);
     if (message.topIntent.score < 0.5) {
-        defaultReply(message);
+        defaultReply(message, id);
     } else {
         switch (message.topIntent.intent) {
             case 'ProvideLocation':
-                controller.storage.users.get(id, function (err, user) {
-                    var city, street;
-                    if (user) {
-                        city = user.city;
-                        street = user.street;
-                    }
-
-                    for (let entity of message.entities) {
-                        switch (entity.type) {
-                            case 'builtin.geography.city':
-                                city = entity.entity;
-                                break;
-                            case 'StreetAndNumber':
-                                street = entity.entity;
-                                break;
+                {
+                    controller.storage.users.get(id, function (err, user) {
+                        var city, street;
+                        if (user) {
+                            city = user.city;
+                            street = user.street;
                         }
-                    }
 
-                    saveAndStandardizeAddress(message, id, city, street);
-                });
-                break;
-            
+                        for (let entity of message.entities) {
+                            switch (entity.type) {
+                                case 'builtin.geography.city':
+                                    city = entity.entity;
+                                    break;
+                                case 'StreetAndNumber':
+                                    street = entity.entity;
+                                    break;
+                            }
+                        }
+
+                        saveAndStandardizeAddress(message, id, city, street);
+                    });
+                    break;
+                }
             default:
-                defaultReply(message);
+                defaultReply(message, id);
         }
     }
 });
