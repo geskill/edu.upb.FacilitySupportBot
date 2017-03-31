@@ -1,6 +1,13 @@
 // read from '.env'-file
 require('dotenv').config();
 
+var limdu = require('limdu');
+var MyDecisionTree = limdu.classifiers.DecisionTree.bind(this, {});
+
+var intentClassifier = new limdu.classifiers.multilabel.BinaryRelevance({
+	binaryClassifierType: MyDecisionTree
+});
+
 var Botkit = require('botkit');
 
 var controller = Botkit.botframeworkbot({
@@ -23,7 +30,7 @@ var listReply = function (message, title, elements) {
 
 var getUserId = function (message) {
     return message.address.user.name;
-}
+};
 
 var defaultReply = function (message, id) {
     controller.storage.users.get(id, function (err, user) {
@@ -101,7 +108,7 @@ var saveAndStandardizeAddress = function (message, id, city, street) {
                                 });
                             }
 
-                            listReply(message, 'It seems there are multiple choices on your location, please select:', choices);
+                            listReply(message, 'There are multiple choices on your location, please select (if you can not find your address please write it again):', choices);
                         }
                 }
             } else {
@@ -115,7 +122,7 @@ var saveAndStandardizeAddress = function (message, id, city, street) {
 };
 
 var askAddressError = function (message) {
-    bot.reply(message, 'It seems the address does not exists. What is the address of your current location?');
+    bot.reply(message, 'The address could not be found. Please write it again.');
 };
 
 // if you are already using Express, you can use your own server instance...
@@ -174,6 +181,7 @@ controller.hears(['LUIS'], ['direct_message', 'direct_mention', 'mention', 'mess
 
                         for (let entity of message.entities) {
                             switch (entity.type) {
+                                // TODO: add: case 'ZipCode':
                                 case 'builtin.geography.city':
                                     city = entity.entity;
                                     break;
@@ -193,6 +201,82 @@ controller.hears(['LUIS'], ['direct_message', 'direct_mention', 'mention', 'mess
     }
 });
 
+/*
+ * Google Api.ai
+ *
+var apiai = require('botkit-middleware-apiai')({
+    token: process.env.APP_APIAI_CLIENT_ACCESS_TOKEN,
+    skip_bot: true // or false. If true, the middleware don't send the bot reply/says to api.ai
+});
+controller.middleware.receive.use(apiai.receive);
+
+// apiai.hears for intents. in this example is 'hello' the intent
+controller.hears(['ProvideLocation'], ['direct_message', 'direct_mention', 'mention', 'message_received'], apiai.hears, function (bot, message) {
+
+    var id = getUserId(message);
+    controller.storage.users.get(id, function (err, user) {
+        var city, street;
+        if (user) {
+            city = user.city;
+            street = user.street;
+        }
+
+        // date-time
+
+        if (message.entities['zip-code']) {
+            city = message.entities['zip-code'];
+        }
+        if (message.entities['geo-city']) {
+            city = message.entities['geo-city'];
+        }
+        if (message.entities['street-address']) {
+            street = message.entities['street-address'].join(' ');
+        }
+
+        saveAndStandardizeAddress(message, id, city, street);
+    });
+
+});
+
+/*
+ * Recast.ai
+ *
+var recastai = require('botkit-middleware-recastai')({
+    request_token: process.env.APP_RECASTAI_REQUEST_ACCESS_TOKEN,
+    confidence: 0.4
+});
+controller.middleware.receive.use(recastai.receive);
+
+controller.hears(['default'], ['direct_message', 'direct_mention', 'mention', 'message_received'], recastai.hears, function (bot, message) {
+    defaultReply(message, id);
+});
+
+controller.hears(['provide-location'], ['direct_message', 'direct_mention', 'mention', 'message_received'], recastai.hears, function (bot, message) {
+
+    var id = getUserId(message);
+    controller.storage.users.get(id, function (err, user) {
+        var city, street;
+        if (user) {
+            city = user.city;
+            street = user.street;
+        }
+
+        // date-time
+
+        if (message.entities['zip-code']) {
+            city = message.entities['zip-code'];
+        }
+        if (message.entities['geo-city']) {
+            city = message.entities['geo-city'];
+        }
+        if (message.entities['street-address']) {
+            street = message.entities['street-address'].join(' ');
+        }
+
+        saveAndStandardizeAddress(message, id, city, street);
+    });
+
+});
 
 /*
 

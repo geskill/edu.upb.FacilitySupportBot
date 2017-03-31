@@ -16,7 +16,10 @@
   "dependencies": {
     "@google/maps": "^0.3.1",
     "botkit": "^0.5.2",
+    "botkit-middleware-apiai": "^0.1.1",
     "botkit-middleware-luis": "^1.0.0",
-    "dotenv": "^4.0.0"
+    "botkit-middleware-recastai": "^1.0.4",
+    "dotenv": "^4.0.0",
+    "limdu": "^0.9.1"
   }
 }
