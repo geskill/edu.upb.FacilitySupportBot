@@ -2,11 +2,17 @@
 require('dotenv').config();
 
 var limdu = require('limdu');
-var MyDecisionTree = limdu.classifiers.DecisionTree.bind(this, {});
+var decisionTree = limdu.classifiers.DecisionTree.bind(this, {});
 
-var intentClassifier = new limdu.classifiers.multilabel.BinaryRelevance({
-	binaryClassifierType: MyDecisionTree
+var intentTypeClassifier = new limdu.classifiers.multilabel.BinaryRelevance({
+    binaryClassifierType: decisionTree
 });
+
+var priorityTypeClassifier = new limdu.classifiers.multilabel.BinaryRelevance({
+    binaryClassifierType: decisionTree
+});
+
+var incidentTypeToJobsMapping = require('./jobs.json');
 
 var Botkit = require('botkit');
 
@@ -32,19 +38,43 @@ var getUserId = function (message) {
     return message.address.user.name;
 };
 
-var defaultReply = function (message, id) {
+var defaultReply = function (message, id, error) {
     controller.storage.users.get(id, function (err, user) {
+        if (error) {
+            user.errorCount += 1;
+            if (user.errorCount >= 2) {
+                bot.reply(message, 'Sorry, your information could not be recognized. Please try again and use a different wording.');
+            }
+            if (user.errorCount >= 3) {
+                serviceReply(message, id);
+            }
+        } else {
+            user.errorCount = 0;
+        }
+
         if (!user || !user.city || !user.street) {
             bot.reply(message, 'What is the address of your current location?');
-        } else {
-            // TODO add more 'states'
+        } else if (!user.type || !user.priority) {
             bot.reply(message, 'What happened in ' + user.city + ' and where exactly?');
+        } else if (!user.time) {
+            bot.reply(message, 'When did it happen?');
+        } else if (!user.urgency) {
+            bot.reply(message, 'Are there people in danger? (Eg locked in elevators)');
+        } else if (!user.name || !user.email || !user.phone) {
+            bot.reply(message, 'Can you please tell me your name and contact?');
+        } else {
+            // TODO: Improve finished info
+            bot.reply(message, 'Thank you very much, Mrs. Mustermann, your message has been recorded. The technician will be informed and will contact you if you have any questions.');
         }
     });
 };
 
+var serviceReply = function (message, id) {
+    bot.reply(message, 'Please hold on. A service employee will soon take on the conversation.');
+};
+
 var saveConversationStart = function (message, id) {
-    controller.storage.users.save({ id: id, conversationStartDate: Date.now() }, function (err) {
+    controller.storage.users.save({ id: id, conversationStartDate: Date.now(), errorCount: 0 }, function (err) {
         bot.reply(message, 'Hello ' + id + ', what is the address of your current location?');
     });
 };
@@ -121,6 +151,163 @@ var saveAndStandardizeAddress = function (message, id, city, street) {
     }
 };
 
+var saveIncidentAndPosition = function (message, id, reference, symptom, position, area, number) {
+    controller.storage.users.get(id, function (err, user) {
+        if (reference) { user.reference = reference; }
+        if (symptom) { user.symptom = symptom; }
+        if (position) { user.position = position; }
+        if (area) { user.area = area; }
+        if (number) { user.number = number; }
+        var positionsNeedNone = ['basement', 'boiler room', 'boxroom', 'building', 'building wall', 'café', 'cafeteria',
+            'cellar', 'customer area', 'dining hall', 'entire building', 'entrance area', 'entrance hall', 'entrance room',
+            'entrance stairway', 'facade', 'facility', 'foyer', 'front door', 'garden', 'hallway', 'here', 'information area',
+            'lavatory', 'lobby', 'lounge', 'outside', 'parking lot', 'reception', 'reception area', 'roller door', 'roof',
+            'security area', 'sidewalk', 'storage room', 'storage space', 'store room', 'storeroom', 'technical room',
+            'trash', 'washroom', 'whole building'];
+        var positionsNeedNumber = ['hall', 'office', 'open-plan office', 'room', 'work place', 'workplace', 'workstation'];
+        controller.storage.users.save(user, function (err) {
+            if (!user.reference || !user.symptom) {
+                bot.reply(message, 'What exactly happened?');
+            } else if (!user.position) {
+                bot.reply(message, 'Where exactly?');
+            } else if (positionsNeedNumber.includes(user.position)) {
+                bot.reply(message, 'Whats your room number?');
+            } else if (!positionsNeedNone.includes(user.position)) {
+                bot.reply(message, 'Whats your area or floor?');
+            } else {
+                classifyIncidentType(message, id);
+            }
+        });
+    });
+};
+
+var classifyIncidentType = function (message, id) {
+    controller.storage.users.get(id, function (err, user) {
+        var reference, symptom, position;
+        reference = user.reference;
+        symptom = user.symptom;
+        position = user.position;
+
+        // TODO: select reference, symptom
+        var intentTypes = intentTypeClassifier.classify({ 'reference': 'A', 'symptom': 'B' });
+
+        switch (intentTypes.length) {
+            case 0:
+                var choices = [];
+                choices.push({
+                    'type': 'postBack',
+                    'title': 'Defect',
+                    'value': 'provide-incident-type-defect'
+                });
+                choices.push({
+                    'type': 'postBack',
+                    'title': 'Retry',
+                    'value': 'delete-incident-information'
+                });
+                choices.push({
+                    'type': 'postBack',
+                    'title': 'Contact service',
+                    'value': 'contact'
+                });
+
+                listReply(message, 'The incident could not be classified. Please select or answer "what happened and where?" again:', choices);
+                break;
+            case 1:
+                classifyIncidentPriority(message, id, intentTypes[0]);
+                break;
+            default:
+                {
+                    var choices = [];
+                    for (let type of intentTypes) {
+                        choices.push({
+                            'type': 'postBack',
+                            'title': type,
+                            'value': 'provide-incident-type-' + type.toLowerCase()
+                        });
+                    }
+                    choices.push({
+                        'type': 'postBack',
+                        'title': 'Contact service',
+                        'value': 'contact'
+                    });
+
+                    listReply(message, 'There are multiple choices on your incident type. Please select or contact service if not listed below:', choices);
+                }
+        }
+    });
+};
+
+var deleteIncidentInformation = function (message, id) {
+    controller.storage.users.get(id, function (err, user) {
+        delete user.reference;
+        delete user.symptom;
+        controller.storage.users.save(user, function (err) {
+            defaultReply(message, id);
+        });
+    });
+};
+
+var classifyIncidentPriority = function (message, id, type) {
+    controller.storage.users.get(id, function (err, user) {
+        var position;
+        position = user.position;
+
+        var intentPriorities = intentTypeClassifier.classify({ 'type': type, 'position': position });
+
+        switch (intentTypes.length) {
+            case 0:
+                // TODO: was überlegen
+                break;
+            case 1:
+                saveIncidentTypeAndPriority(message, id, type, intentPriorities[0]);
+                break;
+            default:
+                {
+                    // TODO: was überlegen
+                }
+        }
+    });
+};
+
+var saveIncidentTypeAndPriority = function (message, id, type, priority) {
+    controller.storage.users.get(id, function (err, user) {
+        if (type) { user.type = type; }
+        if (priority) { user.priority = priority; }
+        controller.storage.users.save(user, function (err) {
+            defaultReply(message, id);
+        });
+    });
+};
+
+var saveIncidentTime = function (message, id, time) {
+    controller.storage.users.get(id, function (err, user) {
+        if (time) { user.time = time; }
+        controller.storage.users.save(user, function (err) {
+            defaultReply(message, id);
+        });
+    });
+};
+
+var saveIncidentUrgency = function (message, id, urgency) {
+    controller.storage.users.get(id, function (err, user) {
+        if (urgency) { user.urgency = urgency; }
+        controller.storage.users.save(user, function (err) {
+            defaultReply(message, id);
+        });
+    });
+};
+
+var saveIncidentPersonalInformation = function (message, id, name, email, phone) {
+    controller.storage.users.get(id, function (err, user) {
+        if (name) { user.name = name; }
+        if (email) { user.email = email; }
+        if (phone) { user.phone = phone; }
+        controller.storage.users.save(user, function (err) {
+            defaultReply(message, id);
+        });
+    });
+};
+
 var askAddressError = function (message) {
     bot.reply(message, 'The address could not be found. Please write it again.');
 };
@@ -167,13 +354,13 @@ controller.hears(['LUIS'], ['direct_message', 'direct_mention', 'mention', 'mess
 
     var id = getUserId(message);
     if (message.topIntent.score < 0.5) {
-        defaultReply(message, id);
+        defaultReply(message, id, true);
     } else {
         switch (message.topIntent.intent) {
             case 'ProvideLocation':
                 {
                     controller.storage.users.get(id, function (err, user) {
-                        var city, street;
+                        var city, zipcode, street, number;
                         if (user) {
                             city = user.city;
                             street = user.street;
@@ -181,22 +368,139 @@ controller.hears(['LUIS'], ['direct_message', 'direct_mention', 'mention', 'mess
 
                         for (let entity of message.entities) {
                             switch (entity.type) {
-                                // TODO: add: case 'ZipCode':
-                                case 'builtin.geography.city':
+                                case 'City':
                                     city = entity.entity;
                                     break;
-                                case 'StreetAndNumber':
+                                case 'Zipcode':
+                                    zipcode = entity.entity;
+                                    break;
+                                case 'Street':
                                     street = entity.entity;
                                     break;
+                                case 'Number':
+                                    number = entity.entity;
+                                    break;
                             }
+                        }
+
+                        if (!city && zipcode) {
+                            city = zipcode;
+                        }
+
+                        if (!street.match(/\d+/g)) {
+                            street += number;
                         }
 
                         saveAndStandardizeAddress(message, id, city, street);
                     });
                     break;
                 }
+            case 'ProvideIncidentAndPosition':
+                {
+                    controller.storage.users.get(id, function (err, user) {
+                        var reference, symptom, position, area, number;
+                        if (user) {
+                            reference = user.reference;
+                            symptom = user.symptom;
+                            position = user.position;
+                            area = user.area;
+                            number = user.number;
+                        }
+
+                        for (let entity of message.entities) {
+                            switch (entity.type) {
+                                case 'Reference':
+                                    reference = entity.entity;
+                                    break;
+                                case 'Symptom':
+                                    symptom = entity.entity;
+                                    break;
+                                case 'Position':
+                                    position = entity.entity;
+                                    break;
+                                case 'AreaOrFloor':
+                                    area = entity.entity;
+                                    break;
+                                case 'Number':
+                                    number = entity.entity;
+                                    break;
+                            }
+                        }
+
+                        saveIncidentAndPosition(message, id, reference, symptom, position, area, number);
+                    });
+                    break;
+                }
+            case 'ProvideIncidentTime':
+                {
+                    controller.storage.users.get(id, function (err, user) {
+                        var time;
+                        if (user) {
+                            time = user.time;
+                        }
+
+                        for (let entity of message.entities) {
+                            switch (entity.type) {
+                                case '???':
+                                    time = entity.entity;
+                                    break;
+                            }
+                        }
+
+                        saveIncidentTime(message, id, time);
+                    });
+                    break;
+                }
+            case 'ProvideIncidentUrgency':
+                {
+                    controller.storage.users.get(id, function (err, user) {
+                        var urgency;
+                        if (user) {
+                            urgency = user.urgency;
+                        }
+
+                        for (let entity of message.entities) {
+                            switch (entity.type) {
+                                case '???':
+                                    urgency = entity.entity;
+                                    break;
+                            }
+                        }
+
+                        saveIncidentUrgency(message, id, urgency);
+                    });
+                    break;
+                }
+            case 'ProvidePersonalInformation':
+                {
+                    controller.storage.users.get(id, function (err, user) {
+                        var name, email, phone;
+                        if (user) {
+                            name = user.name;
+                            email = user.email;
+                            phone = user.phone;
+                        }
+
+                        for (let entity of message.entities) {
+                            switch (entity.type) {
+                                case 'Name':
+                                    name = entity.entity;
+                                    break;
+                                case 'Email':
+                                    email = entity.entity;
+                                    break;
+                                case 'Phone':
+                                    phone = entity.entity;
+                                    break;
+                            }
+                        }
+
+                        saveIncidentPersonalInformation(message, id, name, email, phone);
+                    });
+                    break;
+                }
             default:
-                defaultReply(message, id);
+                defaultReply(message, id, true);
         }
     }
 });
@@ -210,7 +514,10 @@ var apiai = require('botkit-middleware-apiai')({
 });
 controller.middleware.receive.use(apiai.receive);
 
-// apiai.hears for intents. in this example is 'hello' the intent
+controller.hears(['None'], ['direct_message', 'direct_mention', 'mention', 'message_received'], apiai.hears, function (bot, message) {
+    defaultReply(message, id, true);
+});
+
 controller.hears(['ProvideLocation'], ['direct_message', 'direct_mention', 'mention', 'message_received'], apiai.hears, function (bot, message) {
 
     var id = getUserId(message);
@@ -238,6 +545,100 @@ controller.hears(['ProvideLocation'], ['direct_message', 'direct_mention', 'ment
 
 });
 
+controller.hears(['ProvideIncidentAndPosition'], ['direct_message', 'direct_mention', 'mention', 'message_received'], apiai.hears, function (bot, message) {
+
+    var id = getUserId(message);
+    controller.storage.users.get(id, function (err, user) {
+        var city, street;
+        if (user) {
+            city = user.city;
+            street = user.street;
+        }
+
+        // date-time
+
+        if (message.entities['zip-code']) {
+            city = message.entities['zip-code'];
+        }
+        if (message.entities['geo-city']) {
+            city = message.entities['geo-city'];
+        }
+        if (message.entities['street-address']) {
+            street = message.entities['street-address'].join(' ');
+        }
+
+        saveAndStandardizeAddress(message, id, city, street);
+    });
+
+});
+
+controller.hears(['ProvideIncidentTime'], ['direct_message', 'direct_mention', 'mention', 'message_received'], apiai.hears, function (bot, message) {
+
+    var id = getUserId(message);
+    controller.storage.users.get(id, function (err, user) {
+        var time;
+        if (user) {
+            time = user.time;
+        }
+
+        if (message.entities['TODO']) {
+            time = message.entities['TODO'];
+        }
+
+        saveIncidentTime(message, id, time);
+    });
+
+});
+
+controller.hears(['ProvideIncidentUrgency'], ['direct_message', 'direct_mention', 'mention', 'message_received'], apiai.hears, function (bot, message) {
+
+    var id = getUserId(message);
+    controller.storage.users.get(id, function (err, user) {
+        var urgency;
+        if (user) {
+            urgency = user.urgency;
+        }
+
+        if (message.entities['TODO']) {
+            urgency = message.entities['TODO'];
+        }
+
+        saveIncidentUrgency(message, id, urgency);
+    });
+
+});
+
+controller.hears(['ProvidePersonalInformation'], ['direct_message', 'direct_mention', 'mention', 'message_received'], apiai.hears, function (bot, message) {
+
+    var id = getUserId(message);
+    controller.storage.users.get(id, function (err, user) {
+        var name, lastName, email, phone;
+        if (user) {
+            name = user.name;
+            email = user.email;
+            phone = user.phone;
+        }
+
+        if (message.entities['given-name']) {
+            name = message.entities['given-name'];
+        }
+        if (message.entities['last-name']) {
+            lastName = message.entities['last-name'];
+        }
+        if (message.entities['email']) {
+            email = message.entities['email'];
+        }
+        if (message.entities['phone-number']) {
+            phone = message.entities['phone-number'];
+        }
+
+        // if ()
+
+        saveIncidentPersonalInformation(message, id, name, email, phone);
+    });
+
+});
+
 /*
  * Recast.ai
  *
@@ -248,7 +649,7 @@ var recastai = require('botkit-middleware-recastai')({
 controller.middleware.receive.use(recastai.receive);
 
 controller.hears(['default'], ['direct_message', 'direct_mention', 'mention', 'message_received'], recastai.hears, function (bot, message) {
-    defaultReply(message, id);
+    defaultReply(message, id, true);
 });
 
 controller.hears(['provide-location'], ['direct_message', 'direct_mention', 'mention', 'message_received'], recastai.hears, function (bot, message) {
@@ -278,25 +679,52 @@ controller.hears(['provide-location'], ['direct_message', 'direct_mention', 'men
 
 });
 
-/*
+controller.hears(['provide-personal-information'], ['direct_message', 'direct_mention', 'mention', 'message_received'], recastai.hears, function (bot, message) {
 
-// user said hello
-controller.hears(['hello'], 'message_received', function (bot, message) {
+    var id = getUserId(message);
+    controller.storage.users.get(id, function (err, user) {
+        var name, lastName, email, phone;
+        if (user) {
+            name = user.name;
+            email = user.email;
+            phone = user.phone;
+        }
 
-    bot.reply(message, 'Hey there.');
+        if (message.entities['given-name']) {
+            name = message.entities['given-name'];
+        }
+        if (message.entities['last-name']) {
+            lastName = message.entities['last-name'];
+        }
+        if (message.entities['email']) {
+            email = message.entities['email'];
+        }
+        if (message.entities['phone-number']) {
+            phone = message.entities['phone-number'];
+        }
 
-});
+        // if ()
 
-controller.hears(['cookies'], 'message_received', function (bot, message) {
-
-    bot.startConversation(message, function (err, convo) {
-
-        convo.say('Did someone say cookies!?!!');
-        convo.ask('What is your favorite type of cookie?', function (response, convo) {
-            convo.say('Golly, I love ' + response.text + ' too!!!');
-            convo.next();
-        });
+        saveIncidentPersonalInformation(message, id, name, email, phone);
     });
+
 });
 
-*/
+/*
+ * Rule-based / pattern matching
+ */
+
+controller.hears(['contact'], ['direct_message', 'direct_mention', 'mention', 'message_received'], function (bot, message) {
+    var id = getUserId(message);
+    serviceReply(message, id);
+});
+
+controller.hears(['provide-incident-type-(.*)'], ['direct_message', 'direct_mention', 'mention', 'message_received'], function (bot, message) {
+    var id = getUserId(message);
+    saveIncidentType(message, id, message.match[1]);
+});
+
+controller.hears(['delete-incident-information'], ['direct_message', 'direct_mention', 'mention', 'message_received'], function (bot, message) {
+    var id = getUserId(message);
+    deleteIncidentInformation(message, id);
+});

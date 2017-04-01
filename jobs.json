@@ -1,0 +1,47 @@
+{
+    "threat": [
+        "Warden"
+    ],
+    "defect": [],
+    "electricity": [
+        "Electrician"
+    ],
+    "data network": [
+        "IT systems technician"
+    ],
+    "water": [
+        "Plumber",
+        "Cleaner"
+    ],
+    "temperature": [
+        "Plumbing and heating installer"
+    ],
+    "smell": [
+        "Plumbing and heating installer",
+        "Cleaner"
+    ],
+    "access": [
+        "Warden"
+    ],
+    "safety": [
+        "Warden",
+        "Energy and building technician"
+    ],
+    "cleanliness": [
+        "Cleaner"
+    ],
+    "appearance": [
+        "Gardener",
+        "Painter"
+    ],
+    "technical installations": [
+        "Plumbing and heating installer",
+        "Facility electrician"
+    ],
+    "sanitary installations": [
+        "Plumbing and heating installer",
+        "Plumber",
+        "Cleaner"
+    ],
+    "default": "Janitor"
+}
