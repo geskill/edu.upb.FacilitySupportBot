@@ -13,7 +13,7 @@ basicBot.controller.hears(['None'], ['direct_message', 'direct_mention', 'mentio
     basicBot.bot.defaultReply(message, id, true);
 });
 
-basicBot.controller.hears(['ProvideLocation'], ['direct_message', 'direct_mention', 'mention', 'message_received'], apiai.hears, function (bot, message) {
+basicBot.controller.hears(['ProvideAddress'], ['direct_message', 'direct_mention', 'mention', 'message_received'], apiai.hears, function (bot, message) {
 
     var id = basicBot.bot.getUserId(message);
     basicBot.controller.storage.users.get(id, function (err, user) {

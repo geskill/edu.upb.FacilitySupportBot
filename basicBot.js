@@ -30,7 +30,7 @@ var priorityTypeClassifier = new limdu.classifiers.multilabel.BinaryRelevance({
 });
 
 bot.listReply = function (message, title, elements) {
-    this.reply(message, { 'text': '', 'attachments': [{ 'contentType': 'application/vnd.microsoft.card.hero', 'content': { 'text': title, 'buttons': elements } }] });
+    bot.reply(message, { 'text': '', 'attachments': [{ 'contentType': 'application/vnd.microsoft.card.hero', 'content': { 'text': title, 'buttons': elements } }] });
 };
 
 bot.getUserId = function (message) {
@@ -38,25 +38,25 @@ bot.getUserId = function (message) {
 };
 
 bot.defaultReply = function (message, id, error) {
-    this.botkit.storage.users.get(id, function (err, user) {
+    bot.botkit.storage.users.get(id, function (err, user) {
         if (error) {
             user.errorCount += 1;
             if (user.errorCount >= 2) {
-                this.reply(message, 'Sorry, your information could not be recognized. Please try again and use a different wording.');
+                bot.reply(message, 'Sorry, your information could not be recognized. Please try again and use a different wording.');
             }
             if (user.errorCount >= 3) {
-                this.serviceReply(message, id);
+                bot.serviceReply(message, id);
             }
         } else {
             user.errorCount = 0;
         }
 
         if (!user || !user.city || !user.street) {
-            this.reply(message, 'What is the address of your current location?');
+            bot.reply(message, 'What is the address of your current location?');
         } else if (!user.type || !user.priority) {
-            this.reply(message, 'What happened in ' + user.city + ' and where exactly?');
+            bot.reply(message, 'What happened in ' + user.city + ' and where exactly?');
         } else if (!user.time) {
-            this.reply(message, 'When did it happen?');
+            bot.reply(message, 'When did it happen?');
         } else if (!user.priority || !user.urgency) {
             var choices = [];
             choices.push({
@@ -70,46 +70,46 @@ bot.defaultReply = function (message, id, error) {
                 'value': 'provide-incident-user-urgency-no'
             });
 
-            this.listReply(message, 'Are there people in danger? (Eg locked in elevators):', choices);
+            bot.listReply(message, 'Are there people in danger? (Eg locked in elevators):', choices);
         } else if (!user.name || !user.email || !user.phone) {
-            this.reply(message, 'Can you please tell me your name and contact?');
+            bot.reply(message, 'Can you please tell me your name and contact?');
         } else {
             // TODO: Improve finished info
-            this.reply(message, 'Thank you very much, Mrs. Mustermann, your message has been recorded. The technician will be informed and will contact you if you have any questions.');
+            bot.reply(message, 'Thank you very much, Mrs. Mustermann, your message has been recorded. The technician will be informed and will contact you if you have any questions.');
         }
     });
 };
 
 bot.serviceReply = function (message, id) {
-    this.reply(message, 'Please hold on. A service employee will soon take on the conversation.');
+    bot.reply(message, 'Please hold on. A service employee will soon take on the conversation.');
 };
 
 bot.saveConversationStart = function (message, id) {
-    this.botkit.storage.users.save({ id: id, conversationStartDate: Date.now(), errorCount: 0 }, function (err) {
-        this.reply(message, 'Hello ' + id + ', what is the address of your current location?');
+    bot.botkit.storage.users.save({ id: id, conversationStartDate: Date.now(), errorCount: 0 }, function (err) {
+        bot.reply(message, 'Hello ' + id + ', what is the address of your current location?');
     });
 };
 
 bot.saveAddress = function (message, id, city, street) {
-    this.botkit.storage.users.get(id, function (err, user) {
+    bot.botkit.storage.users.get(id, function (err, user) {
         if (city) { user.city = city; }
         if (street) { user.street = street; }
-        this.botkit.storage.users.save(user, function (err) {
+        bot.botkit.storage.users.save(user, function (err) {
             if (!city) {
-                this.reply(message, 'What is the name of the city you are located at?');
+                bot.reply(message, 'What is the name of the city you are located at?');
             } else if (!street) {
-                this.reply(message, 'What is the name and number of the street you are located at?');
+                bot.reply(message, 'What is the name and number of the street you are located at?');
             } else {
-                this.defaultReply(message, id);
+                bot.defaultReply(message, id);
             }
         });
     });
 };
 
 bot.saveAndStandardizeAddress = function (message, id, city, street, time) {
-    this.botkit.storage.users.get(id, function (err, user) {
+    bot.botkit.storage.users.get(id, function (err, user) {
         if (time) { user.time = time; }
-        this.botkit.storage.users.save(user, function (err) { });
+        bot.botkit.storage.users.save(user, function (err) { });
     });
     if (city && street) {
         googleMapsClient.geocode({
@@ -118,7 +118,7 @@ bot.saveAndStandardizeAddress = function (message, id, city, street, time) {
             if (!err) {
                 switch (response.json.results.length) {
                     case 0:
-                        this.askAddressError(message);
+                        bot.askAddressError(message);
                         break;
                     case 1:
                         {
@@ -139,7 +139,7 @@ bot.saveAndStandardizeAddress = function (message, id, city, street, time) {
                                 }
                             }
                             street += ' ' + streetnumber;
-                            this.saveAddress(message, id, city, street);
+                            bot.saveAddress(message, id, city, street);
                             break;
                         }
                     default:
@@ -153,21 +153,21 @@ bot.saveAndStandardizeAddress = function (message, id, city, street, time) {
                                 });
                             }
 
-                            this.listReply(message, 'There are multiple choices on your location, please select (if you can not find your address please write it again):', choices);
+                            bot.listReply(message, 'There are multiple choices on your location, please select (if you can not find your address please write it again):', choices);
                         }
                 }
             } else {
                 // Google service error
-                this.askAddressError(message);
+                bot.askAddressError(message);
             }
         });
     } else {
-        this.saveAddress(message, id, city, street);
+        bot.saveAddress(message, id, city, street);
     }
 };
 
 bot.saveIncidentAndPosition = function (message, id, reference, symptom, position, area, number) {
-    this.botkit.storage.users.get(id, function (err, user) {
+    bot.botkit.storage.users.get(id, function (err, user) {
         if (reference) { user.reference = reference; }
         if (symptom) { user.symptom = symptom; }
         if (position) { user.position = position; }
@@ -180,24 +180,24 @@ bot.saveIncidentAndPosition = function (message, id, reference, symptom, positio
             'security area', 'sidewalk', 'storage room', 'storage space', 'store room', 'storeroom', 'technical room',
             'trash', 'washroom', 'whole building'];
         var positionsNeedNumber = ['hall', 'office', 'open-plan office', 'room', 'work place', 'workplace', 'workstation'];
-        this.botkit.storage.users.save(user, function (err) {
+        bot.botkit.storage.users.save(user, function (err) {
             if (!user.reference || !user.symptom) {
-                this.reply(message, 'What exactly happened?');
+                bot.reply(message, 'What exactly happened?');
             } else if (!user.position || !user.area) {
-                this.reply(message, 'Where exactly?');
+                bot.reply(message, 'Where exactly?');
             } else if (positionsNeedNumber.includes(user.position)) {
-                this.reply(message, 'Whats your room number?');
+                bot.reply(message, 'Whats your room number?');
             } else if (user.position && !positionsNeedNone.includes(user.position)) {
-                this.reply(message, 'Whats your area or floor?');
+                bot.reply(message, 'Whats your area or floor?');
             } else {
-                this.classifyIncidentType(message, id);
+                bot.classifyIncidentType(message, id);
             }
         });
     });
 };
 
 bot.classifyIncidentType = function (message, id) {
-    this.botkit.storage.users.get(id, function (err, user) {
+    bot.botkit.storage.users.get(id, function (err, user) {
         var reference;
         reference = user.reference || user.position || user.area; // TODO: check this
 
@@ -222,10 +222,10 @@ bot.classifyIncidentType = function (message, id) {
                     'value': 'contact'
                 });
 
-                this.listReply(message, 'The incident could not be classified. Please select or answer "what happened and where?" again:', choices);
+                bot.listReply(message, 'The incident could not be classified. Please select or answer "what happened and where?" again:', choices);
                 break;
             case 1:
-                this.classifyIncidentPriority(message, id, intentTypes[0]);
+                bot.classifyIncidentPriority(message, id, intentTypes[0]);
                 break;
             default:
                 {
@@ -243,24 +243,24 @@ bot.classifyIncidentType = function (message, id) {
                         'value': 'contact'
                     });
 
-                    this.listReply(message, 'There are multiple choices on your incident type. Please select or contact service if not listed below:', choices);
+                    bot.listReply(message, 'There are multiple choices on your incident type. Please select or contact service if not listed below:', choices);
                 }
         }
     });
 };
 
 bot.deleteIncidentInformation = function (message, id) {
-    this.botkit.storage.users.get(id, function (err, user) {
+    bot.botkit.storage.users.get(id, function (err, user) {
         delete user.reference;
         delete user.symptom;
-        this.botkit.storage.users.save(user, function (err) {
-            this.defaultReply(message, id);
+        bot.botkit.storage.users.save(user, function (err) {
+            bot.defaultReply(message, id);
         });
     });
 };
 
 bot.classifyIncidentPriority = function (message, id, type) {
-    this.botkit.storage.users.get(id, function (err, user) {
+    bot.botkit.storage.users.get(id, function (err, user) {
         var position;
         position = user.position;
 
@@ -268,55 +268,55 @@ bot.classifyIncidentPriority = function (message, id, type) {
 
         switch (intentTypes.length) {
             case 1:
-                this.saveIncidentTypeAndPriority(message, id, type, intentPriorities[0]);
+                bot.saveIncidentTypeAndPriority(message, id, type, intentPriorities[0]);
                 break;
             default:
-                this.saveIncidentTypeAndPriority(message, id, type);
+                bot.saveIncidentTypeAndPriority(message, id, type);
         }
     });
 };
 
 bot.saveIncidentTypeAndPriority = function (message, id, type, priority) {
-    this.botkit.storage.users.get(id, function (err, user) {
+    bot.botkit.storage.users.get(id, function (err, user) {
         if (type) { user.type = type; }
         if (priority) { user.priority = priority; }
-        this.botkit.storage.users.save(user, function (err) {
-            this.defaultReply(message, id);
+        bot.botkit.storage.users.save(user, function (err) {
+            bot.defaultReply(message, id);
         });
     });
 };
 
 bot.saveIncidentTime = function (message, id, time) {
-    this.botkit.storage.users.get(id, function (err, user) {
+    bot.botkit.storage.users.get(id, function (err, user) {
         if (time) { user.time = time; }
-        this.botkit.storage.users.save(user, function (err) {
-            this.defaultReply(message, id);
+        bot.botkit.storage.users.save(user, function (err) {
+            bot.defaultReply(message, id);
         });
     });
 };
 
 bot.saveIncidentUrgency = function (message, id, urgency) {
-    this.botkit.storage.users.get(id, function (err, user) {
+    bot.botkit.storage.users.get(id, function (err, user) {
         if (urgency) { user.urgency = urgency; }
-        this.botkit.storage.users.save(user, function (err) {
-            this.defaultReply(message, id);
+        bot.botkit.storage.users.save(user, function (err) {
+            bot.defaultReply(message, id);
         });
     });
 };
 
 bot.saveIncidentPersonalInformation = function (message, id, name, email, phone) {
-    this.botkit.storage.users.get(id, function (err, user) {
+    bot.botkit.storage.users.get(id, function (err, user) {
         if (name) { user.name = name; }
         if (email) { user.email = email; }
         if (phone) { user.phone = phone; }
-        this.botkit.storage.users.save(user, function (err) {
-            this.defaultReply(message, id);
+        bot.botkit.storage.users.save(user, function (err) {
+            bot.defaultReply(message, id);
         });
     });
 };
 
 bot.askAddressError = function (message) {
-    this.reply(message, 'The address could not be found. Please write it again.');
+    bot.reply(message, 'The address could not be found. Please write it again.');
 };
 
 // if you are already using Express, you can use your own server instance...
@@ -344,7 +344,7 @@ controller.on('conversationUpdate', function (bot, message) {
                 //   user we can tweek the address object to reference the joining user.
                 // - If we wanted to send a private message to teh joining user we could
                 //   delete the address.conversation field from the cloned address.
-                saveConversationStart(message, bot.getUserId(message));
+                bot.saveConversationStart(message, bot.getUserId(message));
             }
         });
     }

@@ -13,28 +13,36 @@ basicBot.controller.hears(['default'], ['direct_message', 'direct_mention', 'men
     basicBot.bot.defaultReply(message, id, true);
 });
 
-basicBot.controller.hears(['provide-location'], ['direct_message', 'direct_mention', 'mention', 'message_received'], recastai.hears, function (bot, message) {
+basicBot.controller.hears(['provide-address'], ['direct_message', 'direct_mention', 'mention', 'message_received'], recastai.hears, function (bot, message) {
 
     var id = basicBot.bot.getUserId(message);
     basicBot.controller.storage.users.get(id, function (err, user) {
-        var city, street;
+        var city, zipcode, street, time;
         if (user) {
             city = user.city;
             street = user.street;
             time = user.time;
         }
 
-        if (message.entities['zip-code']) {
-            city = message.entities['zip-code'];
+        for (let entity of message.entities) {
+            switch (entity.name) {
+                case 'city_name':
+                    city = entity.raw;
+                    break;
+                case 'zipcode':
+                    zipcode = entity.raw;
+                    break;
+                case 'street':
+                    street = entity.raw;
+                    break;
+                case 'datetime':
+                    time = entity.iso;
+                    break;
+            }
         }
-        if (message.entities['geo-city']) {
-            city = message.entities['geo-city'];
-        }
-        if (message.entities['street-address']) {
-            street = message.entities['street-address'].join(' ');
-        }
-        if (message.entities['datetime']) {
-            time = message.entities['datetime'];
+
+        if (!city && zipcode) {
+            city = zipcode;
         }
 
         basicBot.bot.saveAndStandardizeAddress(message, id, city, street, time);
@@ -85,8 +93,12 @@ basicBot.controller.hears(['provide-incident-time'], ['direct_message', 'direct_
             time = user.time;
         }
 
-        if (message.entities['datetime']) {
-            time = message.entities['datetime'];
+        for (let entity of message.entities) {
+            switch (entity.name) {
+                case 'datetime':
+                    time = entity.iso;
+                    break;
+            }
         }
 
         basicBot.bot.saveIncidentTime(message, id, time);
@@ -105,20 +117,20 @@ basicBot.controller.hears(['provide-personal-information'], ['direct_message', '
             phone = user.phone;
         }
 
-        if (message.entities['person']) {
-            lastName = message.entities['person'];
-        }
-        if (message.entities['name']) {
-            name = message.entities['name'];
-        }
-        if (message.entities['email']) {
-            email = message.entities['email'];
-        }
-        if (message.entities['phone']) {
-            phone = message.entities['phone'];
-        }
-        if (message.entities['phonenumber']) {
-            phone = message.entities['phonenumber'];
+        for (let entity of message.entities) {
+            switch (entity.name) {
+                case 'person':
+                case 'name':
+                    name = entity.raw;
+                    break;
+                case 'email':
+                    email = entity.raw;
+                    break;
+                case 'phone':
+                case 'phonenumber':
+                    phone = entity.raw;
+                    break;
+            }
         }
 
         basicBot.bot.saveIncidentPersonalInformation(message, id, name, email, phone);

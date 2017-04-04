@@ -14,7 +14,7 @@ basicBot.controller.hears(['LUIS'], ['direct_message', 'direct_mention', 'mentio
         basicBot.bot.defaultReply(message, id, true);
     } else {
         switch (message.topIntent.intent) {
-            case 'ProvideLocation':
+            case 'ProvideAddress':
                 {
                     basicBot.controller.storage.users.get(id, function (err, user) {
                         var city, zipcode, street, number, time;
@@ -32,15 +32,28 @@ basicBot.controller.hears(['LUIS'], ['direct_message', 'direct_mention', 'mentio
                                 case 'Zipcode':
                                     zipcode = entity.entity;
                                     break;
-                                case 'Street':
+                                case 'StreetAndNumber':
                                     street = entity.entity;
                                     break;
-                                case 'Number':
-                                    number = entity.entity;
-                                    break;
-                                case '!!!!':
+                                case 'builtin.datetime.date':
                                     time = entity.entity;
                                     break;
+                                case 'builtin.datetime.time':
+                                    time = entity.entity;
+                                    break;
+                            }
+                        }
+
+                        if (!street) {
+                            for (let entity of message.entities) {
+                                switch (entity.type) {
+                                    case 'Street':
+                                        street = entity.entity;
+                                        break;
+                                    case 'Number':
+                                        number = entity.entity;
+                                        break;
+                                }
                             }
                         }
 
@@ -102,8 +115,21 @@ basicBot.controller.hears(['LUIS'], ['direct_message', 'direct_mention', 'mentio
 
                         for (let entity of message.entities) {
                             switch (entity.type) {
-                                case '???':
-                                    time = entity.entity;
+                                case 'builtin.datetime.date':
+                                case 'builtin.datetime.time':
+                                    time = '';
+                            }
+                        }
+
+                        for (let entity of message.entities) {
+                            switch (entity.type) {
+                                case 'builtin.datetime.date':
+                                    if (time !== '') time += ' ';
+                                    time += entity.entity;
+                                    break;
+                                case 'builtin.datetime.time':
+                                    if (time !== '') time += ' ';
+                                    time += entity.entity;
                                     break;
                             }
                         }
@@ -127,7 +153,7 @@ basicBot.controller.hears(['LUIS'], ['direct_message', 'direct_mention', 'mentio
                                 case 'Name':
                                     name = entity.entity;
                                     break;
-                                case 'Email':
+                                case 'builtin.email':
                                     email = entity.entity;
                                     break;
                                 case 'Number':
