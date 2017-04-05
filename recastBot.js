@@ -10,6 +10,7 @@ var recastai = require('botkit-middleware-recastai')({
 basicBot.controller.middleware.receive.use(recastai.receive);
 
 basicBot.controller.hears(['default'], ['direct_message', 'direct_mention', 'mention', 'message_received'], recastai.hears, function (bot, message) {
+    var id = basicBot.bot.getUserId(message);
     basicBot.bot.defaultReply(message, id, true);
 });
 
@@ -54,12 +55,13 @@ basicBot.controller.hears(['provide-incident-and-position'], ['direct_message', 
 
     var id = basicBot.bot.getUserId(message);
     basicBot.controller.storage.users.get(id, function (err, user) {
-        var reference, symptom, position, area, number;
+        var reference, symptom, position, area, floor, number;
         if (user) {
             reference = user.reference;
             symptom = user.symptom;
             position = user.position;
             area = user.area;
+            floor = user.floor;
             number = user.number;
         }
 
@@ -72,14 +74,17 @@ basicBot.controller.hears(['provide-incident-and-position'], ['direct_message', 
         if (message.entities['Position']) {
             position = message.entities['Position'];
         }
-        if (message.entities['AreaOrFloor']) {
-            area = message.entities['AreaOrFloor'];
+        if (message.entities['Area']) {
+            area = message.entities['Area'];
+        }
+        if (message.entities['Floor']) {
+            floor = message.entities['Floor'];
         }
         if (message.entities['RoomNumber']) {
             number = message.entities['RoomNumber'];
         }
 
-        basicBot.bot.saveIncidentAndPosition(message, id, reference, symptom, position, area, number);
+        basicBot.bot.saveIncidentAndPosition(message, id, reference, symptom, position, area, floor, number);
     });
 
 });

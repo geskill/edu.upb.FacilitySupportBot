@@ -10,6 +10,7 @@ var apiai = require('botkit-middleware-apiai')({
 basicBot.controller.middleware.receive.use(apiai.receive);
 
 basicBot.controller.hears(['None'], ['direct_message', 'direct_mention', 'mention', 'message_received'], apiai.hears, function (bot, message) {
+    var id = basicBot.bot.getUserId(message);
     basicBot.bot.defaultReply(message, id, true);
 });
 
@@ -46,12 +47,13 @@ basicBot.controller.hears(['ProvideIncidentAndPosition'], ['direct_message', 'di
 
     var id = basicBot.bot.getUserId(message);
     basicBot.controller.storage.users.get(id, function (err, user) {
-        var reference, symptom, position, area, number;
+        var reference, symptom, position, area, floor, number;
         if (user) {
             reference = user.reference;
             symptom = user.symptom;
             position = user.position;
             area = user.area;
+            floor = user.floor;
             number = user.number;
         }
 
@@ -64,14 +66,17 @@ basicBot.controller.hears(['ProvideIncidentAndPosition'], ['direct_message', 'di
         if (message.entities['Position']) {
             position = message.entities['Position'];
         }
-        if (message.entities['AreaOrFloor']) {
-            area = message.entities['AreaOrFloor'];
+        if (message.entities['Area']) {
+            area = message.entities['Area'];
+        }
+        if (message.entities['Floor']) {
+            floor = message.entities['Floor'];
         }
         if (message.entities['RoomNumber']) {
             number = message.entities['RoomNumber'];
         }
 
-        basicBot.bot.saveIncidentAndPosition(message, id, reference, symptom, position, area, number);
+        basicBot.bot.saveIncidentAndPosition(message, id, reference, symptom, position, area, floor, number);
     });
 
 });

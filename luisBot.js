@@ -72,12 +72,13 @@ basicBot.controller.hears(['LUIS'], ['direct_message', 'direct_mention', 'mentio
             case 'ProvideIncidentAndPosition':
                 {
                     basicBot.controller.storage.users.get(id, function (err, user) {
-                        var reference, symptom, position, area, number;
+                        var reference, symptom, position, area, floor, number;
                         if (user) {
                             reference = user.reference;
                             symptom = user.symptom;
                             position = user.position;
                             area = user.area;
+                            floor = user.floor;
                             number = user.number;
                         }
 
@@ -92,8 +93,11 @@ basicBot.controller.hears(['LUIS'], ['direct_message', 'direct_mention', 'mentio
                                 case 'Position':
                                     position = entity.entity;
                                     break;
-                                case 'AreaOrFloor':
+                                case 'Area':
                                     area = entity.entity;
+                                    break;
+                                case 'Floor':
+                                    floor = entity.entity;
                                     break;
                                 case 'Number':
                                     number = entity.entity;
@@ -101,7 +105,7 @@ basicBot.controller.hears(['LUIS'], ['direct_message', 'direct_mention', 'mentio
                             }
                         }
 
-                        basicBot.bot.saveIncidentAndPosition(message, id, reference, symptom, position, area, number);
+                        basicBot.bot.saveIncidentAndPosition(message, id, reference, symptom, position, area, floor, number);
                     });
                     break;
                 }

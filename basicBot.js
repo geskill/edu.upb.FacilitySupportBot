@@ -166,12 +166,13 @@ bot.saveAndStandardizeAddress = function (message, id, city, street, time) {
     }
 };
 
-bot.saveIncidentAndPosition = function (message, id, reference, symptom, position, area, number) {
+bot.saveIncidentAndPosition = function (message, id, reference, symptom, position, area, floor, number) {
     bot.botkit.storage.users.get(id, function (err, user) {
         if (reference) { user.reference = reference; }
         if (symptom) { user.symptom = symptom; }
         if (position) { user.position = position; }
         if (area) { user.area = area; }
+        if (floor) { user.floor = floor; }
         if (number) { user.number = number; }
         var positionsNeedNone = ['basement', 'boiler room', 'boxroom', 'building', 'building wall', 'café', 'cafeteria',
             'cellar', 'customer area', 'dining hall', 'entire building', 'entrance area', 'entrance hall', 'entrance room',
