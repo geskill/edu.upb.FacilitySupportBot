@@ -1,0 +1,1326 @@
+{
+    "trainset": [
+        {
+            "input": {
+                "reference": "fire",
+                "symptom": "",
+                "position": "kitchen"
+            },
+            "output": {
+                "priority": "1",
+                "type": "threat"
+            }
+        },
+        {
+            "input": {
+                "reference": "",
+                "symptom": "broke into",
+                "position": "store"
+            },
+            "output": {
+                "priority": "1",
+                "type": "threat"
+            }
+        },
+        {
+            "input": {
+                "reference": "",
+                "symptom": "hold-up",
+                "position": ""
+            },
+            "output": {
+                "priority": "1",
+                "type": "threat"
+            }
+        },
+        {
+            "input": {
+                "reference": "burglars",
+                "symptom": "",
+                "position": ""
+            },
+            "output": {
+                "priority": "1",
+                "type": "threat"
+            }
+        },
+        {
+            "input": {
+                "reference": "elevator",
+                "symptom": "does not work",
+                "position": ""
+            },
+            "output": {
+                "priority": "1",
+                "type": "threat"
+            }
+        },
+        {
+            "input": {
+                "reference": "escalator",
+                "symptom": "doesn't work",
+                "position": ""
+            },
+            "output": {
+                "priority": "1",
+                "type": "threat"
+            }
+        },
+        {
+            "input": {
+                "reference": "blocks of ice",
+                "symptom": "falling",
+                "position": "roof"
+            },
+            "output": {
+                "priority": "1",
+                "type": "threat"
+            }
+        },
+        {
+            "input": {
+                "reference": "trees",
+                "symptom": "endangering",
+                "position": "building"
+            },
+            "output": {
+                "priority": "1",
+                "type": "threat"
+            }
+        },
+        {
+            "input": {
+                "reference": "terrorists",
+                "symptom": "",
+                "position": ""
+            },
+            "output": {
+                "priority": "1",
+                "type": "threat"
+            }
+        },
+        {
+            "input": {
+                "reference": "window",
+                "symptom": "shattered",
+                "position": "building"
+            },
+            "output": {
+                "priority": "1",
+                "type": "threat"
+            }
+        },
+        {
+            "input": {
+                "reference": "",
+                "symptom": "demolished",
+                "position": "front door"
+            },
+            "output": {
+                "priority": "1",
+                "type": "threat"
+            }
+        },
+        {
+            "input": {
+                "reference": "",
+                "symptom": "no electricity",
+                "position": "building"
+            },
+            "output": {
+                "priority": "1",
+                "type": "electricity"
+            }
+        },
+        {
+            "input": {
+                "reference": "",
+                "symptom": "no power",
+                "position": ""
+            },
+            "output": {
+                "priority": "1",
+                "type": "electricity"
+            }
+        },
+        {
+            "input": {
+                "reference": "electricity",
+                "symptom": "is failing",
+                "position": "building"
+            },
+            "output": {
+                "priority": "1",
+                "type": "electricity"
+            }
+        },
+        {
+            "input": {
+                "reference": "web",
+                "symptom": "down",
+                "position": "room"
+            },
+            "output": {
+                "priority": "1",
+                "type": "data network"
+            }
+        },
+        {
+            "input": {
+                "reference": "internet",
+                "symptom": "doesn't work",
+                "position": "room"
+            },
+            "output": {
+                "priority": "1",
+                "type": "data network"
+            }
+        },
+        {
+            "input": {
+                "reference": "pipe",
+                "symptom": "broken",
+                "position": "boiler room"
+            },
+            "output": {
+                "priority": "1",
+                "type": "water"
+            }
+        },
+        {
+            "input": {
+                "reference": "pipe",
+                "symptom": "burst",
+                "position": ""
+            },
+            "output": {
+                "priority": "1",
+                "type": "water"
+            }
+        },
+        {
+            "input": {
+                "reference": "",
+                "symptom": "very cold",
+                "position": "room"
+            },
+            "output": {
+                "priority": "1",
+                "type": "temperature"
+            }
+        },
+        {
+            "input": {
+                "reference": "",
+                "symptom": "super hot",
+                "position": "office"
+            },
+            "output": {
+                "priority": "1",
+                "type": "temperature"
+            }
+        },
+        {
+            "input": {
+                "reference": "",
+                "symptom": "stinks brutally",
+                "position": "dining hall"
+            },
+            "output": {
+                "priority": "1",
+                "type": "smell"
+            }
+        },
+        {
+            "input": {
+                "reference": "",
+                "symptom": "can't access",
+                "position": "room"
+            },
+            "output": {
+                "priority": "1",
+                "type": "access"
+            }
+        },
+        {
+            "input": {
+                "reference": "",
+                "symptom": "can't get in",
+                "position": "office"
+            },
+            "output": {
+                "priority": "1",
+                "type": "access"
+            }
+        },
+        {
+            "input": {
+                "reference": "",
+                "symptom": "defective",
+                "position": "roller door"
+            },
+            "output": {
+                "priority": "1",
+                "type": "access"
+            }
+        },
+        {
+            "input": {
+                "reference": "",
+                "symptom": "dirty",
+                "position": "lounge"
+            },
+            "output": {
+                "priority": "1",
+                "type": "cleanliness"
+            }
+        },
+        {
+            "input": {
+                "reference": "",
+                "symptom": "looks devastated",
+                "position": "foyer"
+            },
+            "output": {
+                "priority": "1",
+                "type": "cleanliness"
+            }
+        },
+        {
+            "input": {
+                "reference": "",
+                "symptom": "racist graffiti",
+                "position": "facade"
+            },
+            "output": {
+                "priority": "1",
+                "type": "appearance"
+            }
+        },
+        {
+            "input": {
+                "reference": "",
+                "symptom": "vandalized",
+                "position": "garden"
+            },
+            "output": {
+                "priority": "1",
+                "type": "appearance"
+            }
+        },
+        {
+            "input": {
+                "reference": "air conditioner",
+                "symptom": "isn't working",
+                "position": "room"
+            },
+            "output": {
+                "priority": "1",
+                "type": "technical installations"
+            }
+        },
+        {
+            "input": {
+                "reference": "ventilation system",
+                "symptom": "failed",
+                "position": "room "
+            },
+            "output": {
+                "priority": "1",
+                "type": "technical installations"
+            }
+        },
+        {
+            "input": {
+                "reference": "toilet drain",
+                "symptom": "clogged up",
+                "position": ""
+            },
+            "output": {
+                "priority": "1",
+                "type": "sanitary installations"
+            }
+        },
+        {
+            "input": {
+                "reference": "",
+                "symptom": "under water",
+                "position": "restroom"
+            },
+            "output": {
+                "priority": "1",
+                "type": "sanitary installations"
+            }
+        },
+        {
+            "input": {
+                "reference": "window",
+                "symptom": "cannot be opened",
+                "position": "open-plan office"
+            },
+            "output": {
+                "priority": "2",
+                "type": "defect"
+            }
+        },
+        {
+            "input": {
+                "reference": "light",
+                "symptom": "flickering",
+                "position": "room"
+            },
+            "output": {
+                "priority": "2",
+                "type": "defect"
+            }
+        },
+        {
+            "input": {
+                "reference": "",
+                "symptom": "no power",
+                "position": "workplace"
+            },
+            "output": {
+                "priority": "2",
+                "type": "electricity"
+            }
+        },
+        {
+            "input": {
+                "reference": "computer",
+                "symptom": "doesn't boot",
+                "position": "room"
+            },
+            "output": {
+                "priority": "2",
+                "type": "electricity"
+            }
+        },
+        {
+            "input": {
+                "reference": "computer",
+                "symptom": "no internet connection",
+                "position": ""
+            },
+            "output": {
+                "priority": "2",
+                "type": "data network"
+            }
+        },
+        {
+            "input": {
+                "reference": "laptop",
+                "symptom": "doesn't connect to the internet",
+                "position": "office"
+            },
+            "output": {
+                "priority": "2",
+                "type": "data network"
+            }
+        },
+        {
+            "input": {
+                "reference": "",
+                "symptom": "damp",
+                "position": "cafeteria"
+            },
+            "output": {
+                "priority": "2",
+                "type": "water"
+            }
+        },
+        {
+            "input": {
+                "reference": "",
+                "symptom": "too humid",
+                "position": "workstation"
+            },
+            "output": {
+                "priority": "2",
+                "type": "temperature"
+            }
+        },
+        {
+            "input": {
+                "reference": "air",
+                "symptom": "suffocating ",
+                "position": ""
+            },
+            "output": {
+                "priority": "2",
+                "type": "temperature"
+            }
+        },
+        {
+            "input": {
+                "reference": "",
+                "symptom": "smelly",
+                "position": "customer area"
+            },
+            "output": {
+                "priority": "2",
+                "type": "smell"
+            }
+        },
+        {
+            "input": {
+                "reference": "fire extinguisher",
+                "symptom": "expired",
+                "position": ""
+            },
+            "output": {
+                "priority": "2",
+                "type": "safety"
+            }
+        },
+        {
+            "input": {
+                "reference": "fire drencher",
+                "symptom": "out-of-date",
+                "position": ""
+            },
+            "output": {
+                "priority": "2",
+                "type": "safety"
+            }
+        },
+        {
+            "input": {
+                "reference": "extinguisher",
+                "symptom": "missing",
+                "position": ""
+            },
+            "output": {
+                "priority": "2",
+                "type": "safety"
+            }
+        },
+        {
+            "input": {
+                "reference": "lighting for escape routes",
+                "symptom": "partially defect",
+                "position": "hallway"
+            },
+            "output": {
+                "priority": "2",
+                "type": "safety"
+            }
+        },
+        {
+            "input": {
+                "reference": "first aid kit",
+                "symptom": "incomplete",
+                "position": "work place"
+            },
+            "output": {
+                "priority": "2",
+                "type": "safety"
+            }
+        },
+        {
+            "input": {
+                "reference": "",
+                "symptom": "filthy",
+                "position": "reception"
+            },
+            "output": {
+                "priority": "2",
+                "type": "cleanliness"
+            }
+        },
+        {
+            "input": {
+                "reference": "toilet",
+                "symptom": "dirty",
+                "position": ""
+            },
+            "output": {
+                "priority": "2",
+                "type": "cleanliness"
+            }
+        },
+        {
+            "input": {
+                "reference": "sink",
+                "symptom": "messy",
+                "position": "girls room"
+            },
+            "output": {
+                "priority": "2",
+                "type": "cleanliness"
+            }
+        },
+        {
+            "input": {
+                "reference": "",
+                "symptom": "overflowing",
+                "position": "trash"
+            },
+            "output": {
+                "priority": "2",
+                "type": "appearance"
+            }
+        },
+        {
+            "input": {
+                "reference": "window lighting",
+                "symptom": "isn't working",
+                "position": "store"
+            },
+            "output": {
+                "priority": "2",
+                "type": "appearance"
+            }
+        },
+        {
+            "input": {
+                "reference": "",
+                "symptom": "messy",
+                "position": "garden"
+            },
+            "output": {
+                "priority": "2",
+                "type": "appearance"
+            }
+        },
+        {
+            "input": {
+                "reference": "air conditiong",
+                "symptom": "doesn't work ",
+                "position": ""
+            },
+            "output": {
+                "priority": "2",
+                "type": "technical installations"
+            }
+        },
+        {
+            "input": {
+                "reference": "water faucet",
+                "symptom": "squeaking",
+                "position": "girl's room"
+            },
+            "output": {
+                "priority": "2",
+                "type": "sanitary installations"
+            }
+        },
+        {
+            "input": {
+                "reference": "toilet",
+                "symptom": "doesn't flush right",
+                "position": ""
+            },
+            "output": {
+                "priority": "2",
+                "type": "sanitary installations"
+            }
+        },
+        {
+            "input": {
+                "reference": "light",
+                "symptom": "flickering ",
+                "position": "hallway"
+            },
+            "output": {
+                "priority": "3",
+                "type": "defect"
+            }
+        },
+        {
+            "input": {
+                "reference": "wall",
+                "symptom": "damaged",
+                "position": "entrance room"
+            },
+            "output": {
+                "priority": "3",
+                "type": "defect"
+            }
+        },
+        {
+            "input": {
+                "reference": "",
+                "symptom": "forgotten dowels",
+                "position": "cafeteria"
+            },
+            "output": {
+                "priority": "3",
+                "type": "defect"
+            }
+        },
+        {
+            "input": {
+                "reference": "door",
+                "symptom": "dented",
+                "position": ""
+            },
+            "output": {
+                "priority": "3",
+                "type": "defect"
+            }
+        },
+        {
+            "input": {
+                "reference": "doors",
+                "symptom": "worn out paint ",
+                "position": ""
+            },
+            "output": {
+                "priority": "3",
+                "type": "defect"
+            }
+        },
+        {
+            "input": {
+                "reference": "wall",
+                "symptom": "damp",
+                "position": "basement"
+            },
+            "output": {
+                "priority": "3",
+                "type": "water"
+            }
+        },
+        {
+            "input": {
+                "reference": "",
+                "symptom": "too hot",
+                "position": "basement"
+            },
+            "output": {
+                "priority": "3",
+                "type": "temperature"
+            }
+        },
+        {
+            "input": {
+                "reference": "temperature",
+                "symptom": "is wrong",
+                "position": "technical room"
+            },
+            "output": {
+                "priority": "3",
+                "type": "temperature"
+            }
+        },
+        {
+            "input": {
+                "reference": "",
+                "symptom": "overheated",
+                "position": "storage space"
+            },
+            "output": {
+                "priority": "3",
+                "type": "temperature"
+            }
+        },
+        {
+            "input": {
+                "reference": "air",
+                "symptom": "stale",
+                "position": "storeroom"
+            },
+            "output": {
+                "priority": "3",
+                "type": "smell"
+            }
+        },
+        {
+            "input": {
+                "reference": "carpet",
+                "symptom": "coffee stains",
+                "position": "information area"
+            },
+            "output": {
+                "priority": "3",
+                "type": "cleanliness"
+            }
+        },
+        {
+            "input": {
+                "reference": "rug",
+                "symptom": "spilled some tea",
+                "position": "hall"
+            },
+            "output": {
+                "priority": "3",
+                "type": "cleanliness"
+            }
+        },
+        {
+            "input": {
+                "reference": "",
+                "symptom": "leftovers",
+                "position": ""
+            },
+            "output": {
+                "priority": "3",
+                "type": "cleanliness"
+            }
+        },
+        {
+            "input": {
+                "reference": "wall",
+                "symptom": "hot chocolate spots",
+                "position": "mans room"
+            },
+            "output": {
+                "priority": "3",
+                "type": "cleanliness"
+            }
+        },
+        {
+            "input": {
+                "reference": "water faucet",
+                "symptom": "squeaking",
+                "position": "mans room"
+            },
+            "output": {
+                "priority": "3",
+                "type": "sanitary installations"
+            }
+        },
+        {
+            "input": {
+                "reference": "toilet",
+                "symptom": "won't flush ",
+                "position": "girls room"
+            },
+            "output": {
+                "priority": "3",
+                "type": "sanitary installations"
+            }
+        },
+        {
+            "input": {
+                "reference": "window",
+                "symptom": "can not be opened",
+                "position": "cellar"
+            },
+            "output": {
+                "priority": "4",
+                "type": "defect"
+            }
+        },
+        {
+            "input": {
+                "reference": "door",
+                "symptom": "squeaking",
+                "position": "store room"
+            },
+            "output": {
+                "priority": "4",
+                "type": "defect"
+            }
+        },
+        {
+            "input": {
+                "reference": "light",
+                "symptom": "flickering",
+                "position": "basement"
+            },
+            "output": {
+                "priority": "4",
+                "type": "defect"
+            }
+        },
+        {
+            "input": {
+                "reference": "lights",
+                "symptom": "defect",
+                "position": "storage room"
+            },
+            "output": {
+                "priority": "4",
+                "type": "defect"
+            }
+        },
+        {
+            "input": {
+                "reference": "door",
+                "symptom": "didn't close properly",
+                "position": "technical room"
+            },
+            "output": {
+                "priority": "4",
+                "type": "defect"
+            }
+        },
+        {
+            "input": {
+                "reference": "",
+                "symptom": "cleansed not very carefully",
+                "position": "stairway"
+            },
+            "output": {
+                "priority": "4",
+                "type": "cleanliness"
+            }
+        },
+        {
+            "input": {
+                "reference": "toilet",
+                "symptom": "cleaned insufficiently",
+                "position": "girl's room"
+            },
+            "output": {
+                "priority": "4",
+                "type": "cleanliness"
+            }
+        },
+        {
+            "input": {
+                "reference": "",
+                "symptom": "full of spider webs",
+                "position": "stairwell"
+            },
+            "output": {
+                "priority": "4",
+                "type": "cleanliness"
+            }
+        }
+    ],
+    "testset": [
+        {
+            "input": {
+                "reference": "fire",
+                "symptom": "",
+                "position": ""
+            },
+            "output": {
+                "priority": "1",
+                "type": "threat"
+            }
+        },
+        {
+            "input": {
+                "reference": "lift",
+                "symptom": "stuck",
+                "position": "lobby"
+            },
+            "output": {
+                "priority": "1",
+                "type": "threat"
+            }
+        },
+        {
+            "input": {
+                "reference": "tiles",
+                "symptom": "falling",
+                "position": "roof"
+            },
+            "output": {
+                "priority": "1",
+                "type": "threat"
+            }
+        },
+        {
+            "input": {
+                "reference": "",
+                "symptom": "struck by lightning",
+                "position": "building"
+            },
+            "output": {
+                "priority": "1",
+                "type": "threat"
+            }
+        },
+        {
+            "input": {
+                "reference": "",
+                "symptom": "slippery ",
+                "position": "sidewalk"
+            },
+            "output": {
+                "priority": "1",
+                "type": "threat"
+            }
+        },
+        {
+            "input": {
+                "reference": "",
+                "symptom": "electricity failure",
+                "position": "building"
+            },
+            "output": {
+                "priority": "1",
+                "type": "electricity"
+            }
+        },
+        {
+            "input": {
+                "reference": "",
+                "symptom": "no internet connection",
+                "position": ""
+            },
+            "output": {
+                "priority": "1",
+                "type": "data network"
+            }
+        },
+        {
+            "input": {
+                "reference": "",
+                "symptom": "flooding",
+                "position": "lavatory"
+            },
+            "output": {
+                "priority": "1",
+                "type": "water"
+            }
+        },
+        {
+            "input": {
+                "reference": "",
+                "symptom": "extremely hot",
+                "position": "facility"
+            },
+            "output": {
+                "priority": "1",
+                "type": "temperature"
+            }
+        },
+        {
+            "input": {
+                "reference": "",
+                "symptom": "freezing cold",
+                "position": "entrance area"
+            },
+            "output": {
+                "priority": "1",
+                "type": "temperature"
+            }
+        },
+        {
+            "input": {
+                "reference": "",
+                "symptom": "horrible smell",
+                "position": "café"
+            },
+            "output": {
+                "priority": "1",
+                "type": "smell"
+            }
+        },
+        {
+            "input": {
+                "reference": "",
+                "symptom": "cannot exit",
+                "position": "parking lot"
+            },
+            "output": {
+                "priority": "1",
+                "type": "access"
+            }
+        },
+        {
+            "input": {
+                "reference": "",
+                "symptom": "mess",
+                "position": "entrance hall"
+            },
+            "output": {
+                "priority": "1",
+                "type": "cleanliness"
+            }
+        },
+        {
+            "input": {
+                "reference": "graffiti",
+                "symptom": "needs to be gone immediately",
+                "position": "building wall"
+            },
+            "output": {
+                "priority": "1",
+                "type": "appearance"
+            }
+        },
+        {
+            "input": {
+                "reference": "heating system",
+                "symptom": "malfunctioning",
+                "position": "room "
+            },
+            "output": {
+                "priority": "1",
+                "type": "technical installations"
+            }
+        },
+        {
+            "input": {
+                "reference": "taps",
+                "symptom": "no water",
+                "position": ""
+            },
+            "output": {
+                "priority": "1",
+                "type": "sanitary installations"
+            }
+        },
+        {
+            "input": {
+                "reference": "door",
+                "symptom": "squeaking",
+                "position": "customer area"
+            },
+            "output": {
+                "priority": "2",
+                "type": "defect"
+            }
+        },
+        {
+            "input": {
+                "reference": "roller blinds",
+                "symptom": "not working",
+                "position": "rooms"
+            },
+            "output": {
+                "priority": "2",
+                "type": "defect"
+            }
+        },
+        {
+            "input": {
+                "reference": "network",
+                "symptom": "very slow",
+                "position": ""
+            },
+            "output": {
+                "priority": "2",
+                "type": "data network"
+            }
+        },
+        {
+            "input": {
+                "reference": "",
+                "symptom": "flooded",
+                "position": "kitchen"
+            },
+            "output": {
+                "priority": "2",
+                "type": "water"
+            }
+        },
+        {
+            "input": {
+                "reference": "",
+                "symptom": "stuffy ",
+                "position": "room"
+            },
+            "output": {
+                "priority": "2",
+                "type": "temperature"
+            }
+        },
+        {
+            "input": {
+                "reference": "",
+                "symptom": "reeking",
+                "position": "corridor"
+            },
+            "output": {
+                "priority": "2",
+                "type": "smell"
+            }
+        },
+        {
+            "input": {
+                "reference": "safety lights",
+                "symptom": "fell out",
+                "position": "corridor"
+            },
+            "output": {
+                "priority": "2",
+                "type": "safety"
+            }
+        },
+        {
+            "input": {
+                "reference": "first-aid box",
+                "symptom": "missing",
+                "position": "security area"
+            },
+            "output": {
+                "priority": "2",
+                "type": "safety"
+            }
+        },
+        {
+            "input": {
+                "reference": "",
+                "symptom": "filthy",
+                "position": "restroom"
+            },
+            "output": {
+                "priority": "2",
+                "type": "cleanliness"
+            }
+        },
+        {
+            "input": {
+                "reference": "shop windows",
+                "symptom": "dirty",
+                "position": "shop"
+            },
+            "output": {
+                "priority": "2",
+                "type": "appearance"
+            }
+        },
+        {
+            "input": {
+                "reference": "ventilation",
+                "symptom": "working improperly",
+                "position": ""
+            },
+            "output": {
+                "priority": "2",
+                "type": "technical installations"
+            }
+        },
+        {
+            "input": {
+                "reference": "tap",
+                "symptom": "too little water",
+                "position": "mans room"
+            },
+            "output": {
+                "priority": "2",
+                "type": "sanitary installations"
+            }
+        },
+        {
+            "input": {
+                "reference": "lights",
+                "symptom": "not working",
+                "position": "parking lot"
+            },
+            "output": {
+                "priority": "3",
+                "type": "defect"
+            }
+        },
+        {
+            "input": {
+                "reference": "wall",
+                "symptom": "hole",
+                "position": "reception area"
+            },
+            "output": {
+                "priority": "3",
+                "type": "defect"
+            }
+        },
+        {
+            "input": {
+                "reference": "wall",
+                "symptom": "fissures",
+                "position": ""
+            },
+            "output": {
+                "priority": "3",
+                "type": "defect"
+            }
+        },
+        {
+            "input": {
+                "reference": "floor",
+                "symptom": "damaged",
+                "position": "hall"
+            },
+            "output": {
+                "priority": "3",
+                "type": "defect"
+            }
+        },
+        {
+            "input": {
+                "reference": "",
+                "symptom": "freezing",
+                "position": "cellar"
+            },
+            "output": {
+                "priority": "3",
+                "type": "temperature"
+            }
+        },
+        {
+            "input": {
+                "reference": "",
+                "symptom": "smells musty",
+                "position": "cellar"
+            },
+            "output": {
+                "priority": "3",
+                "type": "smell"
+            }
+        },
+        {
+            "input": {
+                "reference": "floor",
+                "symptom": "spilled a cup of cocoa",
+                "position": ""
+            },
+            "output": {
+                "priority": "3",
+                "type": "cleanliness"
+            }
+        },
+        {
+            "input": {
+                "reference": "tap",
+                "symptom": "not enough water coming out",
+                "position": "man's room"
+            },
+            "output": {
+                "priority": "3",
+                "type": "sanitary installations"
+            }
+        },
+        {
+            "input": {
+                "reference": "window",
+                "symptom": "jammed",
+                "position": "staircase"
+            },
+            "output": {
+                "priority": "4",
+                "type": "defect"
+            }
+        },
+        {
+            "input": {
+                "reference": "door lock",
+                "symptom": "Jammed",
+                "position": "boxroom"
+            },
+            "output": {
+                "priority": "4",
+                "type": "defect"
+            }
+        },
+        {
+            "input": {
+                "reference": "",
+                "symptom": "not cleaned",
+                "position": "stairwell"
+            },
+            "output": {
+                "priority": "4",
+                "type": "cleanliness"
+            }
+        },
+        {
+            "input": {
+                "reference": "sinks",
+                "symptom": "haven't been cleaned for a long time",
+                "position": "washroom"
+            },
+            "output": {
+                "priority": "4",
+                "type": "cleanliness"
+            }
+        }
+    ]
+}
