@@ -2,6 +2,7 @@
 require('dotenv').config();
 
 var incidentTypeToJobsMapping = require('./jobs.json');
+var positionDefinitions = require('./positionDefinitions.json');
 
 var Botkit = require('botkit');
 
@@ -24,10 +25,24 @@ var decisionTree = limdu.classifiers.DecisionTree.bind(this, {});
 var intentTypeClassifier = new limdu.classifiers.multilabel.BinaryRelevance({
     binaryClassifierType: decisionTree
 });
+var incidentTypeClassification = require('./classification.json');
+for (let set of incidentClassificationSet.trainset) {
+    if (!set.input.reference)
+        set.input.reference = set.input.position;
+    delete set.input.position;
+    delete set.output.priority;
+}
+intentTypeClassifier.trainBatch(parsedClassificationJSON.trainset);
 
 var priorityTypeClassifier = new limdu.classifiers.multilabel.BinaryRelevance({
     binaryClassifierType: decisionTree
 });
+var priorityTypeClassification = require('./classification.json');
+for (let set of priorityTypeClassification.trainset) {
+    // TODO: check this
+    delete set.output.type;
+}
+priorityTypeClassifier.trainBatch(parsedClassificationJSON.trainset);
 
 bot.listReply = function (message, title, elements) {
     bot.reply(message, { 'text': '', 'attachments': [{ 'contentType': 'application/vnd.microsoft.card.hero', 'content': { 'text': title, 'buttons': elements } }] });
@@ -39,6 +54,7 @@ bot.getUserId = function (message) {
 
 bot.defaultReply = function (message, id, error) {
     bot.botkit.storage.users.get(id, function (err, user) {
+        if (!user) { bot.saveConversationStart(message, id); }
         if (error) {
             user.errorCount += 1;
             if (user.errorCount >= 2) {
@@ -84,14 +100,17 @@ bot.serviceReply = function (message, id) {
     bot.reply(message, 'Please hold on. A service employee will soon take on the conversation.');
 };
 
-bot.saveConversationStart = function (message, id) {
+bot.saveConversationStart = function (message, id, added) {
     bot.botkit.storage.users.save({ id: id, conversationStartDate: Date.now(), errorCount: 0 }, function (err) {
-        bot.reply(message, 'Hello ' + id + ', what is the address of your current location?');
+        if (added) {
+            bot.reply(message, 'Hello ' + id + ', what is the address of your current location?');
+        }
     });
 };
 
 bot.saveAddress = function (message, id, city, street) {
     bot.botkit.storage.users.get(id, function (err, user) {
+        if (!user) { bot.saveConversationStart(message, id); }
         if (city) { user.city = city; }
         if (street) { user.street = street; }
         bot.botkit.storage.users.save(user, function (err) {
@@ -108,6 +127,7 @@ bot.saveAddress = function (message, id, city, street) {
 
 bot.saveAndStandardizeAddress = function (message, id, city, street, time) {
     bot.botkit.storage.users.get(id, function (err, user) {
+        if (!user) { bot.saveConversationStart(message, id); }
         if (time) { user.time = time; }
         bot.botkit.storage.users.save(user, function (err) { });
     });
@@ -168,28 +188,24 @@ bot.saveAndStandardizeAddress = function (message, id, city, street, time) {
 
 bot.saveIncidentAndPosition = function (message, id, reference, symptom, position, area, floor, number) {
     bot.botkit.storage.users.get(id, function (err, user) {
+        if (!user) { bot.saveConversationStart(message, id); }
         if (reference) { user.reference = reference; }
         if (symptom) { user.symptom = symptom; }
         if (position) { user.position = position; }
         if (area) { user.area = area; }
         if (floor) { user.floor = floor; }
         if (number) { user.number = number; }
-        var positionsNeedNone = ['basement', 'boiler room', 'boxroom', 'building', 'building wall', 'café', 'cafeteria',
-            'cellar', 'customer area', 'dining hall', 'entire building', 'entrance area', 'entrance hall', 'entrance room',
-            'entrance stairway', 'facade', 'facility', 'foyer', 'front door', 'garden', 'hallway', 'here', 'information area',
-            'lavatory', 'lobby', 'lounge', 'outside', 'parking lot', 'reception', 'reception area', 'roller door', 'roof',
-            'security area', 'sidewalk', 'storage room', 'storage space', 'store room', 'storeroom', 'technical room',
-            'trash', 'washroom', 'whole building'];
-        var positionsNeedNumber = ['hall', 'office', 'open-plan office', 'room', 'work place', 'workplace', 'workstation'];
         bot.botkit.storage.users.save(user, function (err) {
-            if (!user.reference || !user.symptom) {
+            if (!user.reference && !user.symptom) { // reference or symptom is required
                 bot.reply(message, 'What exactly happened?');
-            } else if (!user.position || !user.area) {
+            } else if (!user.position && !user.orientation && !user.floor) { // position, orientation or floor is required
                 bot.reply(message, 'Where exactly?');
-            } else if (positionsNeedNumber.includes(user.position)) {
+            } else if (user.position && positionDefinitions.PositionNeedNumber.includes(user.position) && !user.number) { // for rooms
                 bot.reply(message, 'Whats your room number?');
-            } else if (user.position && !positionsNeedNone.includes(user.position)) {
-                bot.reply(message, 'Whats your area or floor?');
+            } else if (user.position && positionDefinitions.PositionNeedFloor.includes(user.position) && !user.floor) { // for rooms once in the floor
+                bot.reply(message, 'Whats your floor?');
+            } else if (user.position && !positionDefinitions.PositionNeedNothing.includes(user.position)) { // for rooms that need no further information
+                bot.reply(message, 'Whats your orientation or floor?');
             } else {
                 bot.classifyIncidentType(message, id);
             }
@@ -199,8 +215,9 @@ bot.saveIncidentAndPosition = function (message, id, reference, symptom, positio
 
 bot.classifyIncidentType = function (message, id) {
     bot.botkit.storage.users.get(id, function (err, user) {
+        if (!user) { bot.saveConversationStart(message, id); }
         var reference;
-        reference = user.reference || user.position || user.area; // TODO: check this
+        reference = user.reference || user.position;
 
         var intentTypes = intentTypeClassifier.classify({ 'reference': reference, 'symptom': user.symptom });
 
@@ -252,6 +269,7 @@ bot.classifyIncidentType = function (message, id) {
 
 bot.deleteIncidentInformation = function (message, id) {
     bot.botkit.storage.users.get(id, function (err, user) {
+        if (!user) { bot.saveConversationStart(message, id); }
         delete user.reference;
         delete user.symptom;
         bot.botkit.storage.users.save(user, function (err) {
@@ -262,6 +280,7 @@ bot.deleteIncidentInformation = function (message, id) {
 
 bot.classifyIncidentPriority = function (message, id, type) {
     bot.botkit.storage.users.get(id, function (err, user) {
+        if (!user) { bot.saveConversationStart(message, id); }
         var position;
         position = user.position;
 
@@ -279,6 +298,7 @@ bot.classifyIncidentPriority = function (message, id, type) {
 
 bot.saveIncidentTypeAndPriority = function (message, id, type, priority) {
     bot.botkit.storage.users.get(id, function (err, user) {
+        if (!user) { bot.saveConversationStart(message, id); }
         if (type) { user.type = type; }
         if (priority) { user.priority = priority; }
         bot.botkit.storage.users.save(user, function (err) {
@@ -289,6 +309,7 @@ bot.saveIncidentTypeAndPriority = function (message, id, type, priority) {
 
 bot.saveIncidentTime = function (message, id, time) {
     bot.botkit.storage.users.get(id, function (err, user) {
+        if (!user) { bot.saveConversationStart(message, id); }
         if (time) { user.time = time; }
         bot.botkit.storage.users.save(user, function (err) {
             bot.defaultReply(message, id);
@@ -298,6 +319,7 @@ bot.saveIncidentTime = function (message, id, time) {
 
 bot.saveIncidentUrgency = function (message, id, urgency) {
     bot.botkit.storage.users.get(id, function (err, user) {
+        if (!user) { bot.saveConversationStart(message, id); }
         if (urgency) { user.urgency = urgency; }
         bot.botkit.storage.users.save(user, function (err) {
             bot.defaultReply(message, id);
@@ -307,6 +329,7 @@ bot.saveIncidentUrgency = function (message, id, urgency) {
 
 bot.saveIncidentPersonalInformation = function (message, id, name, email, phone) {
     bot.botkit.storage.users.get(id, function (err, user) {
+        if (!user) { bot.saveConversationStart(message, id); }
         if (name) { user.name = name; }
         if (email) { user.email = email; }
         if (phone) { user.phone = phone; }
@@ -345,7 +368,7 @@ controller.on('conversationUpdate', function (bot, message) {
                 //   user we can tweek the address object to reference the joining user.
                 // - If we wanted to send a private message to teh joining user we could
                 //   delete the address.conversation field from the cloned address.
-                bot.saveConversationStart(message, bot.getUserId(message));
+                bot.saveConversationStart(message, bot.getUserId(message), true);
             }
         });
     }
@@ -357,22 +380,22 @@ controller.on('conversationUpdate', function (bot, message) {
 
 controller.hears(['contact'], ['direct_message', 'direct_mention', 'mention', 'message_received'], function (bot, message) {
     var id = bot.getUserId(message);
-    serviceReply(message, id);
+    bot.serviceReply(message, id);
 });
 
 controller.hears(['provide-incident-type-(.*)'], ['direct_message', 'direct_mention', 'mention', 'message_received'], function (bot, message) {
     var id = bot.getUserId(message);
-    classifyIncidentPriority(message, id, message.match[1]);
+    bot.classifyIncidentPriority(message, id, message.match[1]);
 });
 
 controller.hears(['delete-incident-information'], ['direct_message', 'direct_mention', 'mention', 'message_received'], function (bot, message) {
     var id = bot.getUserId(message);
-    deleteIncidentInformation(message, id);
+    bot.deleteIncidentInformation(message, id);
 });
 
 controller.hears(['provide-incident-user-urgency-(.*)'], ['direct_message', 'direct_mention', 'mention', 'message_received'], function (bot, message) {
     var id = bot.getUserId(message);
-    saveIncidentUrgency(message, id, message.match[1]);
+    bot.saveIncidentUrgency(message, id, message.match[1]);
 });
 
 module.exports.controller = controller;
