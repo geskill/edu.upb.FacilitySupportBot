@@ -1,0 +1,38 @@
+{
+    "PositionNeedNothing": [
+        "boiler room",
+        "cafeteria",
+        "dining hall",
+        "entrance room",
+        "foyer",
+        "front door",
+        "garden",
+        "information area",
+        "lounge",
+        "reception",
+        "roof",
+        "storage room",
+        "storage space",
+        "store room",
+        "storeroom",
+        "technical room",
+        "trash"
+    ],
+    "PositionNeedFloor": [
+        "girls room",
+        "girl's room",
+        "hallway",
+        "kitchen",
+        "mans room",
+        "open-plan office",
+        "restroom"
+    ],
+    "PositionNeedNumber": [
+        "hall",
+        "office",
+        "room",
+        "work place",
+        "workplace",
+        "workstation"
+    ]
+}
