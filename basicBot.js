@@ -26,13 +26,13 @@ var intentTypeClassifier = new limdu.classifiers.multilabel.BinaryRelevance({
     binaryClassifierType: decisionTree
 });
 var incidentTypeClassification = require('./classification.json');
-for (let set of incidentClassificationSet.trainset) {
+for (let set of incidentTypeClassification.trainset) {
     if (!set.input.reference)
         set.input.reference = set.input.position;
     delete set.input.position;
     delete set.output.priority;
 }
-intentTypeClassifier.trainBatch(parsedClassificationJSON.trainset);
+intentTypeClassifier.trainBatch(incidentTypeClassification.trainset);
 
 var priorityTypeClassifier = new limdu.classifiers.multilabel.BinaryRelevance({
     binaryClassifierType: decisionTree
@@ -42,7 +42,7 @@ for (let set of priorityTypeClassification.trainset) {
     // TODO: check this
     delete set.output.type;
 }
-priorityTypeClassifier.trainBatch(parsedClassificationJSON.trainset);
+priorityTypeClassifier.trainBatch(priorityTypeClassification.trainset);
 
 bot.listReply = function (message, title, elements) {
     bot.reply(message, { 'text': '', 'attachments': [{ 'contentType': 'application/vnd.microsoft.card.hero', 'content': { 'text': title, 'buttons': elements } }] });
@@ -159,6 +159,7 @@ bot.saveAndStandardizeAddress = function (message, id, city, street, time) {
                                 }
                             }
                             street += ' ' + streetnumber;
+                            console.log('info: Recognized address: ' + city + ' ' + street);
                             bot.saveAddress(message, id, city, street);
                             break;
                         }
@@ -186,13 +187,13 @@ bot.saveAndStandardizeAddress = function (message, id, city, street, time) {
     }
 };
 
-bot.saveIncidentAndPosition = function (message, id, reference, symptom, position, area, floor, number) {
+bot.saveIncidentAndPosition = function (message, id, reference, symptom, position, orientation, floor, number) {
     bot.botkit.storage.users.get(id, function (err, user) {
         if (!user) { bot.saveConversationStart(message, id); }
         if (reference) { user.reference = reference; }
         if (symptom) { user.symptom = symptom; }
         if (position) { user.position = position; }
-        if (area) { user.area = area; }
+        if (orientation) { user.orientation = orientation; }
         if (floor) { user.floor = floor; }
         if (number) { user.number = number; }
         bot.botkit.storage.users.save(user, function (err) {

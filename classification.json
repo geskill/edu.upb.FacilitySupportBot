@@ -255,9 +255,9 @@
         },
         {
             "input": {
-                "reference": "",
+                "reference": "roller door",
                 "symptom": "defective",
-                "position": "roller door"
+                "position": ""
             },
             "output": {
                 "priority": "1",
@@ -278,7 +278,7 @@
         {
             "input": {
                 "reference": "",
-                "symptom": "looks devastated",
+                "symptom": "devastated",
                 "position": "foyer"
             },
             "output": {
@@ -288,8 +288,8 @@
         },
         {
             "input": {
-                "reference": "",
-                "symptom": "racist graffiti",
+                "reference": "racist graffiti",
+                "symptom": "",
                 "position": "facade"
             },
             "output": {
@@ -310,7 +310,7 @@
         },
         {
             "input": {
-                "reference": "air conditioner",
+                "reference": "air conditioning",
                 "symptom": "isn't working",
                 "position": "room"
             },
@@ -321,9 +321,9 @@
         },
         {
             "input": {
-                "reference": "ventilation system",
+                "reference": "ventilation",
                 "symptom": "failed",
-                "position": "room "
+                "position": "room"
             },
             "output": {
                 "priority": "1",
@@ -443,7 +443,7 @@
         {
             "input": {
                 "reference": "air",
-                "symptom": "suffocating ",
+                "symptom": "suffocating",
                 "position": ""
             },
             "output": {
@@ -585,8 +585,8 @@
         },
         {
             "input": {
-                "reference": "air conditiong",
-                "symptom": "doesn't work ",
+                "reference": "air conditioning",
+                "symptom": "doesn't work",
                 "position": ""
             },
             "output": {
@@ -619,7 +619,7 @@
         {
             "input": {
                 "reference": "light",
-                "symptom": "flickering ",
+                "symptom": "flickering",
                 "position": "hallway"
             },
             "output": {
@@ -640,8 +640,8 @@
         },
         {
             "input": {
-                "reference": "",
-                "symptom": "forgotten dowels",
+                "reference": "dowels",
+                "symptom": "forgotten",
                 "position": "cafeteria"
             },
             "output": {
@@ -662,8 +662,8 @@
         },
         {
             "input": {
-                "reference": "doors",
-                "symptom": "worn out paint ",
+                "reference": "doors paint",
+                "symptom": "worn out",
                 "position": ""
             },
             "output": {
@@ -696,7 +696,7 @@
         {
             "input": {
                 "reference": "temperature",
-                "symptom": "is wrong",
+                "symptom": "wrong",
                 "position": "technical room"
             },
             "output": {
@@ -763,7 +763,7 @@
             "input": {
                 "reference": "wall",
                 "symptom": "hot chocolate spots",
-                "position": "mans room"
+                "position": "mens room"
             },
             "output": {
                 "priority": "3",
@@ -774,7 +774,7 @@
             "input": {
                 "reference": "water faucet",
                 "symptom": "squeaking",
-                "position": "mans room"
+                "position": "mens room"
             },
             "output": {
                 "priority": "3",
@@ -784,7 +784,7 @@
         {
             "input": {
                 "reference": "toilet",
-                "symptom": "won't flush ",
+                "symptom": "won't flush",
                 "position": "girls room"
             },
             "output": {
@@ -929,7 +929,7 @@
         {
             "input": {
                 "reference": "",
-                "symptom": "slippery ",
+                "symptom": "slippery",
                 "position": "sidewalk"
             },
             "output": {
@@ -1029,7 +1029,7 @@
             "input": {
                 "reference": "graffiti",
                 "symptom": "needs to be gone immediately",
-                "position": "building wall"
+                "position": "wall"
             },
             "output": {
                 "priority": "1",
@@ -1040,7 +1040,7 @@
             "input": {
                 "reference": "heating system",
                 "symptom": "malfunctioning",
-                "position": "room "
+                "position": "room"
             },
             "output": {
                 "priority": "1",
@@ -1105,7 +1105,7 @@
         {
             "input": {
                 "reference": "",
-                "symptom": "stuffy ",
+                "symptom": "stuffy",
                 "position": "room"
             },
             "output": {
@@ -1183,7 +1183,7 @@
             "input": {
                 "reference": "tap",
                 "symptom": "too little water",
-                "position": "mans room"
+                "position": "mens room"
             },
             "output": {
                 "priority": "2",
@@ -1271,7 +1271,7 @@
             "input": {
                 "reference": "tap",
                 "symptom": "not enough water coming out",
-                "position": "man's room"
+                "position": "men's room"
             },
             "output": {
                 "priority": "3",

@@ -47,12 +47,12 @@ basicBot.controller.hears(['ProvideIncidentAndPosition'], ['direct_message', 'di
 
     var id = basicBot.bot.getUserId(message);
     basicBot.controller.storage.users.get(id, function (err, user) {
-        var reference, symptom, position, area, floor, number;
+        var reference, symptom, position, orientation, floor, number;
         if (user) {
             reference = user.reference;
             symptom = user.symptom;
             position = user.position;
-            area = user.area;
+            orientation = user.orientation;
             floor = user.floor;
             number = user.number;
         }
@@ -66,8 +66,8 @@ basicBot.controller.hears(['ProvideIncidentAndPosition'], ['direct_message', 'di
         if (message.entities['Position']) {
             position = message.entities['Position'];
         }
-        if (message.entities['Area']) {
-            area = message.entities['Area'];
+        if (message.entities['Orientation']) {
+            orientation = message.entities['Orientation'];
         }
         if (message.entities['Floor']) {
             floor = message.entities['Floor'];
@@ -76,7 +76,7 @@ basicBot.controller.hears(['ProvideIncidentAndPosition'], ['direct_message', 'di
             number = message.entities['RoomNumber'];
         }
 
-        basicBot.bot.saveIncidentAndPosition(message, id, reference, symptom, position, area, floor, number);
+        basicBot.bot.saveIncidentAndPosition(message, id, reference, symptom, position, orientation, floor, number);
     });
 
 });
