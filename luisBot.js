@@ -10,7 +10,7 @@ basicBot.controller.middleware.receive.use(luis.middleware.receive(luisOptions))
 basicBot.controller.hears(['LUIS'], ['direct_message', 'direct_mention', 'mention', 'message_received'], luis.middleware.hereIntent, function (bot, message) {
 
     var id = basicBot.bot.getUserId(message);
-    if (message.topIntent.score < 0.5) {
+    if (message.topIntent.score < 0.2) {
         basicBot.bot.defaultReply(message, id, true);
     } else {
         switch (message.topIntent.intent) {

@@ -5,7 +5,7 @@ var basicBot = require("./basicBot");
  */
 var recastai = require('botkit-middleware-recastai')({
     request_token: process.env.APP_RECASTAI_REQUEST_ACCESS_TOKEN,
-    confidence: 0.4
+    confidence: 0.2
 });
 basicBot.controller.middleware.receive.use(recastai.receive);
 

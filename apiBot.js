@@ -5,9 +5,15 @@ var basicBot = require("./basicBot");
  */
 var apiai = require('botkit-middleware-apiai')({
     token: process.env.APP_APIAI_CLIENT_ACCESS_TOKEN,
+    minimum_confidence: 0.2,
     skip_bot: true // or false. If true, the middleware don't send the bot reply/says to api.ai
 });
 basicBot.controller.middleware.receive.use(apiai.receive);
+
+basicBot.controller.hears(['Default'], ['direct_message', 'direct_mention', 'mention', 'message_received'], apiai.hears, function (bot, message) {
+    var id = basicBot.bot.getUserId(message);
+    basicBot.bot.defaultReply(message, id, true);
+});
 
 basicBot.controller.hears(['None'], ['direct_message', 'direct_mention', 'mention', 'message_received'], apiai.hears, function (bot, message) {
     var id = basicBot.bot.getUserId(message);
@@ -132,15 +138,15 @@ basicBot.controller.hears(['ProvidePersonalInformation'], ['direct_message', 'di
         }
 
         if (!name || (givenName && lastName)) {
-            name = (givenName + ' ' + lastName).trim();
+            name = ((givenName||'') + ' ' + (lastName||'')).trim();
         } else if (!name.includes(' ')) {
             name = (givenName || lastName).trim();
-        } else {
+        } else if (name && (givenName || lastName)) {
             // replace based upon name (only working for first / last name names)
             if (givenName) { // replace first name
-                name = givenName + ' ' + givenName.split(' ').pop();
+                name = givenName + ' ' + name.split(' ').pop();
             } else { // replace last name
-                name = givenName.split(' ').shift() + ' ' + lastName;
+                name = name.split(' ').shift() + ' ' + lastName;
             }
         }
 
