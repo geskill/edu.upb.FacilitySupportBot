@@ -20,6 +20,6 @@
     "botkit-middleware-luis": "^1.0.0",
     "botkit-middleware-recastai": "^1.0.4",
     "dotenv": "^4.0.0",
-    "limdu": "^0.9.2"
+    "limdu": "github:erelsgl/limdu"
   }
 }
