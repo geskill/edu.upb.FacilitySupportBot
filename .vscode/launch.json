@@ -24,6 +24,12 @@
         },
         {
             "type": "node",
+            "request": "launch",
+            "name": "Evaluation",
+            "program": "${workspaceRoot}\\classificationEvaluation.js"
+        },
+        {
+            "type": "node",
             "request": "attach",
             "name": "An den Prozess anfügen",
             "address": "localhost",
