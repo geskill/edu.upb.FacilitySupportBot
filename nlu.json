@@ -17,7 +17,7 @@
         {
             "input": {
                 "sentence": "Lift is stuck",
-                "second sentence": "Left elevator in the lobby"
+                "second sentence": "Left lift in the lobby"
             },
             "output": {
                 "reference": "lift",

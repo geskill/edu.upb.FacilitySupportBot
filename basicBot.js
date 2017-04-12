@@ -102,9 +102,8 @@ bot.defaultReply = function (message, id, error) {
                 time = incidentTypeToTimeMapping.urgency[user.urgency];
             }
 
-            // TODO: Improve
-            bot.reply(message, 'Thank you very much, Sir or Madam ' + (user.name || id) + ', your message has been recorded. The ' +
-                jobs + ' will be informed and will contact you if you have any questions. (' +
+            bot.reply(message, 'Thank you very much, Sir or Madam ' + (user.name || id) + ', your message about the incident was received. The ' +
+                jobs + ' will be informed and will contact you if questions occur. (' +
                 (user.priority ? 'priority' : 'urgency') + ' lvl ' + (user.priority ? user.priority : user.urgency) + ' [ETA ' + time + '])');
         }
     });

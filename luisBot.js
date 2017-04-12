@@ -61,7 +61,7 @@ basicBot.controller.hears(['LUIS'], ['direct_message', 'direct_mention', 'mentio
                             city = zipcode;
                         }
 
-                        if (!street.match(/\d+/g)) {
+                        if (street && (!street.match(/\d+/g))) {
                             street += number;
                         }
 
