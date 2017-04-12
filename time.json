@@ -1,0 +1,12 @@
+{
+    "priority": {
+        "1": "immediately",
+        "2": "in the next few hours",
+        "3": "tomorrow",
+        "4": "in the coming days"
+    },
+    "urgency": {
+        "1": "immediately",
+        "2": "in the next few hours or tomorrow"
+    }
+}
