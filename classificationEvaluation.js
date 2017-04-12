@@ -5,7 +5,7 @@ var incidentClassification = require('./classification.json');
 
 fs.existsSync('./evaluation') || fs.mkdirSync('./evaluation')
 
-var fileName = './evaluation\\' + new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '').replace(/:/g, '-') + '.txt';
+var fileName = './evaluation\\classification-' + new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '').replace(/:/g, '-') + '.txt';
 
 fs.writeFileSync(fileName, ''); // create new empty file
 

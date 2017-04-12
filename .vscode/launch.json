@@ -25,7 +25,13 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "Evaluation",
+            "name": "nEvaluation",
+            "program": "${workspaceRoot}\\nluEvaluation.js"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "cEvaluation",
             "program": "${workspaceRoot}\\classificationEvaluation.js"
         },
         {

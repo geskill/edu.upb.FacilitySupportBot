@@ -1,0 +1,564 @@
+{
+    "testset": [
+        {
+            "input": {
+                "sentence": "There's a fire on the second floor!",
+                "second sentence": ""
+            },
+            "output": {
+                "reference": "fire",
+                "symptom": "",
+                "position": "",
+                "orientation": "",
+                "floor": "second floor",
+                "number": ""
+            }
+        },
+        {
+            "input": {
+                "sentence": "Lift is stuck",
+                "second sentence": "Left elevator in the lobby"
+            },
+            "output": {
+                "reference": "lift",
+                "symptom": "stuck",
+                "position": "lobby",
+                "orientation": "",
+                "floor": "",
+                "number": ""
+            }
+        },
+        {
+            "input": {
+                "sentence": "There is a raging storm and tiles are falling from the roof",
+                "second sentence": ""
+            },
+            "output": {
+                "reference": "tiles",
+                "symptom": "falling",
+                "position": "roof",
+                "orientation": "",
+                "floor": "",
+                "number": ""
+            }
+        },
+        {
+            "input": {
+                "sentence": "The building was struck by lightning",
+                "second sentence": ""
+            },
+            "output": {
+                "reference": "",
+                "symptom": "struck by lightning",
+                "position": "building",
+                "orientation": "",
+                "floor": "",
+                "number": ""
+            }
+        },
+        {
+            "input": {
+                "sentence": "The sidewalk is slippery ",
+                "second sentence": ""
+            },
+            "output": {
+                "reference": "",
+                "symptom": "slippery",
+                "position": "sidewalk",
+                "orientation": "",
+                "floor": "",
+                "number": ""
+            }
+        },
+        {
+            "input": {
+                "sentence": "There is an electricity failure",
+                "second sentence": "In the entire building"
+            },
+            "output": {
+                "reference": "",
+                "symptom": "electricity failure",
+                "position": "building",
+                "orientation": "entire",
+                "floor": "",
+                "number": ""
+            }
+        },
+        {
+            "input": {
+                "sentence": "There is no internet connection",
+                "second sentence": "Everywhere"
+            },
+            "output": {
+                "reference": "",
+                "symptom": "no internet connection",
+                "position": "",
+                "orientation": "everywhere",
+                "floor": "",
+                "number": ""
+            }
+        },
+        {
+            "input": {
+                "sentence": "There is flooding",
+                "second sentence": "It comes from lavatory"
+            },
+            "output": {
+                "reference": "",
+                "symptom": "flooding",
+                "position": "lavatory",
+                "orientation": "",
+                "floor": "",
+                "number": ""
+            }
+        },
+        {
+            "input": {
+                "sentence": "It is extremely hot",
+                "second sentence": "In the facility"
+            },
+            "output": {
+                "reference": "",
+                "symptom": "extremely hot",
+                "position": "facility",
+                "orientation": "",
+                "floor": "",
+                "number": ""
+            }
+        },
+        {
+            "input": {
+                "sentence": "The entrance area is freezing cold",
+                "second sentence": ""
+            },
+            "output": {
+                "reference": "",
+                "symptom": "freezing cold",
+                "position": "entrance area",
+                "orientation": "",
+                "floor": "",
+                "number": ""
+            }
+        },
+        {
+            "input": {
+                "sentence": "there's a horrible smell coming from the café",
+                "second sentence": ""
+            },
+            "output": {
+                "reference": "",
+                "symptom": "horrible smell",
+                "position": "café",
+                "orientation": "",
+                "floor": "",
+                "number": ""
+            }
+        },
+        {
+            "input": {
+                "sentence": "I cannot exit the parking lot",
+                "second sentence": ""
+            },
+            "output": {
+                "reference": "",
+                "symptom": "cannot exit",
+                "position": "parking lot",
+                "orientation": "",
+                "floor": "",
+                "number": ""
+            }
+        },
+        {
+            "input": {
+                "sentence": "entrance hall is a mess",
+                "second sentence": ""
+            },
+            "output": {
+                "reference": "",
+                "symptom": "mess",
+                "position": "entrance hall",
+                "orientation": "",
+                "floor": "",
+                "number": ""
+            }
+        },
+        {
+            "input": {
+                "sentence": "here's a graffiti that needs to be gone immediately",
+                "second sentence": "the wall facing the street side"
+            },
+            "output": {
+                "reference": "graffiti",
+                "symptom": "needs to be gone immediately",
+                "position": "wall",
+                "orientation": "street side",
+                "floor": "",
+                "number": ""
+            }
+        },
+        {
+            "input": {
+                "sentence": "the heating system is malfunctioning",
+                "second sentence": "In room B22"
+            },
+            "output": {
+                "reference": "heating system",
+                "symptom": "malfunctioning",
+                "position": "room",
+                "orientation": "",
+                "floor": "",
+                "number": "B22"
+            }
+        },
+        {
+            "input": {
+                "sentence": "no water from the taps",
+                "second sentence": ""
+            },
+            "output": {
+                "reference": "taps",
+                "symptom": "no water",
+                "position": "",
+                "orientation": "",
+                "floor": "",
+                "number": ""
+            }
+        },
+        {
+            "input": {
+                "sentence": "a door in the customer area is squeaking",
+                "second sentence": ""
+            },
+            "output": {
+                "reference": "door",
+                "symptom": "squeaking",
+                "position": "customer area",
+                "orientation": "",
+                "floor": "",
+                "number": ""
+            }
+        },
+        {
+            "input": {
+                "sentence": "the roller blinds in the rooms 23-54 are not working",
+                "second sentence": ""
+            },
+            "output": {
+                "reference": "roller blinds",
+                "symptom": "not working",
+                "position": "rooms",
+                "orientation": "",
+                "floor": "",
+                "number": "23-54"
+            }
+        },
+        {
+            "input": {
+                "sentence": "The network is very slow",
+                "second sentence": "3-34"
+            },
+            "output": {
+                "reference": "network",
+                "symptom": "very slow",
+                "position": "",
+                "orientation": "",
+                "floor": "",
+                "number": "3-34"
+            }
+        },
+        {
+            "input": {
+                "sentence": "the kitchen is flooded",
+                "second sentence": "On the ground-floor"
+            },
+            "output": {
+                "reference": "",
+                "symptom": "flooded",
+                "position": "kitchen",
+                "orientation": "",
+                "floor": "ground-floor",
+                "number": ""
+            }
+        },
+        {
+            "input": {
+                "sentence": "my room is stuffy ",
+                "second sentence": "This is T2.94"
+            },
+            "output": {
+                "reference": "",
+                "symptom": "stuffy",
+                "position": "room",
+                "orientation": "",
+                "floor": "",
+                "number": "T2.94"
+            }
+        },
+        {
+            "input": {
+                "sentence": "the corridor is reeking",
+                "second sentence": "The 3rd floor"
+            },
+            "output": {
+                "reference": "",
+                "symptom": "reeking",
+                "position": "corridor",
+                "orientation": "",
+                "floor": "3rd floor",
+                "number": ""
+            }
+        },
+        {
+            "input": {
+                "sentence": "The safety lights fell out",
+                "second sentence": "The corridor on the second floor"
+            },
+            "output": {
+                "reference": "safety lights",
+                "symptom": "fell out",
+                "position": "corridor",
+                "orientation": "",
+                "floor": "second floor",
+                "number": ""
+            }
+        },
+        {
+            "input": {
+                "sentence": "First-aid box is missing",
+                "second sentence": "In the security area"
+            },
+            "output": {
+                "reference": "first-aid box",
+                "symptom": "missing",
+                "position": "security area",
+                "orientation": "",
+                "floor": "",
+                "number": ""
+            }
+        },
+        {
+            "input": {
+                "sentence": "Filthy restroom",
+                "second sentence": "The mens room, 2nd floor"
+            },
+            "output": {
+                "reference": "",
+                "symptom": "filthy",
+                "position": "restroom",
+                "orientation": "",
+                "floor": "2nd floor",
+                "number": ""
+            }
+        },
+        {
+            "input": {
+                "sentence": "the shop windows are dirty",
+                "second sentence": ""
+            },
+            "output": {
+                "reference": "shop windows",
+                "symptom": "dirty",
+                "position": "shop",
+                "orientation": "",
+                "floor": "",
+                "number": ""
+            }
+        },
+        {
+            "input": {
+                "sentence": "ventilation on the 2nd floor is working improperly",
+                "second sentence": ""
+            },
+            "output": {
+                "reference": "ventilation",
+                "symptom": "working improperly",
+                "position": "",
+                "orientation": "",
+                "floor": "2nd floor",
+                "number": ""
+            }
+        },
+        {
+            "input": {
+                "sentence": "there's too little water coming from the tap",
+                "second sentence": "mens room on 4th floor"
+            },
+            "output": {
+                "reference": "tap",
+                "symptom": "too little water",
+                "position": "mens room",
+                "orientation": "",
+                "floor": "4th floor",
+                "number": ""
+            }
+        },
+        {
+            "input": {
+                "sentence": "some lights in the parking lot are not working",
+                "second sentence": ""
+            },
+            "output": {
+                "reference": "lights",
+                "symptom": "not working",
+                "position": "parking lot",
+                "orientation": "",
+                "floor": "",
+                "number": ""
+            }
+        },
+        {
+            "input": {
+                "sentence": "there's a hole in the wall in the reception area",
+                "second sentence": ""
+            },
+            "output": {
+                "reference": "wall",
+                "symptom": "hole",
+                "position": "reception area",
+                "orientation": "",
+                "floor": "",
+                "number": ""
+            }
+        },
+        {
+            "input": {
+                "sentence": "fissures in the wall on the ground floor",
+                "second sentence": ""
+            },
+            "output": {
+                "reference": "wall",
+                "symptom": "fissures",
+                "position": "",
+                "orientation": "",
+                "floor": "ground floor",
+                "number": ""
+            }
+        },
+        {
+            "input": {
+                "sentence": "the floor in hall 11 got damaged",
+                "second sentence": ""
+            },
+            "output": {
+                "reference": "floor",
+                "symptom": "damaged",
+                "position": "hall",
+                "orientation": "",
+                "floor": "",
+                "number": "11"
+            }
+        },
+        {
+            "input": {
+                "sentence": "it's freezing in the cellar",
+                "second sentence": ""
+            },
+            "output": {
+                "reference": "",
+                "symptom": "freezing",
+                "position": "cellar",
+                "orientation": "",
+                "floor": "",
+                "number": ""
+            }
+        },
+        {
+            "input": {
+                "sentence": "the cellar smells musty",
+                "second sentence": ""
+            },
+            "output": {
+                "reference": "",
+                "symptom": "smells musty",
+                "position": "cellar",
+                "orientation": "",
+                "floor": "",
+                "number": ""
+            }
+        },
+        {
+            "input": {
+                "sentence": "Just now somebody spilled a cup of cocoa on the floor",
+                "second sentence": "On the first floor"
+            },
+            "output": {
+                "reference": "floor",
+                "symptom": "spilled a cup of cocoa",
+                "position": "",
+                "orientation": "",
+                "floor": "first floor",
+                "number": ""
+            }
+        },
+        {
+            "input": {
+                "sentence": "not enough water coming out of the tap",
+                "second sentence": "It's men's room in the 6th floor"
+            },
+            "output": {
+                "reference": "tap",
+                "symptom": "not enough water coming out",
+                "position": "men's room",
+                "orientation": "",
+                "floor": "6th floor",
+                "number": ""
+            }
+        },
+        {
+            "input": {
+                "sentence": "The third-floor staircase window is jammed",
+                "second sentence": ""
+            },
+            "output": {
+                "reference": "window",
+                "symptom": "jammed",
+                "position": "staircase",
+                "orientation": "",
+                "floor": "third-floor",
+                "number": ""
+            }
+        },
+        {
+            "input": {
+                "sentence": "Jammed door lock in the boxroom",
+                "second sentence": ""
+            },
+            "output": {
+                "reference": "door lock",
+                "symptom": "Jammed",
+                "position": "boxroom",
+                "orientation": "",
+                "floor": "",
+                "number": ""
+            }
+        },
+        {
+            "input": {
+                "sentence": "the stairwell was not cleaned",
+                "second sentence": ""
+            },
+            "output": {
+                "reference": "",
+                "symptom": "not cleaned",
+                "position": "stairwell",
+                "orientation": "",
+                "floor": "",
+                "number": ""
+            }
+        },
+        {
+            "input": {
+                "sentence": "the sinks haven't been cleaned for a long time",
+                "second sentence": "In the washroom"
+            },
+            "output": {
+                "reference": "sinks",
+                "symptom": "haven't been cleaned for a long time",
+                "position": "washroom",
+                "orientation": "",
+                "floor": "",
+                "number": ""
+            }
+        }
+    ]
+}

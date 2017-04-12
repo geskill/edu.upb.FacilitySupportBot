@@ -65,23 +65,27 @@ basicBot.controller.hears(['provide-incident-and-position'], ['direct_message', 
             number = user.number;
         }
 
-        if (message.entities['Reference']) {
-            reference = message.entities['Reference'];
-        }
-        if (message.entities['Symptom']) {
-            symptom = message.entities['Symptom'];
-        }
-        if (message.entities['Position']) {
-            position = message.entities['Position'];
-        }
-        if (message.entities['Orientation']) {
-            orientation = message.entities['Orientation'];
-        }
-        if (message.entities['Floor']) {
-            floor = message.entities['Floor'];
-        }
-        if (message.entities['RoomNumber']) {
-            number = message.entities['RoomNumber'];
+        for (let entity of message.entities) {
+            switch (entity.name) {
+                case 'reference':
+                    reference = entity.raw;
+                    break;
+                case 'symptom':
+                    symptom = entity.raw;
+                    break;
+                case 'position':
+                    position = entity.raw;
+                    break;
+                case 'orientation':
+                    orientation = entity.raw;
+                    break;
+                case 'floor':
+                    floor = entity.raw;
+                    break;
+                case 'room-number':
+                    number = entity.raw;
+                    break;
+            }
         }
 
         basicBot.bot.saveIncidentAndPosition(message, id, reference, symptom, position, orientation, floor, number);

@@ -1,6 +1,9 @@
 # Configuration
 .env
 
+# Evaluation
+/evaluation
+
 # Logs
 logs
 *.log
