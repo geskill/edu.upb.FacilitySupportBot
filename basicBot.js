@@ -241,9 +241,9 @@ bot.classifyIncidentType = function (message, id) {
     bot.botkit.storage.users.get(id, function (err, user) {
         if (!user) { user = bot.saveConversationStart(message, id); }
         var reference;
-        reference = user.reference || user.position;
+        reference = user.reference || user.position || '';
 
-        var intentTypes = intentTypeClassifier.classify({ 'reference': reference, 'symptom': user.symptom });
+        var intentTypes = intentTypeClassifier.classify({ 'reference': reference, 'symptom': user.symptom||'' });
 
         switch (intentTypes.length) {
             case 0:
@@ -307,9 +307,9 @@ bot.classifyIncidentPriority = function (message, id, type) {
     bot.botkit.storage.users.get(id, function (err, user) {
         if (!user) { user = bot.saveConversationStart(message, id); }
         var position;
-        position = user.position || user.reference;
+        position = user.position || user.reference || '';
 
-        var intentPriorities = priorityTypeClassifier.classify({ 'symptom': user.symptom, 'position': position });
+        var intentPriorities = priorityTypeClassifier.classify({ 'symptom': user.symptom || '', 'position': position });
 
         switch (intentPriorities.length) {
             case 1:
