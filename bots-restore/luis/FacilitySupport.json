@@ -1,0 +1,5942 @@
+{
+  "luis_schema_version": "2.0.0",
+  "versionId": "0.1",
+  "name": "FacilitySupport",
+  "desc": "",
+  "culture": "en-us",
+  "intents": [
+    {
+      "name": "None"
+    },
+    {
+      "name": "ProvideAddress"
+    },
+    {
+      "name": "ProvideIncidentAndPosition"
+    },
+    {
+      "name": "ProvideIncidentTime"
+    },
+    {
+      "name": "ProvidePersonalInformation"
+    }
+  ],
+  "entities": [
+    {
+      "name": "City"
+    },
+    {
+      "name": "Floor"
+    },
+    {
+      "name": "Name"
+    },
+    {
+      "name": "Number"
+    },
+    {
+      "name": "Orientation"
+    },
+    {
+      "name": "Position"
+    },
+    {
+      "name": "Reference"
+    },
+    {
+      "name": "Street"
+    },
+    {
+      "name": "Symptom"
+    },
+    {
+      "name": "ZipCode"
+    }
+  ],
+  "composites": [
+    {
+      "name": "StreetAndNumber",
+      "children": [
+        "Street",
+        "Number"
+      ]
+    }
+  ],
+  "closedLists": [],
+  "bing_entities": [
+    "datetime",
+    "email"
+  ],
+  "actions": [],
+  "model_features": [
+    {
+      "name": "City",
+      "mode": true,
+      "words": "Aach,Aachen,Aalen,Abenberg,Abensberg,Achern,Achim,Adelsheim,Adenau,Adorf,Ahaus,Ahlen,Ahrensburg,Aichach,Aichtal,Aken,Albstadt,Alfeld,Allendorf,Allstedt,Alpirsbach,Alsdorf,Alsfeld,Alsleben,Altdorf bei Nürnberg,Altena,Altenberg,Altenburg,Altenkirchen,Altensteig,Altentreptow,Altlandsberg,Altötting,Alzenau,Alzey,Amberg,Amöneburg,Amorbach,Andernach,Angermünde,Anklam,Annaberg - Buchholz,Annaburg,Annweiler am Trifels,Ansbach,Apolda,Arendsee,Arneburg,Arnis,Arnsberg,Arnstadt,Arnstein,Artern / Unstrut,Arzberg,Aschaffenburg,Aschersleben,Asperg,Aßlar,Attendorn,Aub,Aue,Auerbach in der Oberpfalz,Auerbach,Augsburg,Augustusburg,Aulendorf,Auma - Weidatal,Aurich,Babenhausen,Bacharach,Backnang,Bad Aibling,Bad Arolsen,Bad Belzig,Bad Bentheim,Bad Bergzabern,Bad Berka,Bad Berleburg,Bad Berneck im Fichtelgebirge,Bad Bevensen,Bad Bibra,Bad Blankenburg,Bad Bramstedt,Bad Breisig,Bad Brückenau,Bad Buchau,Bad Camberg,Bad Colberg - Heldburg,Bad Doberan,Bad Driburg,Bad Düben,Bad Dürkheim,Bad Dürrenberg,Bad Dürrheim,Bad Elster,Bad Ems,Bad Fallingbostel,Bad Frankenhausen / Kyffhäuser,Bad Freienwalde,Bad Friedrichshall,Bad Gandersheim,Bad Gottleuba - Berggießhübel,Bad Griesbach im Rottal,Bad Harzburg,Bad Herrenalb,Bad Hersfeld,Bad Homburg vor der Höhe,Bad Honnef,Bad Hönningen,Bad Iburg,Bad Karlshafen,Bad Kissingen,Bad König,Bad Königshofen im Grabfeld,Bad Köstritz,Bad Kötzting,Bad Kreuznach,Bad Krozingen,Bad Laasphe,Bad Langensalza,Bad Lauchstädt,Bad Lausick,Bad Lauterberg im Harz,Bad Liebenstein,Bad Liebenwerda,Bad Liebenzell,Bad Lippspringe,Bad Lobenstein,Bad Marienberg,Bad Mergentheim,Bad Münder am Deister,Bad Münstereifel,Bad Muskau,Bad Nauheim,Bad Nenndorf,Bad Neuenahr - Ahrweiler,Bad Neustadt an der Saale,Bad Oeynhausen,Bad Oldesloe,Bad Orb,Bad Pyrmont,Bad Rappenau,Bad Reichenhall,Bad Rodach,Bad Sachsa,Bad Säckingen,Bad Salzdetfurth,Bad Salzuflen,Bad Salzungen,Bad Saulgau,Bad Schandau,Bad Schmiedeberg,Bad Schussenried,Bad Schwalbach,Bad Schwartau,Bad Segeberg,Bad Sobernheim,Bad Soden am Taunus,Bad Soden - Salmünster,Bad Sooden - Allendorf,Bad Staffelstein,Bad Sulza,Bad Sülze,Bad Teinach - Zavelstein,Bad Tennstedt,Bad Tölz,Bad Urach,Bad Vilbel,Bad Waldsee,Bad Wildbad,Bad Wildungen,Bad Wilsnack,Bad Wimpfen,Bad Windsheim,Bad Wörishofen,Bad Wünnenberg,Bad Wurzach,Baden - Baden,Baesweiler,Baiersdorf,Balingen,Ballenstedt,Balve,Bamberg,Barby,Bargteheide,Barmstedt,Bärnau,Barntrup,Barsinghausen,Barth,Baruth / Mark,Bassum,Battenberg,Baumholder,Baunach,Baunatal,Bautzen,Bayreuth,Bebra,Beckum,Bedburg,Beelitz,Beerfelden,Beeskow,Beilngries,Beilstein,Belgern - Schildau,Bendorf,Bensheim,Berching,Berga / Elster,Bergen,Bergen auf Rügen,Bergheim,Bergisch Gladbach,Bergkamen,Bergneustadt,Berka / Werra,Berlin,Bernau bei Berlin,Bernburg,Bernkastel - Kues,Bernsdorf,Bernstadt a . d . Eigen,Bersenbrück,Bertkow,Besigheim,Betzdorf,Betzenstein,Beverungen,Bexbach,Biberach an der Riß,Biedenkopf,Bielefeld,Bierstedt,Biesenthal,Bietigheim - Bissingen,Billerbeck,Bingen am Rhein,Birkenfeld,Bischofsheim an der Rhön,Bischofswerda,Bismark,Bitburg,Bitterfeld - Wolfen,Blankenburg,Blankenhain,Blaubeuren,Blaustein,Bleckede,Bleicherode,Blieskastel,Blomberg,Blumberg,Bobingen,Böblingen,Bocholt,Bochum,Bockenem,Bodenwerder,Bogen,Böhlen,Boizenburg,Bonese,Bonn,Bonndorf im Schwarzwald,Bönnigheim,Bopfingen,Boppard,Borgentreich,Borgholzhausen,Borken,Borkum,Borna,Bornheim,Bottrop,Boxberg,Brackenheim,Brake,Brakel,Bramsche,Brandenburg an der Havel,Brand - Erbisdorf,Brandis,Braubach,Braunfels,Braunlage,Bräunlingen,Braunsbedra,Braunschweig,Breckerfeld,Bredstedt,Breisach,Bremen,Bremerhaven,Bremervörde,Bretten,Breuberg,Brilon,Brotterode - Trusetal,Bruchköbel,Bruchsal,Brück,Brüel,Brühl,Brunsbüttel,Brüssow,Buchen,Buchholz in der Nordheide,Buchloe,Bückeburg,Buckow,Büdelsdorf,Büdingen,Bühl,Bünde,Büren,Burg,Burgau,Burgbernheim,Burgdorf,Bürgel,Burghausen,Burgkunstadt,Burglengenfeld,Burgstädt,Burg Stargard,Burgwedel,Burladingen,Burscheid,Bürstadt,Buttelstedt,Buttstädt,Butzbach,Bützow,Buxtehude,Calau,Calbe,Calw,Castrop - Rauxel,Celle,Cham,Chemnitz,Clausthal - Zellerfeld,Clingen,Cloppenburg,Coburg,Cochem,Coesfeld,Colditz,Cologne,Coswig,Cottbus,Crailsheim,Creglingen,Creußen,Creuzburg,Crimmitschau,Crivitz,Cuxhaven,Dachau,Dahlen,Dahme / Mark,Dahn,Damme,Dannenberg,Dargun,Darmstadt,Dassel,Dassow,Datteln,Daun,Deggendorf,Deidesheim,Delbrück,Delitzsch,Delmenhorst,Demmin,Dessau - Roßlau,Detmold,Dettelbach,Dieburg,Diemelstadt,Diepholz,Dierdorf,Dietenheim,Dietfurt an der Altmühl,Dietzenbach,Diez,Dillenburg,Dillingen an der Donau,Dillingen / Saar,Dingelstädt,Dingolfing,Dinkelsbühl,Dinklage,Dinslaken,Dippoldiswalde,Dissen am Teutoburger Wald,Ditzingen,Döbeln,Doberlug - Kirchhain,Döbern,Dohna,Dömitz,Dommitzsch,Donaueschingen,Donauwörth,Donzdorf,Dorfen,Dormagen,Dornburg - Camburg,Dornhan,Dornstetten,Dorsten,Dortmund,Dransfeld,Drebkau,Dreieich,Drensteinfurt,Dresden,Drolshagen,Duderstadt,Duisburg,Dülmen,Düren,Düsseldorf,Ebeleben,Eberbach,Ebermannstadt,Ebern,Ebersbach an der Fils,Ebersbach - Neugersdorf,Ebersberg,Eberswalde,Eckartsberga,Eckernförde,Edenkoben,Egeln,Eggenfelden,Eggesin,Ehingen,Ehrenfriedersdorf,Eibelstadt,Eibenstock,Eichstätt,Eilenburg,Einbeck,Eisenach,Eisenberg,Eisenhüttenstadt,Eisfeld,Eisleben,Eislingen / Fils,Ellingen,Ellrich,Ellwangen,Elmshorn,Elsdorf,Elsfleth,Elsterberg,Elsterwerda,Elstra,Elterlein,Eltmann,Eltville am Rhein,Elzach,Elze,Emden,Emmelshausen,Emmendingen,Emmerich am Rhein,Emsdetten,Endingen,Engen,Enger,Ennepetal,Ennigerloh,Eppelheim,Eppingen,Eppstein,Erbach,Erbendorf,Erding,Erftstadt,Erfurt,Erkelenz,Erkner,Erkrath,Erlangen,Erlenbach am Main,Erlensee,Erwitte,Eschborn,Eschenbach in der Oberpfalz,Eschershausen,Eschwege,Eschweiler,Esens,Espelkamp,Essen,Esslingen am Neckar,Ettenheim,Ettlingen,Euskirchen,Eutin,Falkenberg / Elster,Falkensee,Falkenstein / Harz,Falkenstein / Vogtl .,Fehmarn,Fellbach,Felsberg,Feuchtwangen,Filderstadt,Finsterwalde,Fladungen,Flensburg,Flöha,Flörsheim am Main,Florstadt,Forchheim,Forchtenberg,Forst,Frankenau,Frankenberg,Frankenberg / Sa .,Frankenthal,Frankfurt am Main,Frankfurt,Franzburg,Frauenstein,Frechen,Freiberg am Neckar,Freiberg,Freiburg im Breisgau,Freilassing,Freinsheim,Freising,Freital,Freren,Freudenberg,Freudenstadt,Freyburg,Freystadt,Freyung,Fridingen an der Donau,Friedberg,Friedland,Friedrichroda,Friedrichsdorf,Friedrichshafen,Friedrichstadt,Friedrichsthal,Friesack,Friesoythe,Fritzlar,Frohburg,Fröndenberg,Fulda,Fürstenau,Fürstenberg / Havel,Fürstenfeldbruck,Fürstenwalde,Fürth,Furth im Wald,Furtwangen im Schwarzwald,Füssen,Gadebusch,Gaggenau,Gaildorf,Gammertingen,Garbsen,Garching bei München,Gardelegen,Garding,Gartz,Garz / Rügen,Gau - Algesheim,Gebesee,Gedern,Geesthacht,Geestland,Gefell,Gefrees,Gehrden,Gehren,Geilenkirchen,Geisa,Geiselhöring,Geisenfeld,Geisenheim,Geisingen,Geislingen,Geislingen an der Steige,Geithain,Geldern,Gelnhausen,Gelsenkirchen,Gemünden am Main,Gemünden,Gengenbach,Genthin,Georgsmarienhütte,Gera,Gerabronn,Gerbstedt,Geretsried,Geringswalde,Gerlingen,Germering,Germersheim,Gernsbach,Gernsheim,Gerolstein,Gerolzhofen,Gersfeld,Gersthofen,Gescher,Geseke,Gevelsberg,Geyer,Giengen an der Brenz,Gießen,Gifhorn,Ginsheim - Gustavsburg,Gladbeck,Gladenbach,Glashütte,Glauchau,Glinde,Glücksburg,Glückstadt,Gnoien,Goch,Goldberg,Goldkronach,Golßen,Gommern,Göppingen,Görlitz,Goslar,Gößnitz,Gotha,Göttingen,Grabow,Grafenau,Gräfenberg,Gräfenhainichen,Gräfenthal,Grafenwöhr,Grafing bei München,Gransee,Grebenau,Grebenstein,Greding,Greifswald,Greiz,Greußen,Greven,Grevenbroich,Grevesmühlen,Griesheim,Grimma,Grimmen,Gröditz,Groitzsch,Gronau,Gröningen,Großalmerode,Groß - Bieberau,Großbottwar,Großbreitenbach,Großenehrich,Großenhain,Groß - Gerau,Großräschen,Großröhrsdorf,Großschirma,Groß - Umstadt,Grünberg,Grünhain - Beierfeld,Grünsfeld,Grünstadt,Guben,Gudensberg,Güglingen,Gummersbach,Gundelfingen an der Donau,Gundelsheim,Günzburg,Gunzenhausen,Güsten,Güstrow,Gütersloh,Gützkow,Haan,Hachenburg,Hadamar,Hagen,Hagenbach,Hagenow,Haiger,Haigerloch,Hainichen,Haiterbach,Halberstadt,Haldensleben,Halle,Hallenberg,Hallstadt,Haltern am See,Halver,Hamburg,Hameln,Hamm,Hammelburg,Hamminkeln,Hanau,Hann . Münden,Hanover,Harburg,Hardegsen,Haren,Harsewinkel,Hartenstein,Hartha,Harzgerode,Haselünne,Haslach im Kinzigtal,Haßfurt,Hattersheim am Main,Hattingen,Hatzfeld,Hausach,Hauzenberg,Havelberg,Havelsee,Hayingen,Hechingen,Hecklingen,Heide,Heideck,Heidelberg,Heidenau,Heidenheim an der Brenz,Heilbad Heiligenstadt,Heilbronn,Heiligenhafen,Heiligenhaus,Heilsbronn,Heimbach,Heimsheim,Heinsberg,Heitersheim,Heldrungen,Helmbrechts,Helmstedt,Hemau,Hemer,Hemmingen,Hemmoor,Hemsbach,Hennef,Hennigsdorf,Heppenheim,Herbolzheim,Herborn,Herbrechtingen,Herbstein,Herdecke,Herdorf,Herford,Heringen / Helme,Heringen,Hermeskeil,Hermsdorf,Herne,Herrenberg,Herrieden,Herrnhut,Hersbruck,Herten,Herzberg am Harz,Herzberg,Herzogenaurach,Herzogenrath,Hessisch Lichtenau,Hessisch Oldendorf,Hettingen,Hettstedt,Heubach,Heusenstamm,Hilchenbach,Hildburghausen,Hilden,Hildesheim,Hillesheim,Hilpoltstein,Hirschau,Hirschberg,Hirschhorn,Hitzacker,Hochheim am Main,Höchstadt an der Aisch,Höchstädt an der Donau,Hockenheim,Hof,Hofgeismar,Hofheim am Taunus,Hofheim,Hohenberg an der Eger,Hohenleuben,Hohenmölsen,Hohen Neuendorf,Hohenstein - Ernstthal,Hohnstein,Höhr - Grenzhausen,Hollfeld,Holzgerlingen,Holzminden,Homberg,Homburg,Horb am Neckar,Hornbach,Horn - Bad Meinberg,Hornberg,Hörstel,Horstmar,Höxter,Hoya,Hoyerswerda,Hückelhoven,Hückeswagen,Hüfingen,Hünfeld,Hungen,Hürth,Husum,Ibbenbüren,Ichenhausen,Idar - Oberstein,Idstein,Illertissen,Ilmenau,Ilsenburg,Ilshofen,Immenhausen,Immenstadt im Allgäu,Ingelfingen,Ingelheim am Rhein,Ingolstadt,Iphofen,Iserlohn,Isny im Allgäu,Isselburg,Itzehoe,Jarmen,Jena,Jerichow,Jessen,Jever,Joachimsthal,Johanngeorgenstadt,Jöhstadt,Jülich,Jüterbog,Kaarst,Kahla,Kaisersesch,Kaiserslautern,Kalbe,Kalkar,Kaltenkirchen,Kaltennordheim,Kamen,Kamenz,Kamp - Lintfort,Kandel,Kandern,Kappeln,Karben,Karlsruhe,Karlstadt,Kassel,Kastellaun,Katzenelnbogen,Kaub,Kaufbeuren,Kehl,Kelbra,Kelheim,Kelkheim,Kellinghusen,Kelsterbach,Kemberg,Kemnath,Kempen,Kempten im Allgäu,Kenzingen,Kerpen,Ketzin / Havel,Kevelaer,Kiel,Kierspe,Kindelbrück,Kirchberg,Kirchberg an der Jagst,Kirchen,Kirchenlamitz,Kirchhain,Kirchheimbolanden,Kirchheim unter Teck,Kirn,Kirtorf,Kitzingen,Kitzscher,Kleve,Klingenberg am Main,Klingenthal / Sa .,Klötze,Klütz,Knittlingen,Koblenz,Kohren - Sahlis,Kolbermoor,Kölleda,Königsberg in Bayern,Königsbrück,Königsbrunn,Königsee - Rottenbach,Königslutter,Königstein im Taunus,Königstein,Königswinter,Königs Wusterhausen,Könnern,Konstanz,Konz,Korbach,Korntal - Münchingen,Kornwestheim,Korschenbroich,Köthen,Kraichtal,Krakow am See,Kranichfeld,Krautheim,Krefeld,Kremmen,Krempe,Kreuztal,Kronach,Kronberg im Taunus,Kröpelin,Kroppenstedt,Krumbach,Kühlungsborn,Kulmbach,Külsheim,Künzelsau,Kupferberg,Kuppenheim,Kusel,Kyllburg,Kyritz,Laage,Laatzen,Ladenburg,Lage,Lahnstein,Lahr / Schwarzwald,Laichingen,Lambrecht,Lampertheim,Landau an der Isar,Landau in der Pfalz,Landsberg am Lech,Landsberg,Landshut,Landstuhl,Langelsheim,Langen,Langenau,Langenburg,Langenfeld,Langenhagen,Langenselbold,Langenzenn,Langewiesen,Lassan,Laubach,Laucha an der Unstrut,Lauchhammer,Lauchheim,Lauda - Königshofen,Lauenburg,Lauf an der Pegnitz,Laufen,Laufenburg,Lauffen am Neckar,Lauingen,Laupheim,Lauscha,Lauta,Lauter - Bernsbach,Lauterbach,Lauterecken,Lauterstein,Lebach,Lebus,Leer,Lehesten,Lehrte,Leichlingen,Leimen,Leinefelde - Worbis,Leinfelden - Echterdingen,Leipheim,Leipzig,Leisnig,Lemgo,Lengenfeld,Lengerich,Lennestadt,Lenzen,Leonberg,Leun,Leuna,Leutenberg,Leutershausen,Leutkirch im Allgäu,Leverkusen,Lich,Lichtenau,Lichtenberg,Lichtenfels,Lichtenstein / Sa .,Liebenau,Liebenwalde,Lieberose,Liebstadt,Limbach - Oberfrohna,Limburg an der Lahn,Lindau,Linden,Lindenberg im Allgäu,Lindenfels,Lindow,Lingen,Linnich,Linz am Rhein,Lippstadt,Löbau,Löffingen,Lohmar,Lohne,Löhne,Lohr am Main,Loitz,Lollar,Lommatzsch,Löningen,Lorch,Lörrach,Lorsch,Lößnitz,Löwenstein,Lübbecke,Lübben,Lübbenau,Lübeck,Lübtheen,Lübz,Lüchow,Lucka,Luckau,Luckenwalde,Lüdenscheid,Lüdinghausen,Ludwigsburg,Ludwigsfelde,Ludwigshafen am Rhein,Ludwigslust,Ludwigsstadt,Lugau / Erzgeb .,Lügde,Lüneburg,Lünen,Lunzenau,Lütjenburg,Lützen,Lychen,Magdala,Magdeburg,Mahlberg,Mainbernheim,Mainburg,Maintal,Mainz,Malchin,Malchow,Mannheim,Manderscheid,Mansfeld,Marbach am Neckar,Marburg,Marienberg,Marienmünster,Markdorf,Markgröningen,Märkisch Buchholz,Markkleeberg,Markneukirchen,Markranstädt,Marktbreit,Marktheidenfeld,Marktleuthen,Marktoberdorf,Marktredwitz,Marktsteft,Marl,Marlow,Marne,Marsberg,Maulbronn,Maxhütte - Haidhof,Mayen,Mechernich,Meckenheim,Medebach,Meerane,Meerbusch,Meersburg,Meinerzhagen,Meiningen,Meisenheim,Meißen,Meldorf,Melle,Mellrichstadt,Melsungen,Memmingen,Menden,Mendig,Mengen,Meppen,Merkendorf,Merseburg,Merzig,Meschede,Meßkirch,Meßstetten,Mettmann,Metzingen,Meuselwitz,Meyenburg,Michelstadt,Miesbach,Miltenberg,Mindelheim,Minden,Mirow,Mittenwalde,Mitterteich,Mittweida,Möckern,Möckmühl,Moers,Mölln,Mönchengladbach,Monheim am Rhein,Monheim,Monschau,Montabaur,Moosburg,Mörfelden - Walldorf,Moringen,Mosbach,Mössingen,Mücheln,Mügeln,Mühlacker,Mühlberg,Mühldorf,Mühlhausen,Mühlheim am Main,Mühlheim an der Donau,Mülheim an der Ruhr,Mülheim - Kärlich,Müllheim,Müllrose,Münchberg,Müncheberg,Münchenbernsdorf,Munderkingen,Munich,Münnerstadt,Münsingen,Munster,Münster,Münstermaifeld,Münzenberg,Murrhardt,Nabburg,Nagold,Naila,Nassau,Nastätten,Nauen,Naumburg,Naunhof,Nebra,Neckarbischofsheim,Neckargemünd,Neckarsteinach,Neckarsulm,Neresheim,Netphen,Nettetal,Netzschkau,Neu - Anspach,Neubrandenburg,Neubukow,Neubulach,Neuburg an der Donau,Neudenau,Neuenbürg,Neuenburg am Rhein,Neuenhaus,Neuenrade,Neuenstadt am Kocher,Neuenstein,Neuerburg,Neuffen,Neuhaus am Rennweg,Neu - Isenburg,Neukalen,Neukirchen,Neukirchen - Vluyn,Neukloster,Neumark,Neumarkt in der Oberpfalz,Neumarkt - Sankt Veit,Neumünster,Neunburg vorm Wald,Neunkirchen,Neuötting,Neuruppin,Neusalza - Spremberg,Neusäß,Neuss,Neustadt an der Aisch,Neustadt an der Donau,Neustadt an der Waldnaab,Neustadt am Kulm,Neustadt am Rübenberge,Neustadt an der Orla,Neustadt an der Weinstraße,Neustadt bei Coburg,Neustadt,Neustadt - Glewe,Neustadt in Holstein,Neustadt in Sachsen,Neustrelitz,Neutraubling,Neu - Ulm,Neuwied,Nidda,Niddatal,Nidderau,Nideggen,Niebüll,Niedenstein,Niederkassel,Niedernhall,Nieder - Olm,Niederstetten,Niederstotzingen,Nieheim,Niemegk,Nienburg,Nierstein,Niesky,Nittenau,Norden,Nordenham,Norderney,Norderstedt,Nordhausen,Nordhorn,Nördlingen,Northeim,Nortorf,Nossen,Nuremberg,Nürtingen,Oberasbach,Oberharz am Brocken,Oberhausen,Oberhof,Oberkirch,Oberkochen,Oberlungwitz,Obermoschel,Obernburg am Main,Oberndorf am Neckar,Obernkirchen,Ober - Ramstadt,Oberriexingen,Obertshausen,Oberursel,Oberviechtach,Oberweißbach / Thür . Wald,Oberwesel,Oberwiesenthal,Kurort,Ochsenfurt,Ochsenhausen,Ochtrup,Oderberg,Oebisfelde - Weferlingen,Oederan,Oelde,Oelsnitz,Oelsnitz / Erzgeb .,Oer - Erkenschwick,Oerlinghausen,Oestrich - Winkel,Oettingen in Bayern,Offenbach am Main,Offenburg,Ohrdruf,Öhringen,Olbernhau,Olching,Oldenburg,Oldenburg in Holstein,Olfen,Olpe,Olsberg,Oppenau,Oppenheim,Oranienbaum - Wörlitz,Oranienburg,Orlamünde,Ornbau,Ortenberg,Ortrand,Oschatz,Oschersleben,Osnabrück,Osterburg,Osterburken,Osterfeld,Osterhofen,Osterholz - Scharmbeck,Osterode am Harz,Osterwieck,Ostfildern,Ostheim vor der Rhön,Osthofen,Östringen,Ostritz,Otterberg,Otterndorf,Ottweiler,Overath,Owen,Paderborn,Papenburg,Pappenheim,Parchim,Parsberg,Pasewalk,Passau,Pattensen,Pausa - Mühltroff,Pegau,Pegnitz,Peine,Peitz,Penig,Penkun,Penzberg,Penzlin,Perleberg,Petershagen,Pfaffenhofen an der Ilm,Pfarrkirchen,Pforzheim,Pfreimd,Pfullendorf,Pfullingen,Pfungstadt,Philippsburg,Pinneberg,Pirmasens,Pirna,Plattling,Plau am See,Plaue,Plauen,Plettenberg,Pleystein,Plochingen,Plön,Pockau - Lengefeld,Pocking,Pohlheim,Polch,Porta Westfalica,Pößneck,Potsdam,Pottenstein,Preetz,Premnitz,Prenzlau,Pressath,Preußisch Oldendorf,Prichsenstadt,Pritzwalk,Prüm,Puchheim,Pulheim,Pulsnitz,Putbus,Putlitz,Püttlingen,Quakenbrück,Quedlinburg,Querfurt,Quickborn,Rabenau,Radeberg,Radebeul,Radeburg,Radevormwald,Radolfzell am Bodensee,Raguhn - Jeßnitz,Rahden,Rain,Ramstein - Miesenbach,Ranis,Ransbach - Baumbach,Rastatt,Rastenberg,Rathenow,Ratingen,Ratzeburg,Rauenberg,Raunheim,Rauschenberg,Ravensburg,Ravenstein,Recklinghausen,Rees,Regen,Regensburg,Regis - Breitingen,Rehau,Rehburg - Loccum,Rehna,Reichelsheim,Reichenbach,Reinbek,Reinfeld,Holstein,Reinheim,Remagen,Remda - Teichel,Remscheid,Remseck am Neckar,Renchen,Rendsburg,Rennerod,Renningen,Rerik,Rethem,Reutlingen,Rheda - Wiedenbrück,Rhede,Rheinau,Rheinbach,Rheinberg,Rheinböllen,Rheine,Rheinfelden,Rheinsberg,Rheinstetten,Rhens,Rhinow,Ribnitz - Damgarten,Richtenberg,Riedenburg,Riedlingen,Riedstadt,Rieneck,Riesa,Rietberg,Rinteln,Röbel / Müritz,Rochlitz,Rockenhausen,Rodalben,Rodenberg,Rödental,Rödermark,Rodewisch,Rodgau,Roding,Römhild,Romrod,Ronneburg,Ronnenberg,Rosbach vor der Höhe,Rosenfeld,Rosenheim,Rosenthal,Rösrath,Roßleben,Roßwein,Rostock,Rotenburg an der Fulda,Rotenburg an der Wümme,Roth,Rötha,Röthenbach an der Pegnitz,Rothenburg,Rothenburg ob der Tauber,Rothenfels,Rottenburg am Neckar,Rottenburg a . d . Laaber,Röttingen,Rottweil,Rötz,Rüdesheim,Rudolstadt,Ruhla,Ruhland,Ründeroth,Runkel,Rüsselsheim,Rutesheim,Rüthen,Saalburg - Ebersdorf,Saalfeld,Saarbrücken,Saarburg,Saarlouis,Sachsenhagen,Sachsenheim,Salzgitter,Salzkotten,Salzwedel,Sandau,Sandersdorf - Brehna,Sangerhausen,Sankt Augustin,Sankt Goar,Sankt Goarshausen,Sarstedt,Sassenberg,Sassnitz,Sayda,Schalkau,Schauenstein,Scheer,Scheibenberg,Scheinfeld,Schelklingen,Schenefeld,Scheßlitz,Schieder - Schwalenberg,Schifferstadt,Schillingsfürst,Schiltach,Schirgiswalde - Kirschau,Schkeuditz,Schkölen,Schleiden,Schleiz,Schleswig,Schlettau,Schleusingen,Schlieben,Schlitz,Schloß Holte - Stukenbrock,Schlotheim,Schlüchtern,Schlüsselfeld,Schmalkalden,Schmallenberg,Schmölln,Schnackenburg,Schnaittenbach,Schneeberg,Schneverdingen,Schömberg,Schönau,Schönau im Schwarzwald,Schönberg,Schönebeck,Schöneck / Vogtl .,Schönewalde,Schongau,Schöningen,Schönsee,Schönwald,Schopfheim,Schöppenstedt,Schorndorf,Schortens,Schotten,Schramberg,Schraplau,Schriesheim,Schrobenhausen,Schrozberg,Schüttorf,Schwaan,Schwabach,Schwäbisch Gmünd,Schwäbisch Hall,Schwabmünchen,Schwaigern,Schwalbach am Taunus,Schwalmstadt,Schwandorf,Schwanebeck,Schwarzenbach am Wald,Schwarzenbach an der Saale,Schwarzenbek,Schwarzenberg / Erzgeb .,Schwarzenborn,Schwarzheide,Schwedt,Schweich,Schweinfurt,Schwelm,Schwentinental,Schwerin,Schwerte,Schwetzingen,Sebnitz,Seehausen,Seeland,Seelow,Seelze,Seesen,Sehnde,Seifhennersdorf,Selb,Selbitz,Seligenstadt,Selm,Selters,Senden,Sendenhorst,Senftenberg,Seßlach,Siegburg,Siegen,Sigmaringen,Simbach am Inn,Simmern,Sindelfingen,Singen,Sinsheim,Sinzig,Soest,Solingen,Solms,Soltau,Sömmerda,Sondershausen,Sonneberg,Sonnewalde,Sonthofen,Sontra,Spaichingen,Spalt,Spangenberg,Speicher,Spenge,Speyer,Spremberg,Springe,Sprockhövel,Stade,Stadtallendorf,Stadtbergen,Stadthagen,Stadtilm,Stadtlengsfeld,Stadtlohn,Stadtoldendorf,Stadtprozelten,Stadtroda,Stadtsteinach,Stadt Wehlen,Starnberg,Staßfurt,Staufen im Breisgau,Staufenberg,Stavenhagen,Reuterstadt,St . Blasien,Stein,Steinach,Steinau an der Straße,Steinbach - Hallenberg,Steinbach,Steinfurt,Steinheim an der Murr,Steinheim,Stendal,Sternberg,St . Ingbert,St . Georgen im Schwarzwald,Stockach,Stolberg,Stollberg,Stolpen,Storkow,Stößen,Straelen,Stralsund,Strasburg,Straubing,Strausberg,Strehla,Stromberg,Stühlingen,Stutensee,Stuttgart,St . Wendel,Südliches Anhalt,Suhl,Sulingen,Sulz am Neckar,Sulzbach / Saar,Sulzbach - Rosenberg,Sulzburg,Sundern,Süßen,Syke,Tambach - Dietharz,Tangerhütte,Tangermünde,Tann,Tanna,Tauberbischofsheim,Taucha,Taunusstein,Tecklenburg,Tegernsee,Telgte,Teltow,Templin,Tengen,Tessin,Teterow,Tettnang,Teublitz,Teuchern,Teupitz,Teuschnitz,Thale,Thalheim / Erzgeb .,Thannhausen,Tharandt,Themar,Thum,Tirschenreuth,Titisee - Neustadt,Tittmoning,Todtnau,Töging am Inn,Tönisvorst,Tönning,Torgau,Torgelow,Tornesch,Traben - Trarbach,Traunreut,Traunstein,Trebbin,Trebsen / Mulde,Treffurt,Trendelburg,Treuchtlingen,Treuen,Treuenbrietzen,Triberg im Schwarzwald,Tribsees,Trier,Triptis,Trochtelfingen,Troisdorf,Trossingen,Trostberg,Tübingen,Tuttlingen,Twistringen,Übach - Palenberg,Überlingen,Uebigau - Wahrenbrück,Ueckermünde,Uelzen,Uetersen,Uffenheim,Uhingen,Ulm,Ulmen,Ulrichstein,Ummerstadt,Unkel,Unna,Unterschleißheim,Usedom,Usingen,Uslar,Vacha,Vaihingen an der Enz,Vallendar,Varel,Vechta,Velbert,Velburg,Velden,Velen,Vellberg,Vellmar,Velten,Verden,Veringenstadt,Verl,Versmold,Vetschau / Spreewald,Viechtach,Viernheim,Viersen,Villingen - Schwenningen,Vilsbiburg,Vilseck,Vilshofen,Visselhövede,Vlotho,Voerde,Vogtsburg im Kaiserstuhl,Vohburg an der Donau,Vohenstrauß,Vöhrenbach,Vöhringen,Volkach,Völklingen,Volkmarsen,Vreden,Wachenheim an der Weinstraße,Wächtersbach,Wadern,Waghäusel,Wahlstedt,Waiblingen,Waibstadt,Waischenfeld,Waldbröl,Waldeck,Waldenbuch,Waldenburg,Waldershof,Waldheim,Waldkappel,Waldkirch,Waldkirchen,Waldkraiburg,Waldmünchen,Waldsassen,Waldshut - Tiengen,Walldorf,Walldürn,Wallenfels,Walsrode,Waltershausen,Waltrop,Wanfried,Wangen im Allgäu,Wanzleben - Börde,Warburg,Waren,Warendorf,Warin,Warstein,Wassenberg,Wasserburg am Inn,Wassertrüdingen,Wasungen,Wedel,Weener,Wegberg,Wegeleben,Wehr,Weida,Weiden in der Oberpfalz,Weikersheim,Weil am Rhein,Weilburg,Weil der Stadt,Weilheim an der Teck,Weilheim in Oberbayern,Weimar,Weingarten,Weinheim,Weinsberg,Weinstadt,Weismain,Weißenberg,Weißenburg in Bayern,Weißenfels,Weißenhorn,Weißensee,Weißenstadt,Weißenthurm,Weißwasser,Weiterstadt,Welzheim,Welzow,Wemding,Wendlingen am Neckar,Werben,Werdau,Werder,Werdohl,Werl,Werlte,Wermelskirchen,Wernau,Werne,Werneuchen,Wernigerode,Wertheim,Werther,Wertingen,Wesel,Wesenberg,Wesselburen,Wesseling,Westerburg,Westerstede,Wetter,Wettin - Löbejün,Wetzlar,Widdern,Wiehe,Wiehl,Wiesbaden,Wiesensteig,Wiesloch,Wiesmoor,Wildau,Wildberg,Wildenfels,Wildeshausen,Wilhelmshaven,Wilkau - Haßlau,Willebadessen,Willich,Wilsdruff,Wilster,Wilthen,Windischeschenbach,Windsbach,Winnenden,Winsen,Winterberg,Wipperfürth,Wirges,Wismar,Wissen,Witten,Wittenberg,Wittenberge,Wittenburg,Wittichenau,Wittlich,Wittingen,Wittmund,Wittstock / Dosse,Witzenhausen,Woldegk,Wolfach,Wolfenbüttel,Wolfhagen,Wolframs - Eschenbach,Wolfratshausen,Wolfsburg,Wolfstein,Wolgast,Wolkenstein,Wolmirstedt,Worms,Wörrstadt,Wörth am Rhein,Wörth an der Donau,Wörth am Main,Wriezen,Wülfrath,Wunsiedel,Wunstorf,Wuppertal,Würselen,Wurzbach,Würzburg,Wurzen,Wustrow,Wyk auf Föhr,Xanten,Zahna - Elster,Zarrentin am Schaalsee,Zehdenick,Zeil am Main,Zeitz,Zell am Harmersbach,Zell im Wiesental,Zell,Zella - Mehlis,Zerbst,Zeulenroda - Triebes,Zeven,Ziegenrück,Zierenberg,Ziesar,Zirndorf,Zittau,Zörbig,Zossen,Zschopau,Zülpich,Zweibrücken,Zwenkau,Zwickau,Zwiesel,Zwingenberg,Zwönitz",
+      "activated": true
+    },
+    {
+      "name": "Floor",
+      "mode": true,
+      "words": "2nd level,2nd lvl,3rd floor,3rd level,3rd lvl,4th level,5th floor,5th lvl,downstairs,fifth floor,fifth storey,first floor,ground floor,ground level,main floor,second floor,second lvl,sixth storey,third floor,top floor,upper floor",
+      "activated": true
+    },
+    {
+      "name": "Orientation",
+      "mode": true,
+      "words": "front side,next to,north side,outside,southern area,throughout,whole",
+      "activated": true
+    },
+    {
+      "name": "Position",
+      "mode": true,
+      "words": "basement,boiler room,building,cafeteria,cellar,customer area,dining hall,entrance room,facade,foyer,front door,garden,girl ' s room,girls room,hall,hallway,information area,kitchen,lounge,mens room,office,open - plan office,reception,restroom,roof,room,stairway,stairwell,storage room,storage space,store,store room,storeroom,technical room,trash,work place,workplace,workstation",
+      "activated": true
+    },
+    {
+      "name": "Reference",
+      "mode": true,
+      "words": "air,air conditioning,blocks of ice,burglars,carpet,computer,door,doors paint,dowels,electricity,elevator,escalator,extinguisher,fire,fire drencher,fire extinguisher,first aid kit,internet,laptop,light,lighting for escape routes,lights,pipe,racist graffiti,roller door,rug,sink,temperature,terrorists,toilet,toilet drain,trees,ventilation,wall,water faucet,web,window,window lighting",
+      "activated": true
+    },
+    {
+      "name": "Symptom",
+      "mode": true,
+      "words": "broke into,broken,burst,can not be opened,can ' t access,can ' t get in,cannot be opened,cleaned insufficiently,cleansed not very carefully,clogged up,coffee stains,damaged,damp,defect,defective,demolished,dented,devastated,didn ' t close properly,dirty,does not work,doesn ' t boot,doesn ' t connect to the internet,doesn ' t flush right,doesn ' t work,down,endangering,expired,failed,falling,filthy,flickering,forgotten,full of spider webs,hold - up,hot chocolate spots,incomplete,failing,isn ' t working,leftovers,messy,missing,no electricity,no internet connection,no power,out - of - date,overflowing,overheated,partially defect,shattered,smelly,spilled some tea,squeaking,stale,stinks brutally,suffocating,super hot,too hot,too humid,under water,vandalized,very cold,won ' t flush,worn out,wrong",
+      "activated": true
+    }
+  ],
+  "regex_features": [],
+  "utterances": [
+    {
+      "text": "i like fruit.",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "this is a test",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "test",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "how are you?",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "how are you doing?",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "what's your name?",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "hello",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "ok",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "no",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "maybe",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "i guess",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "where are you?",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "are you crazy?",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "i'm feeling blue.",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "it's foul weather today.",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "the color of my car is green.",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "i have two kids.",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "it kept raining almost all day long.",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "my car is a real clunker.",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "i live in paderborn",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "i am living in an apartment very close to munich",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "i live near berlin",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "i currently live near hamburg",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "you are very pretty.",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "my cousin will visit me tomorrow",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "i dyed my hair",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "today i had some ice cream",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "yesterday i bought ice cream",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "last week i had to buy a new fire extinguisher",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "luckily my basement is cold enough to store food",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "let's go to a party tonight!",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "i wrote a test today.",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "my favourite music genre is alternative rock.",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "my office is still unfurnished",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "i'll be waiting in the hotel lobby",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "my sink is made out of stainless steel.",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "self-cleaning toilets are neat",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "the restroom there was very relaxing",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "the assembly hall was huge",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "my workroom is only sparsely decorated",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "my cellar is quite large",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "i only drink tap water",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "the coffee stain is bothering me a lot",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "i painted my wall 4 different colours",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "today a friend spilled coffee on my jeans",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "it was nice to meet you",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "is this a test?",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "i have to go to the bathroom",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "do you know john?",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "mrs miller wants the entire house repainted.",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "14:50",
+      "intent": "ProvideIncidentTime",
+      "entities": []
+    },
+    {
+      "text": "7 pm",
+      "intent": "ProvideIncidentTime",
+      "entities": []
+    },
+    {
+      "text": "in the morning",
+      "intent": "ProvideIncidentTime",
+      "entities": []
+    },
+    {
+      "text": "noon",
+      "intent": "ProvideIncidentTime",
+      "entities": []
+    },
+    {
+      "text": "01:04 p. m.",
+      "intent": "ProvideIncidentTime",
+      "entities": []
+    },
+    {
+      "text": "10 minutes to 7",
+      "intent": "ProvideIncidentTime",
+      "entities": []
+    },
+    {
+      "text": "10:15 p. m.",
+      "intent": "ProvideIncidentTime",
+      "entities": []
+    },
+    {
+      "text": "10:45 a. m.",
+      "intent": "ProvideIncidentTime",
+      "entities": []
+    },
+    {
+      "text": "15 minutes ago",
+      "intent": "ProvideIncidentTime",
+      "entities": []
+    },
+    {
+      "text": "20 minutes past 6",
+      "intent": "ProvideIncidentTime",
+      "entities": []
+    },
+    {
+      "text": "24 minutes ago",
+      "intent": "ProvideIncidentTime",
+      "entities": []
+    },
+    {
+      "text": "3 hours ago",
+      "intent": "ProvideIncidentTime",
+      "entities": []
+    },
+    {
+      "text": "7 o'clock",
+      "intent": "ProvideIncidentTime",
+      "entities": []
+    },
+    {
+      "text": "a few hours ago",
+      "intent": "ProvideIncidentTime",
+      "entities": []
+    },
+    {
+      "text": "a few minutes ago",
+      "intent": "ProvideIncidentTime",
+      "entities": []
+    },
+    {
+      "text": "about one hour ago",
+      "intent": "ProvideIncidentTime",
+      "entities": []
+    },
+    {
+      "text": "before 8 am",
+      "intent": "ProvideIncidentTime",
+      "entities": []
+    },
+    {
+      "text": "fifteen minutes past seven",
+      "intent": "ProvideIncidentTime",
+      "entities": []
+    },
+    {
+      "text": "fifteen minutes to eight",
+      "intent": "ProvideIncidentTime",
+      "entities": []
+    },
+    {
+      "text": "five fifteen p.m.",
+      "intent": "ProvideIncidentTime",
+      "entities": []
+    },
+    {
+      "text": "half past",
+      "intent": "ProvideIncidentTime",
+      "entities": []
+    },
+    {
+      "text": "happened just now",
+      "intent": "ProvideIncidentTime",
+      "entities": []
+    },
+    {
+      "text": "happened midnight",
+      "intent": "ProvideIncidentTime",
+      "entities": []
+    },
+    {
+      "text": "at 12 pm",
+      "intent": "ProvideIncidentTime",
+      "entities": []
+    },
+    {
+      "text": "happened ten minutes ago",
+      "intent": "ProvideIncidentTime",
+      "entities": []
+    },
+    {
+      "text": "happened today morning",
+      "intent": "ProvideIncidentTime",
+      "entities": []
+    },
+    {
+      "text": "it happened at 10 past 3",
+      "intent": "ProvideIncidentTime",
+      "entities": []
+    },
+    {
+      "text": "it happened half an hour ago",
+      "intent": "ProvideIncidentTime",
+      "entities": []
+    },
+    {
+      "text": "it was about midnight",
+      "intent": "ProvideIncidentTime",
+      "entities": []
+    },
+    {
+      "text": "it was quarter past 5",
+      "intent": "ProvideIncidentTime",
+      "entities": []
+    },
+    {
+      "text": "just now",
+      "intent": "ProvideIncidentTime",
+      "entities": []
+    },
+    {
+      "text": "5 o clock",
+      "intent": "ProvideIncidentTime",
+      "entities": []
+    },
+    {
+      "text": "one hour ago",
+      "intent": "ProvideIncidentTime",
+      "entities": []
+    },
+    {
+      "text": "quarter past 9",
+      "intent": "ProvideIncidentTime",
+      "entities": []
+    },
+    {
+      "text": "quarter to",
+      "intent": "ProvideIncidentTime",
+      "entities": []
+    },
+    {
+      "text": "some minutes ago",
+      "intent": "ProvideIncidentTime",
+      "entities": []
+    },
+    {
+      "text": "ten minutes ago",
+      "intent": "ProvideIncidentTime",
+      "entities": []
+    },
+    {
+      "text": "the incident happened an hour ago",
+      "intent": "ProvideIncidentTime",
+      "entities": []
+    },
+    {
+      "text": "the incident occured a few minutes ago",
+      "intent": "ProvideIncidentTime",
+      "entities": []
+    },
+    {
+      "text": "the incident occured at eleven thirty",
+      "intent": "ProvideIncidentTime",
+      "entities": []
+    },
+    {
+      "text": "the incident took place at 7 a.m.",
+      "intent": "ProvideIncidentTime",
+      "entities": []
+    },
+    {
+      "text": "the incident happened at 4 o clock",
+      "intent": "ProvideIncidentTime",
+      "entities": []
+    },
+    {
+      "text": "the incident took place at 9",
+      "intent": "ProvideIncidentTime",
+      "entities": []
+    },
+    {
+      "text": "three fifteen a.m.",
+      "intent": "ProvideIncidentTime",
+      "entities": []
+    },
+    {
+      "text": "the incident was at 11:30",
+      "intent": "ProvideIncidentTime",
+      "entities": []
+    },
+    {
+      "text": "yesterday afternoon",
+      "intent": "ProvideIncidentTime",
+      "entities": []
+    },
+    {
+      "text": "midnight",
+      "intent": "ProvideIncidentTime",
+      "entities": []
+    },
+    {
+      "text": "this morning",
+      "intent": "ProvideIncidentTime",
+      "entities": []
+    },
+    {
+      "text": "today morning",
+      "intent": "ProvideIncidentTime",
+      "entities": []
+    },
+    {
+      "text": "midday",
+      "intent": "ProvideIncidentTime",
+      "entities": []
+    },
+    {
+      "text": "(822) 096-2687",
+      "intent": "ProvidePersonalInformation",
+      "entities": [
+        {
+          "entity": "Number",
+          "startPos": 0,
+          "endPos": 13
+        }
+      ]
+    },
+    {
+      "text": "adaline maust phone 0341 35 87 18",
+      "intent": "ProvidePersonalInformation",
+      "entities": [
+        {
+          "entity": "Number",
+          "startPos": 20,
+          "endPos": 32
+        },
+        {
+          "entity": "Name",
+          "startPos": 0,
+          "endPos": 12
+        }
+      ]
+    },
+    {
+      "text": "alene shuler my email is w3bgpb.6d@a7p96bkbee.com",
+      "intent": "ProvidePersonalInformation",
+      "entities": [
+        {
+          "entity": "Name",
+          "startPos": 0,
+          "endPos": 11
+        }
+      ]
+    },
+    {
+      "text": "alfredo kinser phone (822) 744-9740 my email is jok@7-44gq.com",
+      "intent": "ProvidePersonalInformation",
+      "entities": [
+        {
+          "entity": "Number",
+          "startPos": 21,
+          "endPos": 34
+        },
+        {
+          "entity": "Name",
+          "startPos": 0,
+          "endPos": 13
+        }
+      ]
+    },
+    {
+      "text": "applin phone +49 202 5550142 mail la.r7i@8b1vxqw4.com",
+      "intent": "ProvidePersonalInformation",
+      "entities": [
+        {
+          "entity": "Number",
+          "startPos": 13,
+          "endPos": 27
+        },
+        {
+          "entity": "Name",
+          "startPos": 0,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "celsa schott my mail w4j1v9@secoepp.com",
+      "intent": "ProvidePersonalInformation",
+      "entities": [
+        {
+          "entity": "Name",
+          "startPos": 0,
+          "endPos": 11
+        }
+      ]
+    },
+    {
+      "text": "ema henshaw",
+      "intent": "ProvidePersonalInformation",
+      "entities": [
+        {
+          "entity": "Name",
+          "startPos": 0,
+          "endPos": 10
+        }
+      ]
+    },
+    {
+      "text": "errol square",
+      "intent": "ProvidePersonalInformation",
+      "entities": [
+        {
+          "entity": "Name",
+          "startPos": 0,
+          "endPos": 11
+        }
+      ]
+    },
+    {
+      "text": "haley arnold",
+      "intent": "ProvidePersonalInformation",
+      "entities": [
+        {
+          "entity": "Name",
+          "startPos": 0,
+          "endPos": 11
+        }
+      ]
+    },
+    {
+      "text": "haywood beckwith",
+      "intent": "ProvidePersonalInformation",
+      "entities": [
+        {
+          "entity": "Name",
+          "startPos": 0,
+          "endPos": 15
+        }
+      ]
+    },
+    {
+      "text": "i am alma marrow, 02804 24 06 74, mail is d6wkl17fcc_nrm@acius5wh.com",
+      "intent": "ProvidePersonalInformation",
+      "entities": [
+        {
+          "entity": "Number",
+          "startPos": 18,
+          "endPos": 31
+        },
+        {
+          "entity": "Name",
+          "startPos": 5,
+          "endPos": 15
+        }
+      ]
+    },
+    {
+      "text": "i am caroyln puglisi, 421(422)053-42-65 my email is g5t6de3vse@h4y9sj5.com",
+      "intent": "ProvidePersonalInformation",
+      "entities": [
+        {
+          "entity": "Number",
+          "startPos": 22,
+          "endPos": 38
+        },
+        {
+          "entity": "Name",
+          "startPos": 5,
+          "endPos": 19
+        }
+      ]
+    },
+    {
+      "text": "i am claretha striegel",
+      "intent": "ProvidePersonalInformation",
+      "entities": [
+        {
+          "entity": "Name",
+          "startPos": 5,
+          "endPos": 21
+        }
+      ]
+    },
+    {
+      "text": "i am daryl luckow",
+      "intent": "ProvidePersonalInformation",
+      "entities": [
+        {
+          "entity": "Name",
+          "startPos": 5,
+          "endPos": 16
+        }
+      ]
+    },
+    {
+      "text": "i am donald goettl my phone is +49 202 5550155",
+      "intent": "ProvidePersonalInformation",
+      "entities": [
+        {
+          "entity": "Number",
+          "startPos": 31,
+          "endPos": 45
+        },
+        {
+          "entity": "Name",
+          "startPos": 5,
+          "endPos": 17
+        }
+      ]
+    },
+    {
+      "text": "i am dorris wilken mail 2sf52byf5ibldu@9f-voim-qt.com",
+      "intent": "ProvidePersonalInformation",
+      "entities": [
+        {
+          "entity": "Name",
+          "startPos": 5,
+          "endPos": 17
+        }
+      ]
+    },
+    {
+      "text": "i am elbert fuller, phone is +1-202-555-0150",
+      "intent": "ProvidePersonalInformation",
+      "entities": [
+        {
+          "entity": "Number",
+          "startPos": 29,
+          "endPos": 43
+        },
+        {
+          "entity": "Name",
+          "startPos": 5,
+          "endPos": 17
+        }
+      ]
+    },
+    {
+      "text": "i am jerrold clemans, (833) 587-3811",
+      "intent": "ProvidePersonalInformation",
+      "entities": [
+        {
+          "entity": "Number",
+          "startPos": 22,
+          "endPos": 35
+        },
+        {
+          "entity": "Name",
+          "startPos": 5,
+          "endPos": 19
+        }
+      ]
+    },
+    {
+      "text": "i am leeann hale my phone is +49 202 5550155",
+      "intent": "ProvidePersonalInformation",
+      "entities": [
+        {
+          "entity": "Number",
+          "startPos": 29,
+          "endPos": 43
+        },
+        {
+          "entity": "Name",
+          "startPos": 5,
+          "endPos": 15
+        }
+      ]
+    },
+    {
+      "text": "i am mark behrman phone (855) 441-9646",
+      "intent": "ProvidePersonalInformation",
+      "entities": [
+        {
+          "entity": "Number",
+          "startPos": 24,
+          "endPos": 37
+        },
+        {
+          "entity": "Name",
+          "startPos": 5,
+          "endPos": 16
+        }
+      ]
+    },
+    {
+      "text": "i am max eifert my email is s.a.@i6g9p5m.com",
+      "intent": "ProvidePersonalInformation",
+      "entities": [
+        {
+          "entity": "Name",
+          "startPos": 5,
+          "endPos": 14
+        }
+      ]
+    },
+    {
+      "text": "i am rocky kovacich, 02686 89 69 90",
+      "intent": "ProvidePersonalInformation",
+      "entities": [
+        {
+          "entity": "Number",
+          "startPos": 21,
+          "endPos": 34
+        },
+        {
+          "entity": "Name",
+          "startPos": 5,
+          "endPos": 18
+        }
+      ]
+    },
+    {
+      "text": "i am suzette jayne, 766(27)744-03-57, 32x0-vt@nfcqa5qro.com",
+      "intent": "ProvidePersonalInformation",
+      "entities": [
+        {
+          "entity": "Number",
+          "startPos": 20,
+          "endPos": 35
+        },
+        {
+          "entity": "Name",
+          "startPos": 5,
+          "endPos": 17
+        }
+      ]
+    },
+    {
+      "text": "i am sofia garrow phone 754-3010",
+      "intent": "ProvidePersonalInformation",
+      "entities": [
+        {
+          "entity": "Number",
+          "startPos": 24,
+          "endPos": 31
+        },
+        {
+          "entity": "Name",
+          "startPos": 5,
+          "endPos": 16
+        }
+      ]
+    },
+    {
+      "text": "i am tabatha boler, my email is pvviozjv.ei@sjmavo.com",
+      "intent": "ProvidePersonalInformation",
+      "entities": [
+        {
+          "entity": "Name",
+          "startPos": 5,
+          "endPos": 17
+        }
+      ]
+    },
+    {
+      "text": "i am tamika britto my phone is (855) 335-1560",
+      "intent": "ProvidePersonalInformation",
+      "entities": [
+        {
+          "entity": "Number",
+          "startPos": 31,
+          "endPos": 44
+        },
+        {
+          "entity": "Name",
+          "startPos": 5,
+          "endPos": 17
+        }
+      ]
+    },
+    {
+      "text": "i'm anissa windham, phone is 754-3010",
+      "intent": "ProvidePersonalInformation",
+      "entities": [
+        {
+          "entity": "Number",
+          "startPos": 29,
+          "endPos": 36
+        },
+        {
+          "entity": "Name",
+          "startPos": 4,
+          "endPos": 17
+        }
+      ]
+    },
+    {
+      "text": "i'm antonette bonnett, phone is +49 202 5550150 my email is _zjh0@w5fjhcu6dm.com",
+      "intent": "ProvidePersonalInformation",
+      "entities": [
+        {
+          "entity": "Number",
+          "startPos": 32,
+          "endPos": 46
+        },
+        {
+          "entity": "Name",
+          "startPos": 4,
+          "endPos": 20
+        }
+      ]
+    },
+    {
+      "text": "i'm arnulfo edgington",
+      "intent": "ProvidePersonalInformation",
+      "entities": [
+        {
+          "entity": "Name",
+          "startPos": 4,
+          "endPos": 20
+        }
+      ]
+    },
+    {
+      "text": "i'm emerita dike my phone is +1-202-555-0142",
+      "intent": "ProvidePersonalInformation",
+      "entities": [
+        {
+          "entity": "Number",
+          "startPos": 29,
+          "endPos": 43
+        },
+        {
+          "entity": "Name",
+          "startPos": 4,
+          "endPos": 15
+        }
+      ]
+    },
+    {
+      "text": "i'm fatimah height mail is okcn41xcw4ctw1@x-hsivn9.com",
+      "intent": "ProvidePersonalInformation",
+      "entities": [
+        {
+          "entity": "Name",
+          "startPos": 4,
+          "endPos": 17
+        }
+      ]
+    },
+    {
+      "text": "i'm frank mishoe my phone is 540(07)721-47-30",
+      "intent": "ProvidePersonalInformation",
+      "entities": [
+        {
+          "entity": "Number",
+          "startPos": 29,
+          "endPos": 44
+        },
+        {
+          "entity": "Name",
+          "startPos": 4,
+          "endPos": 15
+        }
+      ]
+    },
+    {
+      "text": "i'm isaura henninger",
+      "intent": "ProvidePersonalInformation",
+      "entities": [
+        {
+          "entity": "Name",
+          "startPos": 4,
+          "endPos": 19
+        }
+      ]
+    },
+    {
+      "text": "i'm kristy bradburn phone +49 202 5550155",
+      "intent": "ProvidePersonalInformation",
+      "entities": [
+        {
+          "entity": "Number",
+          "startPos": 26,
+          "endPos": 40
+        },
+        {
+          "entity": "Name",
+          "startPos": 4,
+          "endPos": 18
+        }
+      ]
+    },
+    {
+      "text": "i'm kirksey phone +1-202-555-0179",
+      "intent": "ProvidePersonalInformation",
+      "entities": [
+        {
+          "entity": "Number",
+          "startPos": 18,
+          "endPos": 32
+        },
+        {
+          "entity": "Name",
+          "startPos": 4,
+          "endPos": 10
+        }
+      ]
+    },
+    {
+      "text": "i'm loyce kolb my phone is (855) 335-1560",
+      "intent": "ProvidePersonalInformation",
+      "entities": [
+        {
+          "entity": "Number",
+          "startPos": 27,
+          "endPos": 40
+        },
+        {
+          "entity": "Name",
+          "startPos": 4,
+          "endPos": 13
+        }
+      ]
+    },
+    {
+      "text": "i'm mariko matthias",
+      "intent": "ProvidePersonalInformation",
+      "entities": [
+        {
+          "entity": "Name",
+          "startPos": 4,
+          "endPos": 18
+        }
+      ]
+    },
+    {
+      "text": "i'm leland woolery phone 06 55 876 375",
+      "intent": "ProvidePersonalInformation",
+      "entities": [
+        {
+          "entity": "Number",
+          "startPos": 25,
+          "endPos": 37
+        },
+        {
+          "entity": "Name",
+          "startPos": 4,
+          "endPos": 17
+        }
+      ]
+    },
+    {
+      "text": "i'm mariella spink",
+      "intent": "ProvidePersonalInformation",
+      "entities": [
+        {
+          "entity": "Name",
+          "startPos": 4,
+          "endPos": 17
+        }
+      ]
+    },
+    {
+      "text": "i'm ona vazquez phone (822) 744-9740",
+      "intent": "ProvidePersonalInformation",
+      "entities": [
+        {
+          "entity": "Number",
+          "startPos": 22,
+          "endPos": 35
+        },
+        {
+          "entity": "Name",
+          "startPos": 4,
+          "endPos": 14
+        }
+      ]
+    },
+    {
+      "text": "i'm rachelle arch, 421(422)053-42-65",
+      "intent": "ProvidePersonalInformation",
+      "entities": [
+        {
+          "entity": "Number",
+          "startPos": 19,
+          "endPos": 35
+        },
+        {
+          "entity": "Name",
+          "startPos": 4,
+          "endPos": 16
+        }
+      ]
+    },
+    {
+      "text": "i'm shay mulder my phone is (811) 171-8580",
+      "intent": "ProvidePersonalInformation",
+      "entities": [
+        {
+          "entity": "Number",
+          "startPos": 28,
+          "endPos": 41
+        },
+        {
+          "entity": "Name",
+          "startPos": 4,
+          "endPos": 14
+        }
+      ]
+    },
+    {
+      "text": "i'm verdie seese, (855) 335-1560",
+      "intent": "ProvidePersonalInformation",
+      "entities": [
+        {
+          "entity": "Number",
+          "startPos": 18,
+          "endPos": 31
+        },
+        {
+          "entity": "Name",
+          "startPos": 4,
+          "endPos": 15
+        }
+      ]
+    },
+    {
+      "text": "i'm nedra melius, 02804 24 06 74",
+      "intent": "ProvidePersonalInformation",
+      "entities": [
+        {
+          "entity": "Number",
+          "startPos": 18,
+          "endPos": 31
+        },
+        {
+          "entity": "Name",
+          "startPos": 4,
+          "endPos": 15
+        }
+      ]
+    },
+    {
+      "text": "i'm wayne bonnette my phone is 754-3010",
+      "intent": "ProvidePersonalInformation",
+      "entities": [
+        {
+          "entity": "Number",
+          "startPos": 31,
+          "endPos": 38
+        },
+        {
+          "entity": "Name",
+          "startPos": 4,
+          "endPos": 17
+        }
+      ]
+    },
+    {
+      "text": "i'm yajaira salley, tb1d6subl-se@l0n0-5bfgn.com",
+      "intent": "ProvidePersonalInformation",
+      "entities": [
+        {
+          "entity": "Name",
+          "startPos": 4,
+          "endPos": 17
+        }
+      ]
+    },
+    {
+      "text": "jeannie sheets, 754-3010, pvviozjv.ei@sjmavo.com",
+      "intent": "ProvidePersonalInformation",
+      "entities": [
+        {
+          "entity": "Number",
+          "startPos": 16,
+          "endPos": 23
+        },
+        {
+          "entity": "Name",
+          "startPos": 0,
+          "endPos": 13
+        }
+      ]
+    },
+    {
+      "text": "jerry schroeder, 3(64)430-87-11",
+      "intent": "ProvidePersonalInformation",
+      "entities": [
+        {
+          "entity": "Number",
+          "startPos": 17,
+          "endPos": 30
+        },
+        {
+          "entity": "Name",
+          "startPos": 0,
+          "endPos": 14
+        }
+      ]
+    },
+    {
+      "text": "louann drapeau",
+      "intent": "ProvidePersonalInformation",
+      "entities": [
+        {
+          "entity": "Name",
+          "startPos": 0,
+          "endPos": 13
+        }
+      ]
+    },
+    {
+      "text": "jessika fray, phone is (855) 183-7220",
+      "intent": "ProvidePersonalInformation",
+      "entities": [
+        {
+          "entity": "Number",
+          "startPos": 23,
+          "endPos": 36
+        },
+        {
+          "entity": "Name",
+          "startPos": 0,
+          "endPos": 11
+        }
+      ]
+    },
+    {
+      "text": "marcell crossan my phone is +1-202-555-0150",
+      "intent": "ProvidePersonalInformation",
+      "entities": [
+        {
+          "entity": "Number",
+          "startPos": 28,
+          "endPos": 42
+        },
+        {
+          "entity": "Name",
+          "startPos": 0,
+          "endPos": 14
+        }
+      ]
+    },
+    {
+      "text": "meghann amend",
+      "intent": "ProvidePersonalInformation",
+      "entities": [
+        {
+          "entity": "Name",
+          "startPos": 0,
+          "endPos": 12
+        }
+      ]
+    },
+    {
+      "text": "my name is bonnie cowell",
+      "intent": "ProvidePersonalInformation",
+      "entities": [
+        {
+          "entity": "Name",
+          "startPos": 11,
+          "endPos": 23
+        }
+      ]
+    },
+    {
+      "text": "my name is carissa maye, phone is +49 202 5550166",
+      "intent": "ProvidePersonalInformation",
+      "entities": [
+        {
+          "entity": "Number",
+          "startPos": 34,
+          "endPos": 48
+        },
+        {
+          "entity": "Name",
+          "startPos": 11,
+          "endPos": 22
+        }
+      ]
+    },
+    {
+      "text": "my name is concetta mchenry, phone is 0341 35 87 18",
+      "intent": "ProvidePersonalInformation",
+      "entities": [
+        {
+          "entity": "Number",
+          "startPos": 38,
+          "endPos": 50
+        },
+        {
+          "entity": "Name",
+          "startPos": 11,
+          "endPos": 26
+        }
+      ]
+    },
+    {
+      "text": "my name is dagmar monette",
+      "intent": "ProvidePersonalInformation",
+      "entities": [
+        {
+          "entity": "Name",
+          "startPos": 11,
+          "endPos": 24
+        }
+      ]
+    },
+    {
+      "text": "my name is dannie chason my phone is 3(64)430-87-11",
+      "intent": "ProvidePersonalInformation",
+      "entities": [
+        {
+          "entity": "Number",
+          "startPos": 37,
+          "endPos": 50
+        },
+        {
+          "entity": "Name",
+          "startPos": 11,
+          "endPos": 23
+        }
+      ]
+    },
+    {
+      "text": "my name is daria delapaz",
+      "intent": "ProvidePersonalInformation",
+      "entities": [
+        {
+          "entity": "Name",
+          "startPos": 11,
+          "endPos": 23
+        }
+      ]
+    },
+    {
+      "text": "my name is delbert arbaugh my email is ydgia8-kh@sdu6oi5j.com",
+      "intent": "ProvidePersonalInformation",
+      "entities": [
+        {
+          "entity": "Name",
+          "startPos": 11,
+          "endPos": 25
+        }
+      ]
+    },
+    {
+      "text": "my name is donnie cruzan phone 8(6102)248-29-17",
+      "intent": "ProvidePersonalInformation",
+      "entities": [
+        {
+          "entity": "Number",
+          "startPos": 31,
+          "endPos": 46
+        },
+        {
+          "entity": "Name",
+          "startPos": 11,
+          "endPos": 23
+        }
+      ]
+    },
+    {
+      "text": "my name is fred kump, g5t6de3vse@h4y9sj5.com",
+      "intent": "ProvidePersonalInformation",
+      "entities": [
+        {
+          "entity": "Name",
+          "startPos": 11,
+          "endPos": 19
+        }
+      ]
+    },
+    {
+      "text": "my name is gerard peckham my phone is +49 202 5550166",
+      "intent": "ProvidePersonalInformation",
+      "entities": [
+        {
+          "entity": "Number",
+          "startPos": 38,
+          "endPos": 52
+        },
+        {
+          "entity": "Name",
+          "startPos": 11,
+          "endPos": 24
+        }
+      ]
+    },
+    {
+      "text": "my name is giovanna kimbrough phone my email is e-z@jjmjveuew.com",
+      "intent": "ProvidePersonalInformation",
+      "entities": [
+        {
+          "entity": "Name",
+          "startPos": 11,
+          "endPos": 28
+        }
+      ]
+    },
+    {
+      "text": "my name is ignacio shomo",
+      "intent": "ProvidePersonalInformation",
+      "entities": [
+        {
+          "entity": "Name",
+          "startPos": 11,
+          "endPos": 23
+        }
+      ]
+    },
+    {
+      "text": "my name is kasandra liz my phone is 1(992)941-75-96",
+      "intent": "ProvidePersonalInformation",
+      "entities": [
+        {
+          "entity": "Number",
+          "startPos": 36,
+          "endPos": 50
+        },
+        {
+          "entity": "Name",
+          "startPos": 11,
+          "endPos": 22
+        }
+      ]
+    },
+    {
+      "text": "my name is kip russel phone 06 55 876 375",
+      "intent": "ProvidePersonalInformation",
+      "entities": [
+        {
+          "entity": "Number",
+          "startPos": 28,
+          "endPos": 40
+        },
+        {
+          "entity": "Name",
+          "startPos": 11,
+          "endPos": 20
+        }
+      ]
+    },
+    {
+      "text": "my name is peter murchison, phone is 754-3010, mail is peter.murchison@example.com",
+      "intent": "ProvidePersonalInformation",
+      "entities": [
+        {
+          "entity": "Number",
+          "startPos": 37,
+          "endPos": 44
+        },
+        {
+          "entity": "Name",
+          "startPos": 11,
+          "endPos": 25
+        }
+      ]
+    },
+    {
+      "text": "my name is phyllis kamrowski phone (855) 183-7220",
+      "intent": "ProvidePersonalInformation",
+      "entities": [
+        {
+          "entity": "Number",
+          "startPos": 35,
+          "endPos": 48
+        },
+        {
+          "entity": "Name",
+          "startPos": 11,
+          "endPos": 27
+        }
+      ]
+    },
+    {
+      "text": "my name is patsy dipalma, +1-202-555-0142",
+      "intent": "ProvidePersonalInformation",
+      "entities": [
+        {
+          "entity": "Number",
+          "startPos": 26,
+          "endPos": 40
+        },
+        {
+          "entity": "Name",
+          "startPos": 11,
+          "endPos": 23
+        }
+      ]
+    },
+    {
+      "text": "my name is reiher my phone is 421(422)053-42-65",
+      "intent": "ProvidePersonalInformation",
+      "entities": [
+        {
+          "entity": "Number",
+          "startPos": 30,
+          "endPos": 46
+        },
+        {
+          "entity": "Name",
+          "startPos": 11,
+          "endPos": 16
+        }
+      ]
+    },
+    {
+      "text": "my name is santa luque, phone is 02686 89 69 90",
+      "intent": "ProvidePersonalInformation",
+      "entities": [
+        {
+          "entity": "Number",
+          "startPos": 33,
+          "endPos": 46
+        },
+        {
+          "entity": "Name",
+          "startPos": 11,
+          "endPos": 21
+        }
+      ]
+    },
+    {
+      "text": "my name is shelley spector phone 1(992)941-75-96",
+      "intent": "ProvidePersonalInformation",
+      "entities": [
+        {
+          "entity": "Number",
+          "startPos": 33,
+          "endPos": 47
+        },
+        {
+          "entity": "Name",
+          "startPos": 11,
+          "endPos": 25
+        }
+      ]
+    },
+    {
+      "text": "quiana sepe",
+      "intent": "ProvidePersonalInformation",
+      "entities": [
+        {
+          "entity": "Name",
+          "startPos": 0,
+          "endPos": 10
+        }
+      ]
+    },
+    {
+      "text": "reita astin my phone is +1-202-555-0115",
+      "intent": "ProvidePersonalInformation",
+      "entities": [
+        {
+          "entity": "Number",
+          "startPos": 24,
+          "endPos": 38
+        },
+        {
+          "entity": "Name",
+          "startPos": 0,
+          "endPos": 10
+        }
+      ]
+    },
+    {
+      "text": "zack heather z9v@iwrinnx500i.com",
+      "intent": "ProvidePersonalInformation",
+      "entities": [
+        {
+          "entity": "Name",
+          "startPos": 0,
+          "endPos": 11
+        }
+      ]
+    },
+    {
+      "text": "shakira, phone is 06207 73 12 18",
+      "intent": "ProvidePersonalInformation",
+      "entities": [
+        {
+          "entity": "Number",
+          "startPos": 18,
+          "endPos": 31
+        },
+        {
+          "entity": "Name",
+          "startPos": 0,
+          "endPos": 6
+        }
+      ]
+    },
+    {
+      "text": "tuan briggs phone 15(574)018-69-99",
+      "intent": "ProvidePersonalInformation",
+      "entities": [
+        {
+          "entity": "Number",
+          "startPos": 18,
+          "endPos": 33
+        },
+        {
+          "entity": "Name",
+          "startPos": 0,
+          "endPos": 10
+        }
+      ]
+    },
+    {
+      "text": "mail is qjwksicv@37s55dag.com",
+      "intent": "ProvidePersonalInformation",
+      "entities": []
+    },
+    {
+      "text": "zulema harlan my phone is +49 202 5550142, 3sh_gd@obgi0wp.com",
+      "intent": "ProvidePersonalInformation",
+      "entities": [
+        {
+          "entity": "Number",
+          "startPos": 26,
+          "endPos": 40
+        },
+        {
+          "entity": "Name",
+          "startPos": 0,
+          "endPos": 12
+        }
+      ]
+    },
+    {
+      "text": "my phone is 754-3010 my email is 7h8@ix4du59c9w.com",
+      "intent": "ProvidePersonalInformation",
+      "entities": [
+        {
+          "entity": "Number",
+          "startPos": 12,
+          "endPos": 19
+        }
+      ]
+    },
+    {
+      "text": "at the moment i am in munich, in the hitzestraße 1",
+      "intent": "ProvideAddress",
+      "entities": [
+        {
+          "entity": "Street",
+          "startPos": 37,
+          "endPos": 47
+        },
+        {
+          "entity": "Number",
+          "startPos": 49,
+          "endPos": 49
+        },
+        {
+          "entity": "City",
+          "startPos": 22,
+          "endPos": 27
+        },
+        {
+          "entity": "StreetAndNumber",
+          "startPos": 37,
+          "endPos": 49
+        }
+      ]
+    },
+    {
+      "text": "at the moment, in \"unkersdorfer str. 11\" in dresden",
+      "intent": "ProvideAddress",
+      "entities": [
+        {
+          "entity": "Street",
+          "startPos": 19,
+          "endPos": 35
+        },
+        {
+          "entity": "Number",
+          "startPos": 37,
+          "endPos": 38
+        },
+        {
+          "entity": "City",
+          "startPos": 44,
+          "endPos": 50
+        },
+        {
+          "entity": "StreetAndNumber",
+          "startPos": 19,
+          "endPos": 38
+        }
+      ]
+    },
+    {
+      "text": "essen",
+      "intent": "ProvideAddress",
+      "entities": [
+        {
+          "entity": "City",
+          "startPos": 0,
+          "endPos": 4
+        }
+      ]
+    },
+    {
+      "text": "fraunhoferstraße 25 in 10587",
+      "intent": "ProvideAddress",
+      "entities": [
+        {
+          "entity": "ZipCode",
+          "startPos": 23,
+          "endPos": 27
+        },
+        {
+          "entity": "Street",
+          "startPos": 0,
+          "endPos": 15
+        },
+        {
+          "entity": "Number",
+          "startPos": 17,
+          "endPos": 18
+        },
+        {
+          "entity": "StreetAndNumber",
+          "startPos": 0,
+          "endPos": 18
+        }
+      ]
+    },
+    {
+      "text": "i am in munich, in the wertheimer str. 23",
+      "intent": "ProvideAddress",
+      "entities": [
+        {
+          "entity": "Street",
+          "startPos": 23,
+          "endPos": 37
+        },
+        {
+          "entity": "Number",
+          "startPos": 39,
+          "endPos": 40
+        },
+        {
+          "entity": "City",
+          "startPos": 8,
+          "endPos": 13
+        },
+        {
+          "entity": "StreetAndNumber",
+          "startPos": 23,
+          "endPos": 40
+        }
+      ]
+    },
+    {
+      "text": "i'm at rutschbahn 18",
+      "intent": "ProvideAddress",
+      "entities": [
+        {
+          "entity": "Street",
+          "startPos": 7,
+          "endPos": 16
+        },
+        {
+          "entity": "Number",
+          "startPos": 18,
+          "endPos": 19
+        },
+        {
+          "entity": "StreetAndNumber",
+          "startPos": 7,
+          "endPos": 19
+        }
+      ]
+    },
+    {
+      "text": "in weckmannweg 10",
+      "intent": "ProvideAddress",
+      "entities": [
+        {
+          "entity": "Street",
+          "startPos": 0,
+          "endPos": 13
+        },
+        {
+          "entity": "Number",
+          "startPos": 15,
+          "endPos": 16
+        },
+        {
+          "entity": "StreetAndNumber",
+          "startPos": 0,
+          "endPos": 16
+        }
+      ]
+    },
+    {
+      "text": "stuttgart",
+      "intent": "ProvideAddress",
+      "entities": [
+        {
+          "entity": "City",
+          "startPos": 0,
+          "endPos": 8
+        }
+      ]
+    },
+    {
+      "text": "am brinke 30",
+      "intent": "ProvideAddress",
+      "entities": [
+        {
+          "entity": "Street",
+          "startPos": 0,
+          "endPos": 8
+        },
+        {
+          "entity": "Number",
+          "startPos": 10,
+          "endPos": 11
+        },
+        {
+          "entity": "StreetAndNumber",
+          "startPos": 0,
+          "endPos": 11
+        }
+      ]
+    },
+    {
+      "text": "01309 dresden",
+      "intent": "ProvideAddress",
+      "entities": [
+        {
+          "entity": "ZipCode",
+          "startPos": 0,
+          "endPos": 4
+        },
+        {
+          "entity": "City",
+          "startPos": 6,
+          "endPos": 12
+        }
+      ]
+    },
+    {
+      "text": "address is elsterstraße 12 in duisburg",
+      "intent": "ProvideAddress",
+      "entities": [
+        {
+          "entity": "Street",
+          "startPos": 11,
+          "endPos": 22
+        },
+        {
+          "entity": "Number",
+          "startPos": 24,
+          "endPos": 25
+        },
+        {
+          "entity": "City",
+          "startPos": 30,
+          "endPos": 37
+        },
+        {
+          "entity": "StreetAndNumber",
+          "startPos": 11,
+          "endPos": 25
+        }
+      ]
+    },
+    {
+      "text": "am hügel no 28",
+      "intent": "ProvideAddress",
+      "entities": [
+        {
+          "entity": "Street",
+          "startPos": 0,
+          "endPos": 7
+        },
+        {
+          "entity": "Number",
+          "startPos": 12,
+          "endPos": 13
+        },
+        {
+          "entity": "StreetAndNumber",
+          "startPos": 0,
+          "endPos": 13
+        }
+      ]
+    },
+    {
+      "text": "at the rolf-dieter-koch-weg 16 in essen",
+      "intent": "ProvideAddress",
+      "entities": [
+        {
+          "entity": "Street",
+          "startPos": 7,
+          "endPos": 26
+        },
+        {
+          "entity": "Number",
+          "startPos": 28,
+          "endPos": 29
+        },
+        {
+          "entity": "City",
+          "startPos": 34,
+          "endPos": 38
+        },
+        {
+          "entity": "StreetAndNumber",
+          "startPos": 7,
+          "endPos": 29
+        }
+      ]
+    },
+    {
+      "text": "am kopf number 16",
+      "intent": "ProvideAddress",
+      "entities": [
+        {
+          "entity": "Street",
+          "startPos": 0,
+          "endPos": 6
+        },
+        {
+          "entity": "Number",
+          "startPos": 15,
+          "endPos": 16
+        },
+        {
+          "entity": "StreetAndNumber",
+          "startPos": 0,
+          "endPos": 16
+        }
+      ]
+    },
+    {
+      "text": "at the moment i'm in göttingen, in the brunnenbreite number 14",
+      "intent": "ProvideAddress",
+      "entities": [
+        {
+          "entity": "Street",
+          "startPos": 39,
+          "endPos": 51
+        },
+        {
+          "entity": "Number",
+          "startPos": 60,
+          "endPos": 61
+        },
+        {
+          "entity": "City",
+          "startPos": 21,
+          "endPos": 29
+        },
+        {
+          "entity": "StreetAndNumber",
+          "startPos": 39,
+          "endPos": 61
+        }
+      ]
+    },
+    {
+      "text": "at the moment i'm in 38226",
+      "intent": "ProvideAddress",
+      "entities": [
+        {
+          "entity": "ZipCode",
+          "startPos": 21,
+          "endPos": 25
+        }
+      ]
+    },
+    {
+      "text": "at the moment in beim waisenhaus 1. this is in rostock",
+      "intent": "ProvideAddress",
+      "entities": [
+        {
+          "entity": "Street",
+          "startPos": 22,
+          "endPos": 31
+        },
+        {
+          "entity": "Number",
+          "startPos": 33,
+          "endPos": 33
+        },
+        {
+          "entity": "City",
+          "startPos": 47,
+          "endPos": 53
+        },
+        {
+          "entity": "StreetAndNumber",
+          "startPos": 22,
+          "endPos": 33
+        }
+      ]
+    },
+    {
+      "text": "cologne, huhnsgasse 12",
+      "intent": "ProvideAddress",
+      "entities": [
+        {
+          "entity": "Street",
+          "startPos": 9,
+          "endPos": 18
+        },
+        {
+          "entity": "Number",
+          "startPos": 20,
+          "endPos": 21
+        },
+        {
+          "entity": "City",
+          "startPos": 0,
+          "endPos": 6
+        },
+        {
+          "entity": "StreetAndNumber",
+          "startPos": 9,
+          "endPos": 21
+        }
+      ]
+    },
+    {
+      "text": "currently i am in kassel city.",
+      "intent": "ProvideAddress",
+      "entities": [
+        {
+          "entity": "City",
+          "startPos": 18,
+          "endPos": 23
+        }
+      ]
+    },
+    {
+      "text": "an der rennbahn in 45659, the house number is 45",
+      "intent": "ProvideAddress",
+      "entities": [
+        {
+          "entity": "ZipCode",
+          "startPos": 19,
+          "endPos": 23
+        },
+        {
+          "entity": "Street",
+          "startPos": 0,
+          "endPos": 14
+        },
+        {
+          "entity": "Number",
+          "startPos": 46,
+          "endPos": 47
+        },
+        {
+          "entity": "StreetAndNumber",
+          "startPos": 0,
+          "endPos": 14
+        },
+        {
+          "entity": "StreetAndNumber",
+          "startPos": 46,
+          "endPos": 47
+        }
+      ]
+    },
+    {
+      "text": "currently i'm in the \"brennerstraße 3\"",
+      "intent": "ProvideAddress",
+      "entities": [
+        {
+          "entity": "Street",
+          "startPos": 22,
+          "endPos": 34
+        },
+        {
+          "entity": "Number",
+          "startPos": 36,
+          "endPos": 36
+        },
+        {
+          "entity": "StreetAndNumber",
+          "startPos": 22,
+          "endPos": 36
+        }
+      ]
+    },
+    {
+      "text": "currently in darmstadt, pulverhäuserweg no 17",
+      "intent": "ProvideAddress",
+      "entities": [
+        {
+          "entity": "Street",
+          "startPos": 24,
+          "endPos": 38
+        },
+        {
+          "entity": "Number",
+          "startPos": 43,
+          "endPos": 44
+        },
+        {
+          "entity": "City",
+          "startPos": 13,
+          "endPos": 21
+        },
+        {
+          "entity": "StreetAndNumber",
+          "startPos": 24,
+          "endPos": 44
+        }
+      ]
+    },
+    {
+      "text": "currently in hanover, franzstraße 2",
+      "intent": "ProvideAddress",
+      "entities": [
+        {
+          "entity": "Street",
+          "startPos": 22,
+          "endPos": 32
+        },
+        {
+          "entity": "Number",
+          "startPos": 34,
+          "endPos": 34
+        },
+        {
+          "entity": "City",
+          "startPos": 13,
+          "endPos": 19
+        },
+        {
+          "entity": "StreetAndNumber",
+          "startPos": 22,
+          "endPos": 34
+        }
+      ]
+    },
+    {
+      "text": "currently, i am in remscheid, glassiepen 25",
+      "intent": "ProvideAddress",
+      "entities": [
+        {
+          "entity": "Street",
+          "startPos": 30,
+          "endPos": 39
+        },
+        {
+          "entity": "Number",
+          "startPos": 41,
+          "endPos": 42
+        },
+        {
+          "entity": "City",
+          "startPos": 19,
+          "endPos": 27
+        },
+        {
+          "entity": "StreetAndNumber",
+          "startPos": 30,
+          "endPos": 42
+        }
+      ]
+    },
+    {
+      "text": "currently, i'm in the city of siegen.",
+      "intent": "ProvideAddress",
+      "entities": [
+        {
+          "entity": "City",
+          "startPos": 30,
+          "endPos": 35
+        }
+      ]
+    },
+    {
+      "text": "freiburg im breisgau",
+      "intent": "ProvideAddress",
+      "entities": [
+        {
+          "entity": "City",
+          "startPos": 0,
+          "endPos": 19
+        }
+      ]
+    },
+    {
+      "text": "goldberghang no 18, hagen",
+      "intent": "ProvideAddress",
+      "entities": [
+        {
+          "entity": "Street",
+          "startPos": 0,
+          "endPos": 11
+        },
+        {
+          "entity": "Number",
+          "startPos": 16,
+          "endPos": 17
+        },
+        {
+          "entity": "City",
+          "startPos": 20,
+          "endPos": 24
+        },
+        {
+          "entity": "StreetAndNumber",
+          "startPos": 0,
+          "endPos": 17
+        }
+      ]
+    },
+    {
+      "text": "hüttmannstraße 78",
+      "intent": "ProvideAddress",
+      "entities": [
+        {
+          "entity": "Street",
+          "startPos": 0,
+          "endPos": 13
+        },
+        {
+          "entity": "Number",
+          "startPos": 15,
+          "endPos": 16
+        },
+        {
+          "entity": "StreetAndNumber",
+          "startPos": 0,
+          "endPos": 16
+        }
+      ]
+    },
+    {
+      "text": "i am at the von-der-tann-straße 22 in ludwigshafen am rhein",
+      "intent": "ProvideAddress",
+      "entities": [
+        {
+          "entity": "Street",
+          "startPos": 12,
+          "endPos": 30
+        },
+        {
+          "entity": "Number",
+          "startPos": 32,
+          "endPos": 33
+        },
+        {
+          "entity": "City",
+          "startPos": 38,
+          "endPos": 58
+        },
+        {
+          "entity": "StreetAndNumber",
+          "startPos": 12,
+          "endPos": 33
+        }
+      ]
+    },
+    {
+      "text": "i am in erlangen, in hugenottenpl. house number 6",
+      "intent": "ProvideAddress",
+      "entities": [
+        {
+          "entity": "Street",
+          "startPos": 21,
+          "endPos": 33
+        },
+        {
+          "entity": "Number",
+          "startPos": 48,
+          "endPos": 48
+        },
+        {
+          "entity": "City",
+          "startPos": 8,
+          "endPos": 15
+        },
+        {
+          "entity": "StreetAndNumber",
+          "startPos": 21,
+          "endPos": 48
+        }
+      ]
+    },
+    {
+      "text": "i am in the rothenfelder str. 47",
+      "intent": "ProvideAddress",
+      "entities": [
+        {
+          "entity": "Street",
+          "startPos": 12,
+          "endPos": 28
+        },
+        {
+          "entity": "Number",
+          "startPos": 30,
+          "endPos": 31
+        },
+        {
+          "entity": "StreetAndNumber",
+          "startPos": 12,
+          "endPos": 31
+        }
+      ]
+    },
+    {
+      "text": "i am in the city of krefeld. it is the viktoriapl. 15",
+      "intent": "ProvideAddress",
+      "entities": [
+        {
+          "entity": "Street",
+          "startPos": 39,
+          "endPos": 49
+        },
+        {
+          "entity": "Number",
+          "startPos": 51,
+          "endPos": 52
+        },
+        {
+          "entity": "City",
+          "startPos": 20,
+          "endPos": 26
+        },
+        {
+          "entity": "StreetAndNumber",
+          "startPos": 39,
+          "endPos": 52
+        }
+      ]
+    },
+    {
+      "text": "i'm currently in muenster in the coerdestraße 3b.",
+      "intent": "ProvideAddress",
+      "entities": [
+        {
+          "entity": "Street",
+          "startPos": 33,
+          "endPos": 44
+        },
+        {
+          "entity": "Number",
+          "startPos": 46,
+          "endPos": 47
+        },
+        {
+          "entity": "City",
+          "startPos": 17,
+          "endPos": 24
+        },
+        {
+          "entity": "StreetAndNumber",
+          "startPos": 33,
+          "endPos": 47
+        }
+      ]
+    },
+    {
+      "text": "i'm in dusseldorf",
+      "intent": "ProvideAddress",
+      "entities": [
+        {
+          "entity": "City",
+          "startPos": 7,
+          "endPos": 16
+        }
+      ]
+    },
+    {
+      "text": "i'm at the geschwister-scholl-straße 9 in offenbach",
+      "intent": "ProvideAddress",
+      "entities": [
+        {
+          "entity": "Street",
+          "startPos": 11,
+          "endPos": 35
+        },
+        {
+          "entity": "Number",
+          "startPos": 37,
+          "endPos": 37
+        },
+        {
+          "entity": "City",
+          "startPos": 42,
+          "endPos": 50
+        },
+        {
+          "entity": "StreetAndNumber",
+          "startPos": 11,
+          "endPos": 37
+        }
+      ]
+    },
+    {
+      "text": "i'm in fürth city. in the pillauer str. 13",
+      "intent": "ProvideAddress",
+      "entities": [
+        {
+          "entity": "Street",
+          "startPos": 26,
+          "endPos": 38
+        },
+        {
+          "entity": "Number",
+          "startPos": 40,
+          "endPos": 41
+        },
+        {
+          "entity": "City",
+          "startPos": 7,
+          "endPos": 11
+        },
+        {
+          "entity": "StreetAndNumber",
+          "startPos": 26,
+          "endPos": 41
+        }
+      ]
+    },
+    {
+      "text": "i am currently in hamburg",
+      "intent": "ProvideAddress",
+      "entities": [
+        {
+          "entity": "City",
+          "startPos": 18,
+          "endPos": 24
+        }
+      ]
+    },
+    {
+      "text": "i'm in hamburg",
+      "intent": "ProvideAddress",
+      "entities": [
+        {
+          "entity": "City",
+          "startPos": 7,
+          "endPos": 13
+        }
+      ]
+    },
+    {
+      "text": "i'm in magdeburg and the street name is sudenburger wuhne",
+      "intent": "ProvideAddress",
+      "entities": [
+        {
+          "entity": "Street",
+          "startPos": 40,
+          "endPos": 56
+        },
+        {
+          "entity": "City",
+          "startPos": 7,
+          "endPos": 15
+        },
+        {
+          "entity": "StreetAndNumber",
+          "startPos": 40,
+          "endPos": 56
+        }
+      ]
+    },
+    {
+      "text": "im gabelacker 7 in heidelberg city.",
+      "intent": "ProvideAddress",
+      "entities": [
+        {
+          "entity": "Street",
+          "startPos": 3,
+          "endPos": 12
+        },
+        {
+          "entity": "Number",
+          "startPos": 14,
+          "endPos": 14
+        },
+        {
+          "entity": "City",
+          "startPos": 19,
+          "endPos": 28
+        },
+        {
+          "entity": "StreetAndNumber",
+          "startPos": 3,
+          "endPos": 14
+        }
+      ]
+    },
+    {
+      "text": "in \"im strohsiek 11\", in bielefeld city.",
+      "intent": "ProvideAddress",
+      "entities": [
+        {
+          "entity": "Street",
+          "startPos": 4,
+          "endPos": 15
+        },
+        {
+          "entity": "Number",
+          "startPos": 17,
+          "endPos": 18
+        },
+        {
+          "entity": "City",
+          "startPos": 25,
+          "endPos": 33
+        },
+        {
+          "entity": "StreetAndNumber",
+          "startPos": 4,
+          "endPos": 18
+        }
+      ]
+    },
+    {
+      "text": "in \"lüpertzender str. 133\" in monchengladbach",
+      "intent": "ProvideAddress",
+      "entities": [
+        {
+          "entity": "Street",
+          "startPos": 4,
+          "endPos": 20
+        },
+        {
+          "entity": "Number",
+          "startPos": 22,
+          "endPos": 24
+        },
+        {
+          "entity": "City",
+          "startPos": 30,
+          "endPos": 44
+        },
+        {
+          "entity": "StreetAndNumber",
+          "startPos": 4,
+          "endPos": 24
+        }
+      ]
+    },
+    {
+      "text": "in 85049 ingolstadt",
+      "intent": "ProvideAddress",
+      "entities": [
+        {
+          "entity": "ZipCode",
+          "startPos": 3,
+          "endPos": 7
+        },
+        {
+          "entity": "City",
+          "startPos": 9,
+          "endPos": 18
+        }
+      ]
+    },
+    {
+      "text": "in bonn, wasserturmstraße 30",
+      "intent": "ProvideAddress",
+      "entities": [
+        {
+          "entity": "Street",
+          "startPos": 9,
+          "endPos": 24
+        },
+        {
+          "entity": "Number",
+          "startPos": 26,
+          "endPos": 27
+        },
+        {
+          "entity": "City",
+          "startPos": 3,
+          "endPos": 6
+        },
+        {
+          "entity": "StreetAndNumber",
+          "startPos": 9,
+          "endPos": 27
+        }
+      ]
+    },
+    {
+      "text": "in braunschweig. the street name is burgpassage 20",
+      "intent": "ProvideAddress",
+      "entities": [
+        {
+          "entity": "Street",
+          "startPos": 36,
+          "endPos": 46
+        },
+        {
+          "entity": "Number",
+          "startPos": 48,
+          "endPos": 49
+        },
+        {
+          "entity": "City",
+          "startPos": 3,
+          "endPos": 14
+        },
+        {
+          "entity": "StreetAndNumber",
+          "startPos": 36,
+          "endPos": 49
+        }
+      ]
+    },
+    {
+      "text": "in erfurt",
+      "intent": "ProvideAddress",
+      "entities": [
+        {
+          "entity": "City",
+          "startPos": 3,
+          "endPos": 8
+        }
+      ]
+    },
+    {
+      "text": "in gelsenkirchen",
+      "intent": "ProvideAddress",
+      "entities": [
+        {
+          "entity": "City",
+          "startPos": 3,
+          "endPos": 15
+        }
+      ]
+    },
+    {
+      "text": "in halle",
+      "intent": "ProvideAddress",
+      "entities": [
+        {
+          "entity": "City",
+          "startPos": 3,
+          "endPos": 7
+        }
+      ]
+    },
+    {
+      "text": "in kastenalsgasse 11",
+      "intent": "ProvideAddress",
+      "entities": [
+        {
+          "entity": "Street",
+          "startPos": 3,
+          "endPos": 16
+        },
+        {
+          "entity": "Number",
+          "startPos": 18,
+          "endPos": 19
+        },
+        {
+          "entity": "StreetAndNumber",
+          "startPos": 3,
+          "endPos": 19
+        }
+      ]
+    },
+    {
+      "text": "in lübeck city. in the dr.-julius-leber-straße 23",
+      "intent": "ProvideAddress",
+      "entities": [
+        {
+          "entity": "Street",
+          "startPos": 23,
+          "endPos": 45
+        },
+        {
+          "entity": "Number",
+          "startPos": 47,
+          "endPos": 48
+        },
+        {
+          "entity": "City",
+          "startPos": 3,
+          "endPos": 8
+        },
+        {
+          "entity": "StreetAndNumber",
+          "startPos": 23,
+          "endPos": 48
+        }
+      ]
+    },
+    {
+      "text": "in landwehrpl. 1, saarbrücken",
+      "intent": "ProvideAddress",
+      "entities": [
+        {
+          "entity": "Street",
+          "startPos": 3,
+          "endPos": 13
+        },
+        {
+          "entity": "Number",
+          "startPos": 15,
+          "endPos": 15
+        },
+        {
+          "entity": "City",
+          "startPos": 18,
+          "endPos": 28
+        },
+        {
+          "entity": "StreetAndNumber",
+          "startPos": 3,
+          "endPos": 15
+        }
+      ]
+    },
+    {
+      "text": "in leipzig",
+      "intent": "ProvideAddress",
+      "entities": [
+        {
+          "entity": "City",
+          "startPos": 3,
+          "endPos": 9
+        }
+      ]
+    },
+    {
+      "text": "in m1 6, mannheim",
+      "intent": "ProvideAddress",
+      "entities": [
+        {
+          "entity": "Street",
+          "startPos": 3,
+          "endPos": 4
+        },
+        {
+          "entity": "Number",
+          "startPos": 6,
+          "endPos": 6
+        },
+        {
+          "entity": "City",
+          "startPos": 9,
+          "endPos": 16
+        },
+        {
+          "entity": "StreetAndNumber",
+          "startPos": 3,
+          "endPos": 6
+        }
+      ]
+    },
+    {
+      "text": "in mannheim q2 5",
+      "intent": "ProvideAddress",
+      "entities": [
+        {
+          "entity": "Street",
+          "startPos": 12,
+          "endPos": 13
+        },
+        {
+          "entity": "Number",
+          "startPos": 15,
+          "endPos": 15
+        },
+        {
+          "entity": "City",
+          "startPos": 3,
+          "endPos": 10
+        },
+        {
+          "entity": "StreetAndNumber",
+          "startPos": 12,
+          "endPos": 15
+        }
+      ]
+    },
+    {
+      "text": "in neuss city in 41462. nehringskamp 13a",
+      "intent": "ProvideAddress",
+      "entities": [
+        {
+          "entity": "ZipCode",
+          "startPos": 17,
+          "endPos": 21
+        },
+        {
+          "entity": "Street",
+          "startPos": 24,
+          "endPos": 35
+        },
+        {
+          "entity": "Number",
+          "startPos": 37,
+          "endPos": 39
+        },
+        {
+          "entity": "City",
+          "startPos": 3,
+          "endPos": 7
+        },
+        {
+          "entity": "StreetAndNumber",
+          "startPos": 24,
+          "endPos": 39
+        }
+      ]
+    },
+    {
+      "text": "in schadowstraße 76",
+      "intent": "ProvideAddress",
+      "entities": [
+        {
+          "entity": "Street",
+          "startPos": 3,
+          "endPos": 15
+        },
+        {
+          "entity": "Number",
+          "startPos": 17,
+          "endPos": 18
+        },
+        {
+          "entity": "StreetAndNumber",
+          "startPos": 3,
+          "endPos": 18
+        }
+      ]
+    },
+    {
+      "text": "in sudenburger wuhne 65",
+      "intent": "ProvideAddress",
+      "entities": [
+        {
+          "entity": "Street",
+          "startPos": 3,
+          "endPos": 19
+        },
+        {
+          "entity": "Number",
+          "startPos": 21,
+          "endPos": 22
+        },
+        {
+          "entity": "StreetAndNumber",
+          "startPos": 3,
+          "endPos": 22
+        }
+      ]
+    },
+    {
+      "text": "in talblick 20",
+      "intent": "ProvideAddress",
+      "entities": [
+        {
+          "entity": "Street",
+          "startPos": 3,
+          "endPos": 10
+        },
+        {
+          "entity": "Number",
+          "startPos": 12,
+          "endPos": 13
+        },
+        {
+          "entity": "StreetAndNumber",
+          "startPos": 3,
+          "endPos": 13
+        }
+      ]
+    },
+    {
+      "text": "in the dijonstraße 20",
+      "intent": "ProvideAddress",
+      "entities": [
+        {
+          "entity": "Street",
+          "startPos": 7,
+          "endPos": 17
+        },
+        {
+          "entity": "Number",
+          "startPos": 19,
+          "endPos": 20
+        },
+        {
+          "entity": "StreetAndNumber",
+          "startPos": 7,
+          "endPos": 20
+        }
+      ]
+    },
+    {
+      "text": "in the senefelderstraße, 75",
+      "intent": "ProvideAddress",
+      "entities": [
+        {
+          "entity": "Street",
+          "startPos": 7,
+          "endPos": 22
+        },
+        {
+          "entity": "Number",
+          "startPos": 25,
+          "endPos": 26
+        },
+        {
+          "entity": "StreetAndNumber",
+          "startPos": 7,
+          "endPos": 26
+        }
+      ]
+    },
+    {
+      "text": "in the wartburgstraße 38/1",
+      "intent": "ProvideAddress",
+      "entities": [
+        {
+          "entity": "Street",
+          "startPos": 7,
+          "endPos": 20
+        },
+        {
+          "entity": "Number",
+          "startPos": 22,
+          "endPos": 25
+        },
+        {
+          "entity": "StreetAndNumber",
+          "startPos": 7,
+          "endPos": 25
+        }
+      ]
+    },
+    {
+      "text": "in the willi-wolf-straße 11c, in mainz",
+      "intent": "ProvideAddress",
+      "entities": [
+        {
+          "entity": "Street",
+          "startPos": 7,
+          "endPos": 23
+        },
+        {
+          "entity": "Number",
+          "startPos": 25,
+          "endPos": 27
+        },
+        {
+          "entity": "City",
+          "startPos": 33,
+          "endPos": 37
+        },
+        {
+          "entity": "StreetAndNumber",
+          "startPos": 7,
+          "endPos": 27
+        }
+      ]
+    },
+    {
+      "text": "in the city of mainz",
+      "intent": "ProvideAddress",
+      "entities": [
+        {
+          "entity": "City",
+          "startPos": 15,
+          "endPos": 19
+        }
+      ]
+    },
+    {
+      "text": "it's in oberhausen, hermannstadtstraße 48",
+      "intent": "ProvideAddress",
+      "entities": [
+        {
+          "entity": "Street",
+          "startPos": 20,
+          "endPos": 37
+        },
+        {
+          "entity": "Number",
+          "startPos": 39,
+          "endPos": 40
+        },
+        {
+          "entity": "City",
+          "startPos": 8,
+          "endPos": 17
+        },
+        {
+          "entity": "StreetAndNumber",
+          "startPos": 20,
+          "endPos": 40
+        }
+      ]
+    },
+    {
+      "text": "it's in the am konnertzfeld 19 street in krefeld",
+      "intent": "ProvideAddress",
+      "entities": [
+        {
+          "entity": "Street",
+          "startPos": 12,
+          "endPos": 26
+        },
+        {
+          "entity": "Number",
+          "startPos": 28,
+          "endPos": 29
+        },
+        {
+          "entity": "City",
+          "startPos": 41,
+          "endPos": 47
+        },
+        {
+          "entity": "StreetAndNumber",
+          "startPos": 12,
+          "endPos": 29
+        }
+      ]
+    },
+    {
+      "text": "kluser höhe number 10, in wuppertal",
+      "intent": "ProvideAddress",
+      "entities": [
+        {
+          "entity": "Street",
+          "startPos": 0,
+          "endPos": 10
+        },
+        {
+          "entity": "Number",
+          "startPos": 19,
+          "endPos": 20
+        },
+        {
+          "entity": "City",
+          "startPos": 26,
+          "endPos": 34
+        },
+        {
+          "entity": "StreetAndNumber",
+          "startPos": 0,
+          "endPos": 20
+        }
+      ]
+    },
+    {
+      "text": "lauschaer weg no 1",
+      "intent": "ProvideAddress",
+      "entities": [
+        {
+          "entity": "Street",
+          "startPos": 0,
+          "endPos": 12
+        },
+        {
+          "entity": "Number",
+          "startPos": 17,
+          "endPos": 17
+        },
+        {
+          "entity": "StreetAndNumber",
+          "startPos": 0,
+          "endPos": 17
+        }
+      ]
+    },
+    {
+      "text": "mosergasse no. 3",
+      "intent": "ProvideAddress",
+      "entities": [
+        {
+          "entity": "Street",
+          "startPos": 0,
+          "endPos": 13
+        },
+        {
+          "entity": "Number",
+          "startPos": 15,
+          "endPos": 15
+        },
+        {
+          "entity": "StreetAndNumber",
+          "startPos": 0,
+          "endPos": 15
+        }
+      ]
+    },
+    {
+      "text": "my address is goethestraße 39 34119 kassel",
+      "intent": "ProvideAddress",
+      "entities": [
+        {
+          "entity": "ZipCode",
+          "startPos": 30,
+          "endPos": 34
+        },
+        {
+          "entity": "Street",
+          "startPos": 14,
+          "endPos": 25
+        },
+        {
+          "entity": "Number",
+          "startPos": 27,
+          "endPos": 28
+        },
+        {
+          "entity": "City",
+          "startPos": 36,
+          "endPos": 41
+        },
+        {
+          "entity": "StreetAndNumber",
+          "startPos": 14,
+          "endPos": 28
+        }
+      ]
+    },
+    {
+      "text": "my address is kiel and the street is \"von-der-tann-straße 24\"",
+      "intent": "ProvideAddress",
+      "entities": [
+        {
+          "entity": "Street",
+          "startPos": 38,
+          "endPos": 56
+        },
+        {
+          "entity": "Number",
+          "startPos": 58,
+          "endPos": 59
+        },
+        {
+          "entity": "City",
+          "startPos": 14,
+          "endPos": 17
+        },
+        {
+          "entity": "StreetAndNumber",
+          "startPos": 38,
+          "endPos": 59
+        }
+      ]
+    },
+    {
+      "text": "offenbach am main",
+      "intent": "ProvideAddress",
+      "entities": [
+        {
+          "entity": "City",
+          "startPos": 0,
+          "endPos": 16
+        }
+      ]
+    },
+    {
+      "text": "nuremberg, adamstraße number 8",
+      "intent": "ProvideAddress",
+      "entities": [
+        {
+          "entity": "Street",
+          "startPos": 11,
+          "endPos": 27
+        },
+        {
+          "entity": "Number",
+          "startPos": 29,
+          "endPos": 29
+        },
+        {
+          "entity": "City",
+          "startPos": 0,
+          "endPos": 8
+        },
+        {
+          "entity": "StreetAndNumber",
+          "startPos": 11,
+          "endPos": 29
+        }
+      ]
+    },
+    {
+      "text": "in stuttgart",
+      "intent": "ProvideAddress",
+      "entities": [
+        {
+          "entity": "City",
+          "startPos": 3,
+          "endPos": 11
+        }
+      ]
+    },
+    {
+      "text": "reinhold-tiling-weg number 14 osnabrück",
+      "intent": "ProvideAddress",
+      "entities": [
+        {
+          "entity": "Street",
+          "startPos": 0,
+          "endPos": 25
+        },
+        {
+          "entity": "Number",
+          "startPos": 27,
+          "endPos": 28
+        },
+        {
+          "entity": "City",
+          "startPos": 30,
+          "endPos": 38
+        },
+        {
+          "entity": "StreetAndNumber",
+          "startPos": 0,
+          "endPos": 28
+        }
+      ]
+    },
+    {
+      "text": "reilshof 6",
+      "intent": "ProvideAddress",
+      "entities": [
+        {
+          "entity": "Street",
+          "startPos": 0,
+          "endPos": 7
+        },
+        {
+          "entity": "Number",
+          "startPos": 9,
+          "endPos": 9
+        },
+        {
+          "entity": "StreetAndNumber",
+          "startPos": 0,
+          "endPos": 9
+        }
+      ]
+    },
+    {
+      "text": "right now, i am in freiburg, \"unterlinden 7\"",
+      "intent": "ProvideAddress",
+      "entities": [
+        {
+          "entity": "Street",
+          "startPos": 30,
+          "endPos": 40
+        },
+        {
+          "entity": "Number",
+          "startPos": 42,
+          "endPos": 42
+        },
+        {
+          "entity": "City",
+          "startPos": 19,
+          "endPos": 26
+        },
+        {
+          "entity": "StreetAndNumber",
+          "startPos": 30,
+          "endPos": 42
+        }
+      ]
+    },
+    {
+      "text": "right now i'm in wiesbaden in am speiergarten 24d",
+      "intent": "ProvideAddress",
+      "entities": [
+        {
+          "entity": "Street",
+          "startPos": 33,
+          "endPos": 44
+        },
+        {
+          "entity": "Number",
+          "startPos": 46,
+          "endPos": 48
+        },
+        {
+          "entity": "City",
+          "startPos": 17,
+          "endPos": 25
+        },
+        {
+          "entity": "StreetAndNumber",
+          "startPos": 33,
+          "endPos": 48
+        }
+      ]
+    },
+    {
+      "text": "right now i am in trier in the street vor plein 4",
+      "intent": "ProvideAddress",
+      "entities": [
+        {
+          "entity": "Street",
+          "startPos": 31,
+          "endPos": 46
+        },
+        {
+          "entity": "Number",
+          "startPos": 48,
+          "endPos": 48
+        },
+        {
+          "entity": "City",
+          "startPos": 18,
+          "endPos": 22
+        },
+        {
+          "entity": "StreetAndNumber",
+          "startPos": 31,
+          "endPos": 48
+        }
+      ]
+    },
+    {
+      "text": "right now, i'm in the gutenbergstraße number 36, bremen",
+      "intent": "ProvideAddress",
+      "entities": [
+        {
+          "entity": "Street",
+          "startPos": 22,
+          "endPos": 36
+        },
+        {
+          "entity": "Number",
+          "startPos": 45,
+          "endPos": 46
+        },
+        {
+          "entity": "City",
+          "startPos": 49,
+          "endPos": 54
+        },
+        {
+          "entity": "StreetAndNumber",
+          "startPos": 22,
+          "endPos": 46
+        }
+      ]
+    },
+    {
+      "text": "right now i'm in the lewitstraße 54 in dusseldorf",
+      "intent": "ProvideAddress",
+      "entities": [
+        {
+          "entity": "Street",
+          "startPos": 21,
+          "endPos": 31
+        },
+        {
+          "entity": "Number",
+          "startPos": 33,
+          "endPos": 34
+        },
+        {
+          "entity": "City",
+          "startPos": 39,
+          "endPos": 48
+        },
+        {
+          "entity": "StreetAndNumber",
+          "startPos": 21,
+          "endPos": 34
+        }
+      ]
+    },
+    {
+      "text": "right now, i'm in the street \"am kleibach 14a\" in muenster",
+      "intent": "ProvideAddress",
+      "entities": [
+        {
+          "entity": "Street",
+          "startPos": 30,
+          "endPos": 40
+        },
+        {
+          "entity": "Number",
+          "startPos": 42,
+          "endPos": 44
+        },
+        {
+          "entity": "City",
+          "startPos": 50,
+          "endPos": 57
+        },
+        {
+          "entity": "StreetAndNumber",
+          "startPos": 30,
+          "endPos": 44
+        }
+      ]
+    },
+    {
+      "text": "in wolfsburg",
+      "intent": "ProvideAddress",
+      "entities": [
+        {
+          "entity": "City",
+          "startPos": 3,
+          "endPos": 11
+        }
+      ]
+    },
+    {
+      "text": "right now, i' am in solingen city.",
+      "intent": "ProvideAddress",
+      "entities": [
+        {
+          "entity": "City",
+          "startPos": 20,
+          "endPos": 27
+        }
+      ]
+    },
+    {
+      "text": "schalker str. 111",
+      "intent": "ProvideAddress",
+      "entities": [
+        {
+          "entity": "Street",
+          "startPos": 0,
+          "endPos": 12
+        },
+        {
+          "entity": "Number",
+          "startPos": 14,
+          "endPos": 16
+        },
+        {
+          "entity": "StreetAndNumber",
+          "startPos": 0,
+          "endPos": 16
+        }
+      ]
+    },
+    {
+      "text": "schubertstraße 19a",
+      "intent": "ProvideAddress",
+      "entities": [
+        {
+          "entity": "Street",
+          "startPos": 0,
+          "endPos": 13
+        },
+        {
+          "entity": "Number",
+          "startPos": 15,
+          "endPos": 17
+        },
+        {
+          "entity": "StreetAndNumber",
+          "startPos": 0,
+          "endPos": 17
+        }
+      ]
+    },
+    {
+      "text": "the address is \"jungfernstieg 26\" in kiel",
+      "intent": "ProvideAddress",
+      "entities": [
+        {
+          "entity": "Street",
+          "startPos": 16,
+          "endPos": 28
+        },
+        {
+          "entity": "Number",
+          "startPos": 30,
+          "endPos": 31
+        },
+        {
+          "entity": "City",
+          "startPos": 37,
+          "endPos": 40
+        },
+        {
+          "entity": "StreetAndNumber",
+          "startPos": 16,
+          "endPos": 31
+        }
+      ]
+    },
+    {
+      "text": "the address is am alten markt 9, in potsdam",
+      "intent": "ProvideAddress",
+      "entities": [
+        {
+          "entity": "Street",
+          "startPos": 15,
+          "endPos": 28
+        },
+        {
+          "entity": "Number",
+          "startPos": 30,
+          "endPos": 30
+        },
+        {
+          "entity": "City",
+          "startPos": 36,
+          "endPos": 42
+        },
+        {
+          "entity": "StreetAndNumber",
+          "startPos": 15,
+          "endPos": 30
+        }
+      ]
+    },
+    {
+      "text": "the city is bergisch gladbach and the street is am fürstenbrünnchen number 24",
+      "intent": "ProvideAddress",
+      "entities": [
+        {
+          "entity": "Street",
+          "startPos": 51,
+          "endPos": 66
+        },
+        {
+          "entity": "Number",
+          "startPos": 75,
+          "endPos": 76
+        },
+        {
+          "entity": "City",
+          "startPos": 12,
+          "endPos": 28
+        },
+        {
+          "entity": "StreetAndNumber",
+          "startPos": 51,
+          "endPos": 76
+        }
+      ]
+    },
+    {
+      "text": "the city of aachen. neupforte 24",
+      "intent": "ProvideAddress",
+      "entities": [
+        {
+          "entity": "Street",
+          "startPos": 20,
+          "endPos": 28
+        },
+        {
+          "entity": "Number",
+          "startPos": 30,
+          "endPos": 31
+        },
+        {
+          "entity": "City",
+          "startPos": 12,
+          "endPos": 17
+        },
+        {
+          "entity": "StreetAndNumber",
+          "startPos": 20,
+          "endPos": 31
+        }
+      ]
+    },
+    {
+      "text": "the street is \"westliche ringstraße 18\"",
+      "intent": "ProvideAddress",
+      "entities": [
+        {
+          "entity": "Street",
+          "startPos": 15,
+          "endPos": 34
+        },
+        {
+          "entity": "Number",
+          "startPos": 36,
+          "endPos": 37
+        },
+        {
+          "entity": "StreetAndNumber",
+          "startPos": 15,
+          "endPos": 37
+        }
+      ]
+    },
+    {
+      "text": "the street is sack 8 and the city braunschweig",
+      "intent": "ProvideAddress",
+      "entities": [
+        {
+          "entity": "Street",
+          "startPos": 14,
+          "endPos": 17
+        },
+        {
+          "entity": "Number",
+          "startPos": 19,
+          "endPos": 19
+        },
+        {
+          "entity": "City",
+          "startPos": 34,
+          "endPos": 45
+        },
+        {
+          "entity": "StreetAndNumber",
+          "startPos": 14,
+          "endPos": 19
+        }
+      ]
+    },
+    {
+      "text": "the street is: bienenstück street number 8 in koblenz",
+      "intent": "ProvideAddress",
+      "entities": [
+        {
+          "entity": "Street",
+          "startPos": 15,
+          "endPos": 32
+        },
+        {
+          "entity": "Number",
+          "startPos": 41,
+          "endPos": 41
+        },
+        {
+          "entity": "City",
+          "startPos": 46,
+          "endPos": 52
+        },
+        {
+          "entity": "StreetAndNumber",
+          "startPos": 15,
+          "endPos": 41
+        }
+      ]
+    },
+    {
+      "text": "the street name is kanalstraße in augsburg",
+      "intent": "ProvideAddress",
+      "entities": [
+        {
+          "entity": "Street",
+          "startPos": 19,
+          "endPos": 29
+        },
+        {
+          "entity": "City",
+          "startPos": 34,
+          "endPos": 41
+        },
+        {
+          "entity": "StreetAndNumber",
+          "startPos": 19,
+          "endPos": 29
+        }
+      ]
+    },
+    {
+      "text": "theodor-heuss-allee 15",
+      "intent": "ProvideAddress",
+      "entities": [
+        {
+          "entity": "Street",
+          "startPos": 0,
+          "endPos": 18
+        },
+        {
+          "entity": "Number",
+          "startPos": 20,
+          "endPos": 21
+        },
+        {
+          "entity": "StreetAndNumber",
+          "startPos": 0,
+          "endPos": 21
+        }
+      ]
+    },
+    {
+      "text": "this is 09130 in chemnitz. street and number is sebastian-bach-straße 18",
+      "intent": "ProvideAddress",
+      "entities": [
+        {
+          "entity": "ZipCode",
+          "startPos": 8,
+          "endPos": 12
+        },
+        {
+          "entity": "Street",
+          "startPos": 48,
+          "endPos": 68
+        },
+        {
+          "entity": "Number",
+          "startPos": 70,
+          "endPos": 71
+        },
+        {
+          "entity": "City",
+          "startPos": 17,
+          "endPos": 24
+        },
+        {
+          "entity": "StreetAndNumber",
+          "startPos": 48,
+          "endPos": 71
+        }
+      ]
+    },
+    {
+      "text": "this is 14",
+      "intent": "ProvideAddress",
+      "entities": [
+        {
+          "entity": "Number",
+          "startPos": 8,
+          "endPos": 9
+        },
+        {
+          "entity": "StreetAndNumber",
+          "startPos": 8,
+          "endPos": 9
+        }
+      ]
+    },
+    {
+      "text": "this is in \"27574 bremerhaven\" and the street is am klint 16",
+      "intent": "ProvideAddress",
+      "entities": [
+        {
+          "entity": "ZipCode",
+          "startPos": 12,
+          "endPos": 16
+        },
+        {
+          "entity": "Street",
+          "startPos": 49,
+          "endPos": 56
+        },
+        {
+          "entity": "Number",
+          "startPos": 58,
+          "endPos": 59
+        },
+        {
+          "entity": "City",
+          "startPos": 18,
+          "endPos": 28
+        },
+        {
+          "entity": "StreetAndNumber",
+          "startPos": 49,
+          "endPos": 59
+        }
+      ]
+    },
+    {
+      "text": "this is in pforzheim, the güterbahnhof 11a",
+      "intent": "ProvideAddress",
+      "entities": [
+        {
+          "entity": "Street",
+          "startPos": 26,
+          "endPos": 37
+        },
+        {
+          "entity": "Number",
+          "startPos": 39,
+          "endPos": 41
+        },
+        {
+          "entity": "City",
+          "startPos": 11,
+          "endPos": 19
+        },
+        {
+          "entity": "StreetAndNumber",
+          "startPos": 26,
+          "endPos": 41
+        }
+      ]
+    },
+    {
+      "text": "this is in bochum, huestraße 14",
+      "intent": "ProvideAddress",
+      "entities": [
+        {
+          "entity": "Street",
+          "startPos": 19,
+          "endPos": 27
+        },
+        {
+          "entity": "Number",
+          "startPos": 29,
+          "endPos": 30
+        },
+        {
+          "entity": "City",
+          "startPos": 11,
+          "endPos": 16
+        },
+        {
+          "entity": "StreetAndNumber",
+          "startPos": 19,
+          "endPos": 30
+        }
+      ]
+    },
+    {
+      "text": "this is in freiburg im breisgau. in the roseggerstraße 7",
+      "intent": "ProvideAddress",
+      "entities": [
+        {
+          "entity": "Street",
+          "startPos": 40,
+          "endPos": 53
+        },
+        {
+          "entity": "Number",
+          "startPos": 55,
+          "endPos": 55
+        },
+        {
+          "entity": "City",
+          "startPos": 11,
+          "endPos": 30
+        },
+        {
+          "entity": "StreetAndNumber",
+          "startPos": 40,
+          "endPos": 55
+        }
+      ]
+    },
+    {
+      "text": "wiesenau 27, frankfurt am main",
+      "intent": "ProvideAddress",
+      "entities": [
+        {
+          "entity": "Street",
+          "startPos": 0,
+          "endPos": 7
+        },
+        {
+          "entity": "Number",
+          "startPos": 9,
+          "endPos": 10
+        },
+        {
+          "entity": "City",
+          "startPos": 13,
+          "endPos": 29
+        },
+        {
+          "entity": "StreetAndNumber",
+          "startPos": 0,
+          "endPos": 10
+        }
+      ]
+    },
+    {
+      "text": "wuppertal in otto-hausmann-ring 108",
+      "intent": "ProvideAddress",
+      "entities": [
+        {
+          "entity": "Street",
+          "startPos": 13,
+          "endPos": 30
+        },
+        {
+          "entity": "Number",
+          "startPos": 32,
+          "endPos": 34
+        },
+        {
+          "entity": "City",
+          "startPos": 0,
+          "endPos": 8
+        },
+        {
+          "entity": "StreetAndNumber",
+          "startPos": 13,
+          "endPos": 34
+        }
+      ]
+    },
+    {
+      "text": "downstairs",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Floor",
+          "startPos": 0,
+          "endPos": 9
+        }
+      ]
+    },
+    {
+      "text": "here are leftovers on the second floor",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Floor",
+          "startPos": 26,
+          "endPos": 37
+        },
+        {
+          "entity": "Symptom",
+          "startPos": 9,
+          "endPos": 17
+        }
+      ]
+    },
+    {
+      "text": "outside",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Orientation",
+          "startPos": 0,
+          "endPos": 6
+        }
+      ]
+    },
+    {
+      "text": "someone broke into the store",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Position",
+          "startPos": 23,
+          "endPos": 27
+        },
+        {
+          "entity": "Symptom",
+          "startPos": 8,
+          "endPos": 17
+        }
+      ]
+    },
+    {
+      "text": "someone spilled some tea on the rug",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Symptom",
+          "startPos": 8,
+          "endPos": 23
+        },
+        {
+          "entity": "Reference",
+          "startPos": 32,
+          "endPos": 34
+        }
+      ]
+    },
+    {
+      "text": "the elevator does not work",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Symptom",
+          "startPos": 13,
+          "endPos": 25
+        },
+        {
+          "entity": "Reference",
+          "startPos": 4,
+          "endPos": 11
+        }
+      ]
+    },
+    {
+      "text": "the extinguisher on the 3rd lvl is missing",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Floor",
+          "startPos": 24,
+          "endPos": 30
+        },
+        {
+          "entity": "Symptom",
+          "startPos": 35,
+          "endPos": 41
+        },
+        {
+          "entity": "Reference",
+          "startPos": 4,
+          "endPos": 15
+        }
+      ]
+    },
+    {
+      "text": "the first aid kit next to my work place is incomplete",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Position",
+          "startPos": 29,
+          "endPos": 38
+        },
+        {
+          "entity": "Symptom",
+          "startPos": 43,
+          "endPos": 52
+        },
+        {
+          "entity": "Orientation",
+          "startPos": 18,
+          "endPos": 24
+        },
+        {
+          "entity": "Reference",
+          "startPos": 4,
+          "endPos": 16
+        }
+      ]
+    },
+    {
+      "text": "the internet in room d42 doesn't work",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Position",
+          "startPos": 16,
+          "endPos": 19
+        },
+        {
+          "entity": "Symptom",
+          "startPos": 25,
+          "endPos": 36
+        },
+        {
+          "entity": "Number",
+          "startPos": 21,
+          "endPos": 23
+        },
+        {
+          "entity": "Reference",
+          "startPos": 4,
+          "endPos": 11
+        }
+      ]
+    },
+    {
+      "text": "134",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Number",
+          "startPos": 0,
+          "endPos": 2
+        }
+      ]
+    },
+    {
+      "text": "a pipe has broken",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Symptom",
+          "startPos": 7,
+          "endPos": 16
+        },
+        {
+          "entity": "Reference",
+          "startPos": 2,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "a pipe burst",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Symptom",
+          "startPos": 7,
+          "endPos": 11
+        },
+        {
+          "entity": "Reference",
+          "startPos": 2,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "a window is shattered",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Symptom",
+          "startPos": 12,
+          "endPos": 20
+        },
+        {
+          "entity": "Reference",
+          "startPos": 2,
+          "endPos": 7
+        }
+      ]
+    },
+    {
+      "text": "i can not get in my office",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Position",
+          "startPos": 20,
+          "endPos": 25
+        },
+        {
+          "entity": "Symptom",
+          "startPos": 2,
+          "endPos": 15
+        }
+      ]
+    },
+    {
+      "text": "i can't access my room",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Position",
+          "startPos": 18,
+          "endPos": 21
+        },
+        {
+          "entity": "Symptom",
+          "startPos": 2,
+          "endPos": 13
+        }
+      ]
+    },
+    {
+      "text": "i have no internet connection on my computer",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Symptom",
+          "startPos": 7,
+          "endPos": 28
+        },
+        {
+          "entity": "Reference",
+          "startPos": 36,
+          "endPos": 43
+        }
+      ]
+    },
+    {
+      "text": "i have no power at my workplace",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Position",
+          "startPos": 22,
+          "endPos": 30
+        },
+        {
+          "entity": "Symptom",
+          "startPos": 7,
+          "endPos": 14
+        }
+      ]
+    },
+    {
+      "text": "all over in the 4th level",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Floor",
+          "startPos": 16,
+          "endPos": 24
+        }
+      ]
+    },
+    {
+      "text": "in my office, room 5.46",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Position",
+          "startPos": 14,
+          "endPos": 17
+        },
+        {
+          "entity": "Number",
+          "startPos": 19,
+          "endPos": 22
+        }
+      ]
+    },
+    {
+      "text": "in my room 345",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Position",
+          "startPos": 6,
+          "endPos": 9
+        },
+        {
+          "entity": "Number",
+          "startPos": 11,
+          "endPos": 13
+        }
+      ]
+    },
+    {
+      "text": "in the basement theres a flickering light",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Position",
+          "startPos": 7,
+          "endPos": 14
+        },
+        {
+          "entity": "Symptom",
+          "startPos": 25,
+          "endPos": 34
+        },
+        {
+          "entity": "Reference",
+          "startPos": 36,
+          "endPos": 40
+        }
+      ]
+    },
+    {
+      "text": "in the fifth storey room number d243",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Position",
+          "startPos": 13,
+          "endPos": 23
+        },
+        {
+          "entity": "Number",
+          "startPos": 32,
+          "endPos": 35
+        }
+      ]
+    },
+    {
+      "text": "in the ground level",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Floor",
+          "startPos": 7,
+          "endPos": 18
+        }
+      ]
+    },
+    {
+      "text": "in the hallway of the ground floor",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Floor",
+          "startPos": 22,
+          "endPos": 33
+        },
+        {
+          "entity": "Position",
+          "startPos": 7,
+          "endPos": 13
+        }
+      ]
+    },
+    {
+      "text": "in the jewelry store in the first floor",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Floor",
+          "startPos": 28,
+          "endPos": 38
+        },
+        {
+          "entity": "Position",
+          "startPos": 15,
+          "endPos": 19
+        }
+      ]
+    },
+    {
+      "text": "it's super hot in the office",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Position",
+          "startPos": 22,
+          "endPos": 27
+        },
+        {
+          "entity": "Symptom",
+          "startPos": 5,
+          "endPos": 13
+        }
+      ]
+    },
+    {
+      "text": "it's very cold in here",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Symptom",
+          "startPos": 5,
+          "endPos": 13
+        }
+      ]
+    },
+    {
+      "text": "main floor",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Floor",
+          "startPos": 0,
+          "endPos": 9
+        }
+      ]
+    },
+    {
+      "text": "my room number is 16d",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Position",
+          "startPos": 3,
+          "endPos": 6
+        },
+        {
+          "entity": "Number",
+          "startPos": 18,
+          "endPos": 20
+        }
+      ]
+    },
+    {
+      "text": "next to the entrance stairway",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Position",
+          "startPos": 12,
+          "endPos": 28
+        },
+        {
+          "entity": "Orientation",
+          "startPos": 0,
+          "endPos": 6
+        }
+      ]
+    },
+    {
+      "text": "on the fifth floor",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Floor",
+          "startPos": 7,
+          "endPos": 17
+        }
+      ]
+    },
+    {
+      "text": "on the ground floor",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Floor",
+          "startPos": 7,
+          "endPos": 18
+        }
+      ]
+    },
+    {
+      "text": "on the ground floor in hall c4",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Floor",
+          "startPos": 7,
+          "endPos": 18
+        },
+        {
+          "entity": "Position",
+          "startPos": 23,
+          "endPos": 26
+        },
+        {
+          "entity": "Number",
+          "startPos": 28,
+          "endPos": 29
+        }
+      ]
+    },
+    {
+      "text": "on the second floor",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Floor",
+          "startPos": 7,
+          "endPos": 18
+        }
+      ]
+    },
+    {
+      "text": "on the upper floor",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Floor",
+          "startPos": 7,
+          "endPos": 17
+        }
+      ]
+    },
+    {
+      "text": "room no 5.233",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Position",
+          "startPos": 0,
+          "endPos": 3
+        },
+        {
+          "entity": "Number",
+          "startPos": 8,
+          "endPos": 12
+        }
+      ]
+    },
+    {
+      "text": "room number 434-3",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Position",
+          "startPos": 0,
+          "endPos": 3
+        },
+        {
+          "entity": "Number",
+          "startPos": 12,
+          "endPos": 16
+        }
+      ]
+    },
+    {
+      "text": "room number e.42",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Position",
+          "startPos": 0,
+          "endPos": 3
+        },
+        {
+          "entity": "Number",
+          "startPos": 12,
+          "endPos": 15
+        }
+      ]
+    },
+    {
+      "text": "seems like the boiler room",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Position",
+          "startPos": 15,
+          "endPos": 25
+        }
+      ]
+    },
+    {
+      "text": "sixth storey",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Floor",
+          "startPos": 0,
+          "endPos": 11
+        }
+      ]
+    },
+    {
+      "text": "the door next to the technical room didn't close properly",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Position",
+          "startPos": 21,
+          "endPos": 34
+        },
+        {
+          "entity": "Symptom",
+          "startPos": 36,
+          "endPos": 56
+        },
+        {
+          "entity": "Orientation",
+          "startPos": 9,
+          "endPos": 15
+        },
+        {
+          "entity": "Reference",
+          "startPos": 4,
+          "endPos": 7
+        }
+      ]
+    },
+    {
+      "text": "the door in the store room is squeaking",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Position",
+          "startPos": 16,
+          "endPos": 25
+        },
+        {
+          "entity": "Symptom",
+          "startPos": 30,
+          "endPos": 38
+        },
+        {
+          "entity": "Reference",
+          "startPos": 4,
+          "endPos": 7
+        }
+      ]
+    },
+    {
+      "text": "the electricity is failing",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Symptom",
+          "startPos": 19,
+          "endPos": 25
+        },
+        {
+          "entity": "Reference",
+          "startPos": 4,
+          "endPos": 14
+        }
+      ]
+    },
+    {
+      "text": "the elevator on the north side",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Orientation",
+          "startPos": 20,
+          "endPos": 29
+        },
+        {
+          "entity": "Reference",
+          "startPos": 4,
+          "endPos": 11
+        }
+      ]
+    },
+    {
+      "text": "the fire drencher is out-of-date",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Symptom",
+          "startPos": 21,
+          "endPos": 31
+        },
+        {
+          "entity": "Reference",
+          "startPos": 4,
+          "endPos": 16
+        }
+      ]
+    },
+    {
+      "text": "the fire extinguisher is expired",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Symptom",
+          "startPos": 25,
+          "endPos": 31
+        },
+        {
+          "entity": "Reference",
+          "startPos": 4,
+          "endPos": 20
+        }
+      ]
+    },
+    {
+      "text": "the front door is demolished",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Position",
+          "startPos": 4,
+          "endPos": 13
+        },
+        {
+          "entity": "Symptom",
+          "startPos": 18,
+          "endPos": 27
+        }
+      ]
+    },
+    {
+      "text": "the front side of the building",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Position",
+          "startPos": 22,
+          "endPos": 29
+        },
+        {
+          "entity": "Orientation",
+          "startPos": 4,
+          "endPos": 13
+        }
+      ]
+    },
+    {
+      "text": "the lighting for escape routes is partially defect",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Symptom",
+          "startPos": 34,
+          "endPos": 49
+        },
+        {
+          "entity": "Reference",
+          "startPos": 4,
+          "endPos": 29
+        }
+      ]
+    },
+    {
+      "text": "the lights in the storage room are defect",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Position",
+          "startPos": 18,
+          "endPos": 29
+        },
+        {
+          "entity": "Symptom",
+          "startPos": 35,
+          "endPos": 40
+        },
+        {
+          "entity": "Reference",
+          "startPos": 4,
+          "endPos": 9
+        }
+      ]
+    },
+    {
+      "text": "the lounge is extremely dirty",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Position",
+          "startPos": 4,
+          "endPos": 9
+        },
+        {
+          "entity": "Symptom",
+          "startPos": 14,
+          "endPos": 28
+        }
+      ]
+    },
+    {
+      "text": "the reception is filthy",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Position",
+          "startPos": 4,
+          "endPos": 12
+        },
+        {
+          "entity": "Symptom",
+          "startPos": 17,
+          "endPos": 22
+        }
+      ]
+    },
+    {
+      "text": "the roller door is defective",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Symptom",
+          "startPos": 19,
+          "endPos": 27
+        },
+        {
+          "entity": "Reference",
+          "startPos": 4,
+          "endPos": 14
+        }
+      ]
+    },
+    {
+      "text": "the stairwell is full of spider webs",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Position",
+          "startPos": 4,
+          "endPos": 12
+        },
+        {
+          "entity": "Symptom",
+          "startPos": 17,
+          "endPos": 35
+        }
+      ]
+    },
+    {
+      "text": "the toilet on the second lvl",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Floor",
+          "startPos": 18,
+          "endPos": 27
+        },
+        {
+          "entity": "Reference",
+          "startPos": 4,
+          "endPos": 9
+        }
+      ]
+    },
+    {
+      "text": "the escalator on the southern area doesn't work",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Symptom",
+          "startPos": 35,
+          "endPos": 46
+        },
+        {
+          "entity": "Orientation",
+          "startPos": 21,
+          "endPos": 33
+        },
+        {
+          "entity": "Reference",
+          "startPos": 4,
+          "endPos": 12
+        }
+      ]
+    },
+    {
+      "text": "the trees are endangering the building",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Position",
+          "startPos": 30,
+          "endPos": 37
+        },
+        {
+          "entity": "Symptom",
+          "startPos": 14,
+          "endPos": 24
+        },
+        {
+          "entity": "Reference",
+          "startPos": 4,
+          "endPos": 8
+        }
+      ]
+    },
+    {
+      "text": "there is a fire in the kitchen",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Position",
+          "startPos": 23,
+          "endPos": 29
+        },
+        {
+          "entity": "Reference",
+          "startPos": 11,
+          "endPos": 14
+        }
+      ]
+    },
+    {
+      "text": "there was a hold-up",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Symptom",
+          "startPos": 12,
+          "endPos": 18
+        }
+      ]
+    },
+    {
+      "text": "there were burglars",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Reference",
+          "startPos": 11,
+          "endPos": 18
+        }
+      ]
+    },
+    {
+      "text": "the air conditioning in room no. 325 isn't working",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Position",
+          "startPos": 24,
+          "endPos": 27
+        },
+        {
+          "entity": "Symptom",
+          "startPos": 37,
+          "endPos": 49
+        },
+        {
+          "entity": "Number",
+          "startPos": 33,
+          "endPos": 35
+        },
+        {
+          "entity": "Reference",
+          "startPos": 4,
+          "endPos": 19
+        }
+      ]
+    },
+    {
+      "text": "the web in room 534 is down",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Position",
+          "startPos": 11,
+          "endPos": 14
+        },
+        {
+          "entity": "Symptom",
+          "startPos": 23,
+          "endPos": 26
+        },
+        {
+          "entity": "Number",
+          "startPos": 16,
+          "endPos": 18
+        },
+        {
+          "entity": "Reference",
+          "startPos": 4,
+          "endPos": 6
+        }
+      ]
+    },
+    {
+      "text": "there are hot chocolate spots on the wall",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Symptom",
+          "startPos": 10,
+          "endPos": 28
+        },
+        {
+          "entity": "Reference",
+          "startPos": 37,
+          "endPos": 40
+        }
+      ]
+    },
+    {
+      "text": "there are some minor coffee stains on the carpet",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Symptom",
+          "startPos": 21,
+          "endPos": 33
+        },
+        {
+          "entity": "Reference",
+          "startPos": 42,
+          "endPos": 47
+        }
+      ]
+    },
+    {
+      "text": "there are terrorists",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Reference",
+          "startPos": 10,
+          "endPos": 19
+        }
+      ]
+    },
+    {
+      "text": "there is no electricity in the whole building",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Symptom",
+          "startPos": 9,
+          "endPos": 22
+        },
+        {
+          "entity": "Symptom",
+          "startPos": 37,
+          "endPos": 44
+        },
+        {
+          "entity": "Orientation",
+          "startPos": 31,
+          "endPos": 35
+        }
+      ]
+    },
+    {
+      "text": "there is no power on the third floor",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Floor",
+          "startPos": 25,
+          "endPos": 35
+        },
+        {
+          "entity": "Symptom",
+          "startPos": 9,
+          "endPos": 16
+        }
+      ]
+    },
+    {
+      "text": "there's a window in the cellar that can not be opened",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Position",
+          "startPos": 24,
+          "endPos": 29
+        },
+        {
+          "entity": "Symptom",
+          "startPos": 36,
+          "endPos": 52
+        },
+        {
+          "entity": "Reference",
+          "startPos": 10,
+          "endPos": 15
+        }
+      ]
+    },
+    {
+      "text": "this is 1225",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Number",
+          "startPos": 8,
+          "endPos": 11
+        }
+      ]
+    },
+    {
+      "text": "throughout the building",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Position",
+          "startPos": 15,
+          "endPos": 22
+        },
+        {
+          "entity": "Orientation",
+          "startPos": 0,
+          "endPos": 9
+        }
+      ]
+    },
+    {
+      "text": "top floor",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Floor",
+          "startPos": 0,
+          "endPos": 8
+        }
+      ]
+    },
+    {
+      "text": "a light in the hallway is flickering",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Position",
+          "startPos": 15,
+          "endPos": 21
+        },
+        {
+          "entity": "Symptom",
+          "startPos": 26,
+          "endPos": 35
+        },
+        {
+          "entity": "Reference",
+          "startPos": 2,
+          "endPos": 6
+        }
+      ]
+    },
+    {
+      "text": "a light in the room 3.42 is flickering",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Position",
+          "startPos": 15,
+          "endPos": 18
+        },
+        {
+          "entity": "Symptom",
+          "startPos": 28,
+          "endPos": 37
+        },
+        {
+          "entity": "Number",
+          "startPos": 20,
+          "endPos": 23
+        },
+        {
+          "entity": "Reference",
+          "startPos": 2,
+          "endPos": 6
+        }
+      ]
+    },
+    {
+      "text": "a wall in the cafeteria is damp",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Position",
+          "startPos": 14,
+          "endPos": 22
+        },
+        {
+          "entity": "Symptom",
+          "startPos": 27,
+          "endPos": 30
+        },
+        {
+          "entity": "Reference",
+          "startPos": 2,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "a wall in the basement is damp",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Position",
+          "startPos": 14,
+          "endPos": 21
+        },
+        {
+          "entity": "Symptom",
+          "startPos": 26,
+          "endPos": 29
+        },
+        {
+          "entity": "Reference",
+          "startPos": 2,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "blocks of ice are falling from the roof",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Position",
+          "startPos": 35,
+          "endPos": 38
+        },
+        {
+          "entity": "Symptom",
+          "startPos": 18,
+          "endPos": 24
+        },
+        {
+          "entity": "Reference",
+          "startPos": 0,
+          "endPos": 12
+        }
+      ]
+    },
+    {
+      "text": "dented door in the 3rd level",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Floor",
+          "startPos": 19,
+          "endPos": 27
+        },
+        {
+          "entity": "Symptom",
+          "startPos": 0,
+          "endPos": 5
+        },
+        {
+          "entity": "Reference",
+          "startPos": 7,
+          "endPos": 10
+        }
+      ]
+    },
+    {
+      "text": "dirty toilet",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Symptom",
+          "startPos": 0,
+          "endPos": 4
+        },
+        {
+          "entity": "Reference",
+          "startPos": 6,
+          "endPos": 11
+        }
+      ]
+    },
+    {
+      "text": "in the information area",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Position",
+          "startPos": 7,
+          "endPos": 22
+        }
+      ]
+    },
+    {
+      "text": "girl's room in the 2nd lvl",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Floor",
+          "startPos": 19,
+          "endPos": 25
+        },
+        {
+          "entity": "Position",
+          "startPos": 0,
+          "endPos": 10
+        }
+      ]
+    },
+    {
+      "text": "is 5th floor room number 42",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Floor",
+          "startPos": 3,
+          "endPos": 11
+        },
+        {
+          "entity": "Position",
+          "startPos": 13,
+          "endPos": 16
+        },
+        {
+          "entity": "Number",
+          "startPos": 25,
+          "endPos": 26
+        }
+      ]
+    },
+    {
+      "text": "my computer doesn't boot",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Symptom",
+          "startPos": 12,
+          "endPos": 23
+        },
+        {
+          "entity": "Reference",
+          "startPos": 3,
+          "endPos": 10
+        }
+      ]
+    },
+    {
+      "text": "my laptop doesn't connect to the internet",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Reference",
+          "startPos": 3,
+          "endPos": 8
+        },
+        {
+          "entity": "Reference",
+          "startPos": 10,
+          "endPos": 40
+        }
+      ]
+    },
+    {
+      "text": "the air in the storeroom is stale",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Position",
+          "startPos": 15,
+          "endPos": 23
+        },
+        {
+          "entity": "Symptom",
+          "startPos": 28,
+          "endPos": 32
+        },
+        {
+          "entity": "Reference",
+          "startPos": 4,
+          "endPos": 6
+        }
+      ]
+    },
+    {
+      "text": "the air is suffocating",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Symptom",
+          "startPos": 11,
+          "endPos": 21
+        },
+        {
+          "entity": "Reference",
+          "startPos": 4,
+          "endPos": 6
+        }
+      ]
+    },
+    {
+      "text": "the basement is too hot",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Position",
+          "startPos": 4,
+          "endPos": 11
+        },
+        {
+          "entity": "Symptom",
+          "startPos": 16,
+          "endPos": 22
+        }
+      ]
+    },
+    {
+      "text": "the costumer area is smelly",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Position",
+          "startPos": 4,
+          "endPos": 16
+        },
+        {
+          "entity": "Symptom",
+          "startPos": 21,
+          "endPos": 26
+        }
+      ]
+    },
+    {
+      "text": "the dining hall stinks brutally",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Position",
+          "startPos": 4,
+          "endPos": 14
+        },
+        {
+          "entity": "Symptom",
+          "startPos": 16,
+          "endPos": 30
+        }
+      ]
+    },
+    {
+      "text": "the foyer looks devastated",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Position",
+          "startPos": 4,
+          "endPos": 8
+        },
+        {
+          "entity": "Symptom",
+          "startPos": 16,
+          "endPos": 25
+        }
+      ]
+    },
+    {
+      "text": "the garden is messy",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Position",
+          "startPos": 4,
+          "endPos": 9
+        },
+        {
+          "entity": "Symptom",
+          "startPos": 14,
+          "endPos": 18
+        }
+      ]
+    },
+    {
+      "text": "the garden was vandalized",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Position",
+          "startPos": 4,
+          "endPos": 9
+        },
+        {
+          "entity": "Symptom",
+          "startPos": 15,
+          "endPos": 24
+        }
+      ]
+    },
+    {
+      "text": "the restroom is under water",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Position",
+          "startPos": 4,
+          "endPos": 11
+        },
+        {
+          "entity": "Symptom",
+          "startPos": 16,
+          "endPos": 26
+        }
+      ]
+    },
+    {
+      "text": "the sink in the girls room on the ground floor is messy",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Floor",
+          "startPos": 34,
+          "endPos": 45
+        },
+        {
+          "entity": "Position",
+          "startPos": 16,
+          "endPos": 25
+        },
+        {
+          "entity": "Symptom",
+          "startPos": 50,
+          "endPos": 54
+        },
+        {
+          "entity": "Reference",
+          "startPos": 4,
+          "endPos": 7
+        }
+      ]
+    },
+    {
+      "text": "the stairway has been cleansed not very carefully",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Position",
+          "startPos": 4,
+          "endPos": 11
+        },
+        {
+          "entity": "Symptom",
+          "startPos": 22,
+          "endPos": 48
+        }
+      ]
+    },
+    {
+      "text": "the storage space is overheated",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Position",
+          "startPos": 4,
+          "endPos": 16
+        },
+        {
+          "entity": "Symptom",
+          "startPos": 21,
+          "endPos": 30
+        }
+      ]
+    },
+    {
+      "text": "the toilet on the ground floor doesn't flush right",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Floor",
+          "startPos": 18,
+          "endPos": 29
+        },
+        {
+          "entity": "Symptom",
+          "startPos": 31,
+          "endPos": 49
+        },
+        {
+          "entity": "Reference",
+          "startPos": 4,
+          "endPos": 9
+        }
+      ]
+    },
+    {
+      "text": "the temperature in the technical room is wrong",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Position",
+          "startPos": 23,
+          "endPos": 36
+        },
+        {
+          "entity": "Symptom",
+          "startPos": 41,
+          "endPos": 45
+        },
+        {
+          "entity": "Reference",
+          "startPos": 4,
+          "endPos": 14
+        }
+      ]
+    },
+    {
+      "text": "the trash is overflowing",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Position",
+          "startPos": 4,
+          "endPos": 8
+        },
+        {
+          "entity": "Symptom",
+          "startPos": 13,
+          "endPos": 23
+        }
+      ]
+    },
+    {
+      "text": "the ventilation has failed",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Symptom",
+          "startPos": 20,
+          "endPos": 25
+        },
+        {
+          "entity": "Reference",
+          "startPos": 4,
+          "endPos": 14
+        }
+      ]
+    },
+    {
+      "text": "the wall of the entrance room is damaged",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Position",
+          "startPos": 16,
+          "endPos": 28
+        },
+        {
+          "entity": "Symptom",
+          "startPos": 33,
+          "endPos": 39
+        },
+        {
+          "entity": "Reference",
+          "startPos": 4,
+          "endPos": 7
+        }
+      ]
+    },
+    {
+      "text": "the water faucet in the girl's room on the second lvl is squeaking",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Floor",
+          "startPos": 43,
+          "endPos": 52
+        },
+        {
+          "entity": "Position",
+          "startPos": 24,
+          "endPos": 34
+        },
+        {
+          "entity": "Symptom",
+          "startPos": 57,
+          "endPos": 65
+        },
+        {
+          "entity": "Reference",
+          "startPos": 4,
+          "endPos": 15
+        }
+      ]
+    },
+    {
+      "text": "the window in the open-plan office cannot be opened",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Position",
+          "startPos": 18,
+          "endPos": 33
+        },
+        {
+          "entity": "Symptom",
+          "startPos": 35,
+          "endPos": 50
+        },
+        {
+          "entity": "Reference",
+          "startPos": 4,
+          "endPos": 9
+        }
+      ]
+    },
+    {
+      "text": "the window lighting in the store isn't working",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Position",
+          "startPos": 27,
+          "endPos": 31
+        },
+        {
+          "entity": "Symptom",
+          "startPos": 33,
+          "endPos": 45
+        },
+        {
+          "entity": "Reference",
+          "startPos": 4,
+          "endPos": 18
+        }
+      ]
+    },
+    {
+      "text": "there are forgotten dowels in the cafeteria",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Position",
+          "startPos": 34,
+          "endPos": 42
+        },
+        {
+          "entity": "Symptom",
+          "startPos": 10,
+          "endPos": 18
+        },
+        {
+          "entity": "Reference",
+          "startPos": 20,
+          "endPos": 25
+        }
+      ]
+    },
+    {
+      "text": "there's a squeaking water faucet",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Symptom",
+          "startPos": 10,
+          "endPos": 18
+        },
+        {
+          "entity": "Reference",
+          "startPos": 20,
+          "endPos": 31
+        }
+      ]
+    },
+    {
+      "text": "there's a racist graffiti on the facade",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Position",
+          "startPos": 33,
+          "endPos": 38
+        },
+        {
+          "entity": "Reference",
+          "startPos": 10,
+          "endPos": 24
+        }
+      ]
+    },
+    {
+      "text": "toilet drain on the first floor is clogged up",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Floor",
+          "startPos": 20,
+          "endPos": 30
+        },
+        {
+          "entity": "Symptom",
+          "startPos": 35,
+          "endPos": 44
+        },
+        {
+          "entity": "Reference",
+          "startPos": 0,
+          "endPos": 11
+        }
+      ]
+    },
+    {
+      "text": "toilet got cleaned insufficiently",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Symptom",
+          "startPos": 11,
+          "endPos": 32
+        },
+        {
+          "entity": "Reference",
+          "startPos": 0,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "toilet of the girls room on the 5th lvl won't flush",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Floor",
+          "startPos": 32,
+          "endPos": 38
+        },
+        {
+          "entity": "Position",
+          "startPos": 14,
+          "endPos": 23
+        },
+        {
+          "entity": "Symptom",
+          "startPos": 40,
+          "endPos": 50
+        },
+        {
+          "entity": "Reference",
+          "startPos": 0,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "too humid at my workstation",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Position",
+          "startPos": 16,
+          "endPos": 26
+        },
+        {
+          "entity": "Symptom",
+          "startPos": 0,
+          "endPos": 8
+        }
+      ]
+    },
+    {
+      "text": "the air conditioning on the third floor doesn't work",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Floor",
+          "startPos": 28,
+          "endPos": 38
+        },
+        {
+          "entity": "Symptom",
+          "startPos": 40,
+          "endPos": 51
+        },
+        {
+          "entity": "Reference",
+          "startPos": 4,
+          "endPos": 19
+        }
+      ]
+    },
+    {
+      "text": "the doors paint on the ground floor is worn out",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Floor",
+          "startPos": 23,
+          "endPos": 34
+        },
+        {
+          "entity": "Symptom",
+          "startPos": 39,
+          "endPos": 46
+        },
+        {
+          "entity": "Reference",
+          "startPos": 4,
+          "endPos": 14
+        }
+      ]
+    },
+    {
+      "text": "the wall next to the mens room on the 2nd level",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Floor",
+          "startPos": 38,
+          "endPos": 46
+        },
+        {
+          "entity": "Position",
+          "startPos": 21,
+          "endPos": 29
+        },
+        {
+          "entity": "Orientation",
+          "startPos": 9,
+          "endPos": 15
+        },
+        {
+          "entity": "Reference",
+          "startPos": 4,
+          "endPos": 7
+        }
+      ]
+    },
+    {
+      "text": "in the mens room 3rd floor",
+      "intent": "ProvideIncidentAndPosition",
+      "entities": [
+        {
+          "entity": "Floor",
+          "startPos": 17,
+          "endPos": 25
+        },
+        {
+          "entity": "Position",
+          "startPos": 7,
+          "endPos": 15
+        }
+      ]
+    }
+  ]
+}
