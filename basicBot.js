@@ -120,7 +120,7 @@ const
     ADDRESS_ERROR = 'The address could not be found. Please write it again.',
 
     GREETINGS = 'Hello %s, what is the address of your current location?',
-    
+
     ASK_CURRENT_ADDRESS = 'What is the address of your current location?',
     ASK_INCIDENT_AND_POSITION = 'What happened in %s and where exactly?',
     ASK_TIME = 'When did it happen?',
@@ -131,7 +131,22 @@ const
 
     ASK_ADDRESS_MULTIPLE_CHOICES = 'There are multiple choices on your location, please select (if you can not find your address please write it again):',
 
+    ASK_INCIDENT_DETAILS = 'What exactly happened?',
+    ASK_INCIDENT_DETAILS_PLUS_POSITION = 'What exactly happened in %s ?',
+
+    ASK_INCIDENT_POSITION = 'Where exactly?',
+    ASK_INCIDENT_POSITION_DETAIL = 'Where exactly is %s ?',
+
+    ASK_INCIDENT_POSITION_ROOM_NUMBER = 'Whats %s number?',
+    ASK_INCIDENT_POSITION_FLOOR_NUMBER = 'Whats the floor of %s ?',
+    ASK_INCIDENT_POSITION_ORIENTATION_FLOOR = 'Whats the orientation or floor of % ?',
+
+    ASK_INCIDENT_TYPE_NONE = 'The incident could not be classified. Please select or answer "what happened and where?" again:',
+    ASK_INCIDENT_TYPE_MULTIPLE = 'There are multiple choices on your incident type. Please select or contact service if not listed below:',
+
     ASK_USER_URGENCY = 'Are there people in danger? (Eg locked in elevators):',
+
+    INFORMATION_COMPLETE = 'Thank you very much, Sir or Madam %s, your message about the incident was received. The %s will be informed and will contact you if questions occur.',
 
     SERVICE_REPLY = 'Please hold on. A service employee will soon take on the conversation.';
 
@@ -141,20 +156,49 @@ const
 
 /**
  * reply with a list of elements
+ * 
+ * see: https://blogs.msdn.microsoft.com/tsmatsuz/2016/08/31/microsoft-bot-framework-messages-howto-image-html-card-button-etc/
+ * ~ not well documented for node.js, but see C# lib or rest definition ~
+ * 
+ * @param {Object} message The message object
+ * @param {string} title The title
+ * @param {Object[]} elements The list of elements
  */
 bot.listReply = function (message, title, elements) {
     bot.reply(message, { 'text': '', 'attachments': [{ 'contentType': 'application/vnd.microsoft.card.hero', 'content': { 'text': title, 'buttons': elements } }] });
 };
 
 /**
- * get user name
+ * return the job titles mapped to the incident type in a readable format
+ * 
+ * @param {string} type The incident type
+ */
+bot.getJobTitles = function (type) {
+    var jobs = incidentTypeToJobsMapping[type];
+    if (jobs.length > 1) {
+        return jobs.slice(0, -1).join(', ') + ' or ' + jobs.slice(-1);
+    } else {
+        return jobs[0];
+    }
+};
+
+/**
+ * get user id / name
+ * default way for Bot Framework / Skype nickname
+ * 
+ * @param {Object} message The message object
  */
 bot.getUserId = function (message) {
     return message.address.user.name;
 };
 
 /**
- * make a default reply
+ * default reply-'loop'
+ * is always called when an information block is complete or no better alternative exists
+ * 
+ * @param {Object} message The message object
+ * @param {string} id The user id
+ * @param {boolean} [error=false] The error flag
  */
 bot.defaultReply = function (message, id, error) {
     bot.botkit.storage.users.get(id, function (err, user) {
@@ -180,13 +224,6 @@ bot.defaultReply = function (message, id, error) {
         } else if (!user.name && !user.email && !user.phone) {
             bot.reply(message, ASK_CONTACT);
         } else {
-            var jobs;
-            if (user.jobs.length > 1) {
-                jobs = user.jobs.slice(0, -1).join(', ') + ' or ' + user.jobs.slice(-1);
-            } else {
-                jobs = user.jobs[0];
-            }
-
             var time;
             if (user.priority) {
                 time = incidentTypeToTimeMapping.priority[user.priority];
@@ -194,17 +231,32 @@ bot.defaultReply = function (message, id, error) {
                 time = incidentTypeToTimeMapping.urgency[user.urgency];
             }
 
-            bot.reply(message, 'Thank you very much, Sir or Madam ' + (user.name || id) + ', your message about the incident was received. The ' +
-                jobs + ' will be informed and will contact you if questions occur. (' +
-                (user.priority ? 'priority' : 'urgency') + ' lvl ' + (user.priority ? user.priority : user.urgency) + ' [ETA ' + time + '])');
+            bot.reply(message, util.format(INFORMATION_COMPLETE, (user.name || id), bot.getJobTitles(user.type)) +
+                ' (' + (user.priority ? 'priority' : 'urgency') + ' lvl ' + (user.priority ? user.priority : user.urgency) + ' [ETA ' + time + '])');
         }
     });
 };
 
+/**
+ * dummy function to indicate that here could be a connection to a real person messaging service
+ * 
+ * @param {Object} message The message object
+ * @param {string} id The user id
+ */
 bot.serviceReply = function (message, id) {
     bot.reply(message, SERVICE_REPLY);
 };
 
+/**
+ * initial conversation start function
+ * creates the user object to save conversation start date and error count
+ * furthermore replies with user greeting if user is added
+ * else no message is displayed (i.e. for debugging reasons)
+ * 
+ * @param {Object} message The message object
+ * @param {string} id The user id
+ * @param {boolean} [added=false] The added flag (used if conversation started)
+ */
 bot.saveConversationStart = function (message, id, added) {
     var user = { id: id, conversationStartDate: Date.now(), errorCount: 0 };
     bot.botkit.storage.users.save(user, function (err) {
@@ -215,12 +267,23 @@ bot.saveConversationStart = function (message, id, added) {
     return user;
 };
 
+/**
+ * function to be called when street address is not found
+ * or google maps service has problems
+ * 
+ * @param {Object} message The message object
+ */
 bot.addressNotFoundError = function (message) {
     bot.reply(message, ADDRESS_ERROR);
 };
 
 /**
+ * save address after standardization
  * 
+ * @param {Object} message The message object
+ * @param {string} id The user id
+ * @param {string} city The city
+ * @param {string} street The street
  */
 bot.saveAddress = function (message, id, city, street) {
     bot.botkit.storage.users.get(id, function (err, user) {
@@ -239,6 +302,43 @@ bot.saveAddress = function (message, id, city, street) {
     });
 };
 
+/**
+ * extract the city and street name inclusive the street number from the Google Maps service call
+ * 
+ * @param {Object} addressComponents The Google Maps address component object
+ * @param {string} [city] The city
+ * @param {string} [street] The street
+ */
+bot.extractCityAndStreetFromGoogleResponse = function (addressComponents, city, street) {
+    var streetNumber;
+    for (let addressComponent of addressComponents) {
+        for (let type of addressComponent.types) {
+            switch (type) {
+                case 'street_number':
+                    streetNumber = addressComponent.long_name;
+                    break;
+                case 'route':
+                    street = addressComponent.long_name;
+                    break;
+                case 'locality':
+                    city = addressComponent.long_name;
+                    break;
+            }
+        }
+    }
+    street += ' ' + streetNumber;
+    return { 'city': city, 'street': street };
+};
+
+/**
+ * save address and standardize if information (city and street) is complete
+ * 
+ * @param {Object} message The message object
+ * @param {string} id The user id
+ * @param {string} city The city
+ * @param {string} street The street
+ * @param {string} time The time
+ */
 bot.saveAndStandardizeAddress = function (message, id, city, street, time) {
     bot.botkit.storage.users.get(id, function (err, user) {
         if (!user) { user = bot.saveConversationStart(message, id); }
@@ -256,39 +356,32 @@ bot.saveAndStandardizeAddress = function (message, id, city, street, time) {
                         break;
                     case 1:
                         {
-                            var streetnumber;
-                            for (let address_component of response.json.results[0].address_components) {
-                                for (let type of address_component.types) {
-                                    switch (type) {
-                                        case 'street_number':
-                                            streetnumber = address_component.long_name;
-                                            break;
-                                        case 'route':
-                                            street = address_component.long_name;
-                                            break;
-                                        case 'locality':
-                                            city = address_component.long_name;
-                                            break;
-                                    }
-                                }
-                            }
-                            street += ' ' + streetnumber;
-                            console.log('info: Recognized address: ' + city + ' ' + street);
-                            bot.saveAddress(message, id, city, street);
+                            var address = bot.extractCityAndStreetFromGoogleResponse(response.json.results[0].address_components, city, street);
+                            console.log('info: Recognized address: ' + address.city + ' ' + address.street);
+                            bot.saveAddress(message, id, address.city, address.street);
                             break;
                         }
                     default:
                         {
-                            var choices = [];
-                            for (let result of response.json.results) {
-                                choices.push({
-                                    'type': 'imBack',
-                                    'title': result.formatted_address,
-                                    'value': 'I am in ' + result.formatted_address
-                                });
-                            }
+                            bot.botkit.storage.users.get(id, function (err, user) {
+                                user.possibleAddress = []; // clean buffer
+                                var choices = [];
+                                for (let [index, result] of response.json.results.entries()) { // nice kind of loop def. ES6
 
-                            bot.listReply(message, ASK_ADDRESS_MULTIPLE_CHOICES, choices);
+                                    choices.push({
+                                        'type': 'postBack',
+                                        'title': result.formatted_address,
+                                        'value': 'provide-address-' + index
+                                    });
+
+                                    user.possibleAddress.push(bot.extractCityAndStreetFromGoogleResponse(result.address_components)); // buffer address results
+                                }
+
+                                bot.botkit.storage.users.save(user, function (err) {
+                                    // possible results
+                                    bot.listReply(message, ASK_ADDRESS_MULTIPLE_CHOICES, choices);
+                                });
+                            });
                         }
                 }
             } else {
@@ -301,6 +394,18 @@ bot.saveAndStandardizeAddress = function (message, id, city, street, time) {
     }
 };
 
+/**
+ * save incident and position
+ * 
+ * @param {Object} message The message object
+ * @param {string} id The user id
+ * @param {string} reference The reference
+ * @param {string} symptom The symptom
+ * @param {string} position The position
+ * @param {string} orientation The orientation
+ * @param {string} floor The floor
+ * @param {string} number The number
+ */
 bot.saveIncidentAndPosition = function (message, id, reference, symptom, position, orientation, floor, number) {
     bot.botkit.storage.users.get(id, function (err, user) {
         if (!user) { user = bot.saveConversationStart(message, id); }
@@ -313,22 +418,22 @@ bot.saveIncidentAndPosition = function (message, id, reference, symptom, positio
         bot.botkit.storage.users.save(user, function (err) {
             if (!user.reference && !user.symptom) { // reference or symptom is required
                 if (!user.position && !user.floor) {
-                    bot.reply(message, 'What exactly happened?');
+                    bot.reply(message, ASK_INCIDENT_DETAILS);
                 } else {
-                    bot.reply(message, 'What exactly happened in ' + includeThe(user.position || user.floor) + '?');
+                    bot.reply(message, util.format(ASK_INCIDENT_DETAILS_PLUS_POSITION, includeThe(user.position || user.floor)));
                 }
             } else if (!user.position && !user.orientation && !user.floor) { // position, orientation or floor is required
                 if (!user.reference) {
-                    bot.reply(message, 'Where exactly?');
+                    bot.reply(message, ASK_INCIDENT_POSITION);
                 } else {
-                    bot.reply(message, 'Where exactly is ' + includeThe(user.reference) + '?');
+                    bot.reply(message, util.format(ASK_INCIDENT_POSITION_DETAIL, includeThe(user.reference)));
                 }
             } else if (user.position && positionDefinitions.PositionNeedNumber.includes(user.position) && !user.number) { // for rooms
-                bot.reply(message, 'Whats ' + includeThe(user.position) + ' number?');
+                bot.reply(message, util.format(ASK_INCIDENT_POSITION_ROOM_NUMBER, includeThe(user.position)));
             } else if (user.position && positionDefinitions.PositionNeedFloor.includes(user.position) && !user.floor) { // for rooms once in the floor
-                bot.reply(message, 'Whats the floor of ' + includeThe(user.position) + ' ?');
+                bot.reply(message, util.format(ASK_INCIDENT_POSITION_FLOOR_NUMBER, includeThe(user.position)));
             } else if (user.position && !positionDefinitions.PositionNeedNothing.includes(user.position) && !user.orientation && !user.floor && !user.number) { // for rooms that need further information
-                bot.reply(message, 'Whats the orientation or floor of ' + includeThe(user.position) + ' ?');
+                bot.reply(message, util.format(ASK_INCIDENT_POSITION_ORIENTATION_FLOOR, includeThe(user.position)));
             } else {
                 bot.classifyIncidentType(message, id);
             }
@@ -336,6 +441,12 @@ bot.saveIncidentAndPosition = function (message, id, reference, symptom, positio
     });
 };
 
+/**
+ * classify incident type
+ * 
+ * @param {Object} message The message object
+ * @param {string} id The user id
+ */
 bot.classifyIncidentType = function (message, id) {
     bot.botkit.storage.users.get(id, function (err, user) {
         if (!user) { user = bot.saveConversationStart(message, id); }
@@ -363,7 +474,7 @@ bot.classifyIncidentType = function (message, id) {
                     'value': 'contact'
                 });
 
-                bot.listReply(message, 'The incident could not be classified. Please select or answer "what happened and where?" again:', choices);
+                bot.listReply(message, ASK_INCIDENT_TYPE_NONE, choices);
                 break;
             case 1:
                 console.log('info: Classified type: ' + intentTypes[0]);
@@ -385,14 +496,17 @@ bot.classifyIncidentType = function (message, id) {
                         'value': 'contact'
                     });
 
-                    bot.listReply(message, 'There are multiple choices on your incident type. Please select or contact service if not listed below:', choices);
+                    bot.listReply(message, ASK_INCIDENT_TYPE_MULTIPLE, choices);
                 }
         }
     });
 };
 
 /**
+ * delete the incident information (reference and symptom)
  * 
+ * @param {Object} message The message object
+ * @param {string} id The user id
  */
 bot.deleteIncidentInformation = function (message, id) {
     bot.botkit.storage.users.get(id, function (err, user) {
@@ -406,7 +520,11 @@ bot.deleteIncidentInformation = function (message, id) {
 };
 
 /**
+ * classify the incident priority
  * 
+ * @param {Object} message The message object
+ * @param {string} id The user id
+ * @param {string} type The incident type
  */
 bot.classifyIncidentPriority = function (message, id, type) {
     bot.botkit.storage.users.get(id, function (err, user) {
@@ -429,6 +547,10 @@ bot.classifyIncidentPriority = function (message, id, type) {
 
 /**
  * save incident type
+ *
+ * @param {Object} message The message object
+ * @param {string} id The user id
+ * @param {string} type The incident type
  */
 bot.saveIncidentType = function (message, id, type) {
     bot.botkit.storage.users.get(id, function (err, user) {
@@ -453,7 +575,12 @@ bot.saveIncidentType = function (message, id, type) {
 };
 
 /**
- * save incident type and priority
+ * save incident type and priority 
+ * 
+ * @param {Object} message The message object
+ * @param {string} id The user id
+ * @param {string} type The incident type
+ * @param {number} priority The incident priority
  */
 bot.saveIncidentTypeAndPriority = function (message, id, type, priority) {
     bot.botkit.storage.users.get(id, function (err, user) {
@@ -468,6 +595,10 @@ bot.saveIncidentTypeAndPriority = function (message, id, type, priority) {
 
 /**
  * save incident time
+ * 
+ * @param {Object} message The message object
+ * @param {string} id The user id
+ * @param {string} time The time
  */
 bot.saveIncidentTime = function (message, id, time) {
     bot.botkit.storage.users.get(id, function (err, user) {
@@ -481,6 +612,10 @@ bot.saveIncidentTime = function (message, id, time) {
 
 /**
  * save incident user urgency
+ * 
+ * @param {Object} message The message object
+ * @param {string} id The user id
+ * @param {number} urgency The urgency
  */
 bot.saveIncidentUrgency = function (message, id, urgency) {
     bot.botkit.storage.users.get(id, function (err, user) {
@@ -494,6 +629,12 @@ bot.saveIncidentUrgency = function (message, id, urgency) {
 
 /**
  * save personal information
+ * 
+ * @param {Object} message The message object
+ * @param {string} id The user id
+ * @param {string} name The name
+ * @param {string} email The email
+ * @param {string} phone The phone
  */
 bot.saveIncidentPersonalInformation = function (message, id, name, email, phone) {
     bot.botkit.storage.users.get(id, function (err, user) {
@@ -554,6 +695,18 @@ controller.on('conversationUpdate', function (bot, message) {
 controller.hears(['contact'], ['direct_message', 'direct_mention', 'mention', 'message_received'], function (bot, message) {
     var id = bot.getUserId(message);
     bot.serviceReply(message, id);
+});
+
+/**
+ * user selects option to define address
+ */
+controller.hears(['provide-address-(.*)'], ['direct_message', 'direct_mention', 'mention', 'message_received'], function (bot, message) {
+    var id = bot.getUserId(message);
+    bot.botkit.storage.users.get(id, function (err, user) {
+        var address = user.possibleAddress[message.match[1]]; // read from buffer
+        bot.saveAddress(message, id, address.city, address.street);
+    });
+
 });
 
 /**

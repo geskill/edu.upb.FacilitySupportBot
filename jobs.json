@@ -2,7 +2,9 @@
     "threat": [
         "Warden"
     ],
-    "defect": [],
+    "defect": [
+        "Janitor"
+    ],
     "electricity": [
         "Electrician"
     ],
@@ -42,6 +44,5 @@
         "Plumbing and heating installer",
         "Plumber",
         "Cleaner"
-    ],
-    "default": "Janitor"
+    ]
 }
