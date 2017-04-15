@@ -1,6 +1,6 @@
 {
   "name": "facility-support-bot",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "A support bot for incidents in facilities.",
   "main": "bot.js",
   "repository": {

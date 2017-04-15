@@ -1,76 +1,168 @@
-// read from '.env'-file
+/*
+ * # Initialization
+ */
+
+// required for initial read from '.env'-file - used to set-up environment variables
 require('dotenv').config();
 
+// initialize use of node.js utils - used for printf string format
+const util = require('util');
+
+// read incident type to jobs mapping
 var incidentTypeToJobsMapping = require('./jobs.json');
+
+// read priority to estimated time mapping
 var incidentTypeToTimeMapping = require('./time.json');
+
+// read position definitions that need i.e. a room number or floor number
 var positionDefinitions = require('./positionDefinitions.json');
 
+// initialize Botkit
 var Botkit = require('botkit');
 
+// create a new Microsoft Bot Framework instance
 var controller = Botkit.botframeworkbot({
-    debug: process.env.APP_DEBUG || true,
-    hostname: process.env.APP_HOSTNAME || '127.0.0.1'
+    debug: process.env.APP_DEBUG || true, // set debug log to true
+    hostname: process.env.APP_HOSTNAME || '127.0.0.1' // set default hostname, required on windows
 });
 
+// create a new Bot Framework instance
 var bot = controller.spawn({
-    appId: process.env.APP_BOT_ID || 'c8ab93a2-4cfb-4d3a-86a9-1f0a350f6b65',
+    appId: process.env.APP_BOT_ID || 'c8ab93a2-4cfb-4d3a-86a9-1f0a350f6b65', // credentials from the Microsoft Bot Directory
     appPassword: process.env.APP_BOT_PASSWORD
 });
 
+// create a new instance for using Google Maps service
 var googleMapsClient = require('@google/maps').createClient({
     key: process.env.APP_GOOGLE_MAPS_API_KEY
 });
 
+/*
+ * ## Classification
+ */
+
+// create a new instance for using Limdu.js (classification library)
 var limdu = require('limdu');
+
+// read incident type and priority classification definitions
+var incidentClassification = require('./classification.json');
+
+/*
+ * ### Classification incident type
+ */
+
+// create new decision tree type classifier
 var decisionTree1 = limdu.classifiers.DecisionTree.bind(this, {});
+
+// create new classifier for incident type based upon decision tree type classifier
 var intentTypeClassifier = new limdu.classifiers.multilabel.BinaryRelevance({
     binaryClassifierType: decisionTree1
 });
 
-var incidentClassification = require('./classification.json');
-let incidentTypeClassification = JSON.parse(JSON.stringify(incidentClassification)); // deep clone hack
+// copy the classification definitions (deep clone hack) - used for modify the data - see loop
+let incidentTypeClassification = JSON.parse(JSON.stringify(incidentClassification));
+
+// loop trough all train-set data to use position value as reference if and only if reference value is undefined/empty
 for (let set of incidentTypeClassification.trainset) {
     if (!set.input.reference)
         set.input.reference = set.input.position;
     delete set.input.position;
-    set.output = set.output.type;
+    set.output = set.output.type; // redefine output to classify only the incident type
 }
+
+// train the incident type classifier based on the modified definition
 intentTypeClassifier.trainBatch(incidentTypeClassification.trainset);
 
+/*
+ * ### Classification priority
+ */
+
+// create new decision tree type classifier
 var decisionTree2 = limdu.classifiers.DecisionTree.bind(this, {});
+
+// create new classifier for priority based upon decision tree type classifier
 var priorityTypeClassifier = new limdu.classifiers.multilabel.BinaryRelevance({
     binaryClassifierType: decisionTree2
 });
 
-let priorityTypeClassification = JSON.parse(JSON.stringify(incidentClassification)); // deep clone hack
+// copy the classification definitions (deep clone hack) - used for modify the data - see loop
+let priorityTypeClassification = JSON.parse(JSON.stringify(incidentClassification));
+
+// loop trough all train-set data to use reference value as position if and only if position value is undefined/empty
 for (let set of priorityTypeClassification.trainset) {
     if (!set.input.position)
         set.input.position = set.input.reference;
     delete set.input.reference;
-    set.output = set.output.priority;
+    set.output = set.output.priority; // redefine output to classify only the priority
 }
+
+// train the priority classifier based on the modified definition
 priorityTypeClassifier.trainBatch(priorityTypeClassification.trainset);
 
+/*
+ * # Helper functions
+ */
+
+/**
+ * adds a 'the' to the beginning of the string if not existing
+ * @param {*} text 
+ */
 var includeThe = function (text) {
     var text = text.trim();
     return text.startsWith('the') ? text : 'the ' + text;
 };
 
+/*
+ * # Reply definitions
+ */
+const
+    INFORMATION_ERROR = 'Sorry, your information could not be recognized. Please try again and use a different wording.',
+    ADDRESS_ERROR = 'The address could not be found. Please write it again.',
+
+    GREETINGS = 'Hello %s, what is the address of your current location?',
+    
+    ASK_CURRENT_ADDRESS = 'What is the address of your current location?',
+    ASK_INCIDENT_AND_POSITION = 'What happened in %s and where exactly?',
+    ASK_TIME = 'When did it happen?',
+    ASK_CONTACT = 'Can you please tell me your name and contact?',
+
+    ASK_NAME_OF_CITY = 'What is the name of the city you are located at?',
+    ASK_NAME_AND_NUMBER_OF_STREET = 'What is the name and number of the street you are located at?',
+
+    ASK_ADDRESS_MULTIPLE_CHOICES = 'There are multiple choices on your location, please select (if you can not find your address please write it again):',
+
+    ASK_USER_URGENCY = 'Are there people in danger? (Eg locked in elevators):',
+
+    SERVICE_REPLY = 'Please hold on. A service employee will soon take on the conversation.';
+
+/*
+ * # Bot additions/extensions
+ */
+
+/**
+ * reply with a list of elements
+ */
 bot.listReply = function (message, title, elements) {
     bot.reply(message, { 'text': '', 'attachments': [{ 'contentType': 'application/vnd.microsoft.card.hero', 'content': { 'text': title, 'buttons': elements } }] });
 };
 
+/**
+ * get user name
+ */
 bot.getUserId = function (message) {
     return message.address.user.name;
 };
 
+/**
+ * make a default reply
+ */
 bot.defaultReply = function (message, id, error) {
     bot.botkit.storage.users.get(id, function (err, user) {
         if (!user) { user = bot.saveConversationStart(message, id); }
         if (error) {
             user.errorCount += 1;
             if (user.errorCount >= 2) {
-                bot.reply(message, 'Sorry, your information could not be recognized. Please try again and use a different wording.');
+                bot.reply(message, INFORMATION_ERROR);
             }
             if (user.errorCount >= 3) {
                 bot.serviceReply(message, id);
@@ -80,13 +172,13 @@ bot.defaultReply = function (message, id, error) {
         }
 
         if (!user || !user.city || !user.street) {
-            bot.reply(message, 'What is the address of your current location?');
+            bot.reply(message, ASK_CURRENT_ADDRESS);
         } else if (!user.type || (!user.priority && !user.urgency)) {
-            bot.reply(message, 'What happened in ' + user.city + ' and where exactly?');
+            bot.reply(message, util.format(ASK_INCIDENT_AND_POSITION, user.city));
         } else if (!user.time) {
-            bot.reply(message, 'When did it happen?');
+            bot.reply(message, ASK_TIME);
         } else if (!user.name && !user.email && !user.phone) {
-            bot.reply(message, 'Can you please tell me your name and contact?');
+            bot.reply(message, ASK_CONTACT);
         } else {
             var jobs;
             if (user.jobs.length > 1) {
@@ -110,19 +202,26 @@ bot.defaultReply = function (message, id, error) {
 };
 
 bot.serviceReply = function (message, id) {
-    bot.reply(message, 'Please hold on. A service employee will soon take on the conversation.');
+    bot.reply(message, SERVICE_REPLY);
 };
 
 bot.saveConversationStart = function (message, id, added) {
     var user = { id: id, conversationStartDate: Date.now(), errorCount: 0 };
     bot.botkit.storage.users.save(user, function (err) {
         if (added) {
-            bot.reply(message, 'Hello ' + id + ', what is the address of your current location?');
+            bot.reply(message, util.format(GREETINGS, id));
         }
     });
     return user;
 };
 
+bot.addressNotFoundError = function (message) {
+    bot.reply(message, ADDRESS_ERROR);
+};
+
+/**
+ * 
+ */
 bot.saveAddress = function (message, id, city, street) {
     bot.botkit.storage.users.get(id, function (err, user) {
         if (!user) { user = bot.saveConversationStart(message, id); }
@@ -130,9 +229,9 @@ bot.saveAddress = function (message, id, city, street) {
         if (street) { user.street = street; }
         bot.botkit.storage.users.save(user, function (err) {
             if (!city) {
-                bot.reply(message, 'What is the name of the city you are located at?');
+                bot.reply(message, ASK_NAME_OF_CITY);
             } else if (!street) {
-                bot.reply(message, 'What is the name and number of the street you are located at?');
+                bot.reply(message, ASK_NAME_AND_NUMBER_OF_STREET);
             } else {
                 bot.defaultReply(message, id);
             }
@@ -153,7 +252,7 @@ bot.saveAndStandardizeAddress = function (message, id, city, street, time) {
             if (!err) {
                 switch (response.json.results.length) {
                     case 0:
-                        bot.askAddressError(message);
+                        bot.addressNotFoundError(message);
                         break;
                     case 1:
                         {
@@ -189,12 +288,12 @@ bot.saveAndStandardizeAddress = function (message, id, city, street, time) {
                                 });
                             }
 
-                            bot.listReply(message, 'There are multiple choices on your location, please select (if you can not find your address please write it again):', choices);
+                            bot.listReply(message, ASK_ADDRESS_MULTIPLE_CHOICES, choices);
                         }
                 }
             } else {
                 // Google service error
-                bot.askAddressError(message);
+                bot.addressNotFoundError(message);
             }
         });
     } else {
@@ -243,7 +342,7 @@ bot.classifyIncidentType = function (message, id) {
         var reference;
         reference = user.reference || user.position || '';
 
-        var intentTypes = intentTypeClassifier.classify({ 'reference': reference, 'symptom': user.symptom||'' });
+        var intentTypes = intentTypeClassifier.classify({ 'reference': reference, 'symptom': user.symptom || '' });
 
         switch (intentTypes.length) {
             case 0:
@@ -292,6 +391,9 @@ bot.classifyIncidentType = function (message, id) {
     });
 };
 
+/**
+ * 
+ */
 bot.deleteIncidentInformation = function (message, id) {
     bot.botkit.storage.users.get(id, function (err, user) {
         if (!user) { user = bot.saveConversationStart(message, id); }
@@ -303,6 +405,9 @@ bot.deleteIncidentInformation = function (message, id) {
     });
 };
 
+/**
+ * 
+ */
 bot.classifyIncidentPriority = function (message, id, type) {
     bot.botkit.storage.users.get(id, function (err, user) {
         if (!user) { user = bot.saveConversationStart(message, id); }
@@ -322,6 +427,9 @@ bot.classifyIncidentPriority = function (message, id, type) {
     });
 };
 
+/**
+ * save incident type
+ */
 bot.saveIncidentType = function (message, id, type) {
     bot.botkit.storage.users.get(id, function (err, user) {
         if (!user) { user = bot.saveConversationStart(message, id); }
@@ -339,11 +447,14 @@ bot.saveIncidentType = function (message, id, type) {
                 'value': 'provide-incident-user-urgency-2'
             });
 
-            bot.listReply(message, 'Are there people in danger? (Eg locked in elevators):', choices);
+            bot.listReply(message, ASK_USER_URGENCY, choices);
         });
     });
 };
 
+/**
+ * save incident type and priority
+ */
 bot.saveIncidentTypeAndPriority = function (message, id, type, priority) {
     bot.botkit.storage.users.get(id, function (err, user) {
         if (!user) { user = bot.saveConversationStart(message, id); }
@@ -355,6 +466,9 @@ bot.saveIncidentTypeAndPriority = function (message, id, type, priority) {
     });
 };
 
+/**
+ * save incident time
+ */
 bot.saveIncidentTime = function (message, id, time) {
     bot.botkit.storage.users.get(id, function (err, user) {
         if (!user) { user = bot.saveConversationStart(message, id); }
@@ -365,6 +479,9 @@ bot.saveIncidentTime = function (message, id, time) {
     });
 };
 
+/**
+ * save incident user urgency
+ */
 bot.saveIncidentUrgency = function (message, id, urgency) {
     bot.botkit.storage.users.get(id, function (err, user) {
         if (!user) { user = bot.saveConversationStart(message, id); }
@@ -375,6 +492,9 @@ bot.saveIncidentUrgency = function (message, id, urgency) {
     });
 };
 
+/**
+ * save personal information
+ */
 bot.saveIncidentPersonalInformation = function (message, id, name, email, phone) {
     bot.botkit.storage.users.get(id, function (err, user) {
         if (!user) { user = bot.saveConversationStart(message, id); }
@@ -387,19 +507,21 @@ bot.saveIncidentPersonalInformation = function (message, id, name, email, phone)
     });
 };
 
-bot.askAddressError = function (message) {
-    bot.reply(message, 'The address could not be found. Please write it again.');
-};
-
-// if you are already using Express, you can use your own server instance...
-// see 'Use BotKit with an Express web server'
+/**
+ * Start the webserver
+ * 
+ * if you are already using Express, you can use your own server instance...
+ * see 'Use BotKit with an Express web server'
+ */
 controller.setupWebserver(process.env.PORT || 3000, function (err, webserver) {
     controller.createWebhookEndpoints(controller.webserver, bot, function () {
         console.log('This bot is online!!!');
     });
 });
 
-// your bot was added to a conversation or other conversation metadata changed
+/**
+ * The bot was added to a conversation or other conversation metadata changed
+ */
 controller.on('conversationUpdate', function (bot, message) {
     if (message.membersAdded) {
         message.membersAdded.forEach(function (identity) {
@@ -423,28 +545,41 @@ controller.on('conversationUpdate', function (bot, message) {
 });
 
 /*
- * Rule-based / pattern matching
+ * # Rule-based / pattern matching
  */
 
+/**
+ * user selects option contact service
+ */
 controller.hears(['contact'], ['direct_message', 'direct_mention', 'mention', 'message_received'], function (bot, message) {
     var id = bot.getUserId(message);
     bot.serviceReply(message, id);
 });
 
+/**
+ * user selects option to define incident type
+ */
 controller.hears(['provide-incident-type-(.*)'], ['direct_message', 'direct_mention', 'mention', 'message_received'], function (bot, message) {
     var id = bot.getUserId(message);
     bot.classifyIncidentPriority(message, id, message.match[1]);
 });
 
+/**
+ * user selects option to delete incident information
+ */
 controller.hears(['delete-incident-information'], ['direct_message', 'direct_mention', 'mention', 'message_received'], function (bot, message) {
     var id = bot.getUserId(message);
     bot.deleteIncidentInformation(message, id);
 });
 
+/**
+ * user selects option to define user urgency
+ */
 controller.hears(['provide-incident-user-urgency-(.*)'], ['direct_message', 'direct_mention', 'mention', 'message_received'], function (bot, message) {
     var id = bot.getUserId(message);
     bot.saveIncidentUrgency(message, id, message.match[1]);
 });
 
+// export controller and bot to use with NLU-service
 module.exports.controller = controller;
 module.exports.bot = bot;
